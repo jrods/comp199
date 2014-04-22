@@ -1,0 +1,88 @@
+#+Title: Comp 199 : Group 07 Project
+#+Author: Jared Smith, Sam Beveridge, Scott Copper, Calvin Lam
+#+Options: num:nil
+#+Options: toc:2
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="project-style.css" />
+#+HTML_HEAD_EXTRA: <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
+
+
+* Team Members
+#+Begin_verse
+Sam Beveridge
+Scott Copper
+Calvin Lam
+Jared Smith
+#+End_verse
+
+* Week 1
+  SCHEDULED: <2014-04-07 Mon>
+** [[./week1/week1.html][Review]]  |  [[./week1/Week1ganttchart.pod][Gantt Chart]]
+** DONE : <2014-04-08 Tue> Google+ Connect
+   DEADLINE: <2014-04-08 Tue>
+- Jared, Scott, Calvin, Sam
+** DONE : <2014-04-17 Thu> Create Gantt Chart
+   DEADLINE: <2014-04-14 Mon>
+- Jared
+** DONE : <2014-04-17 Thu> Week Review
+   DEADLINE: <2014-04-14 Mon>
+- Jared
+* Week 2
+  SCHEDULED: <2014-04-22 Tue>
+** TODO : Create Database tables
+   DEADLINE: <2014-04-23 Wed>
+- Jared
+** TODO : Insert sample data
+   DEADLINE: <2014-04-23 Wed>
+- Sam
+** TODO : Access sample data to display
+   DEADLINE: <2014-04-23 Wed>
+- Scott
+** TODO : Home page design
+   DEADLINE: <2014-04-23 Wed>
+- Calvin
+** TODO : Week Review
+   DEADLINE: <2014-04-24 Thu>
+-
+** TODO : Gantt Chart
+   DEADLINE: <2014-04-24 Thu>
+-
+
+* Week 3
+  SCHEDULED: <2014-04-28 Mon>
+** TODO : Project Structure (directories)
+   DEADLINE: <2014-04-29 Tue>
+-
+
+* Week 4
+** TODO : Add item(s) to shopping cart
+-
+
+* Week 5
+** TODO : Show shopping cart
+-
+** TODO : Modify shopping cart
+-
+
+* Week 6
+** TODO : Form page
+-
+** TODO : Billing and Shipping
+-
+
+* Week 7
+** TODO : Disable shipping info
+-
+
+* Week 8
+** TODO : Paypal api, payment system
+-
+
+* Week 9
+** TODO : Order confirmation and receipt
+-
+
+* Week 10
+** TODO : Final cleanup
+-
+** TODO : Extra features
+-
