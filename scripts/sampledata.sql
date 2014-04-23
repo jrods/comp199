@@ -1,9 +1,9 @@
-use `testing`;
+use `c199grp07`;
 
 # User example
 #delete from `testing`.`user` where `first_name`='Jared';
 
-INSERT INTO `testing`.`user` (
+INSERT INTO `c199grp07`.`user` (
 	`first_name`, `last_name`, 
 	`birth_date`, 
 	`not_a_password`, `email_address`, 
@@ -18,7 +18,7 @@ VALUES (
 # Artist example
 #delete from `testing`.`artist` where `artist_name`='in my jaaaaaag';
 
-insert into`testing`. `artist` (
+insert into`c199grp07`. `artist` (
 	`artist_name`, `root_dir`)
 values (
 	'in my jaaaaaag', 'artistName');
@@ -26,7 +26,7 @@ values (
 # Album example
 #delete from `testing`.`album` where `album_title` = '... on that bombshell';
 
-insert into `testing` . `album` (
+insert into `c199grp07` . `album` (
 	`artist_id`,
 	`album_title`, `album_price`,
 	`tags`, `date_of_release`,
@@ -43,7 +43,7 @@ values (
 # Song example
 #delete from `testing`.`song` where `song_title`='Good Night';
 
-insert into `testing` . `song` (
+insert into `c199grp07` . `song` (
 	`album_id`, `song_number`,
 	`song_title`,  `song_price`,
 	`file_name`)
@@ -54,7 +54,7 @@ values (
 
 
 # Receipt example
-insert into `testing` . `receipt` (
+insert into `c199grp07` . `receipt` (
 	`user_id`, `total_amount`,
 	`items`)
 values (
