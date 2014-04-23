@@ -1,15 +1,14 @@
 #+Title: Comp 199 : Group 07 Project
-#+Author: Jared Smith, Sam Beveridge, Scott Copper, Calvin Lam
+#+Author: Jared Smith, Sam Beveridge, Calvin Lam
 #+Options: num:nil
 #+Options: toc:2
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="project-style.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/project-style.css" />
 #+HTML_HEAD_EXTRA: <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
 
 
 * Team Members
 #+Begin_verse
 Sam Beveridge
-Scott Copper
 Calvin Lam
 Jared Smith
 #+End_verse
@@ -19,7 +18,7 @@ Jared Smith
 ** [[./week1/week1.html][Review]]  |  [[./week1/Week1ganttchart.pod][Gantt Chart]]
 ** DONE : <2014-04-08 Tue> Google+ Connect
    DEADLINE: <2014-04-08 Tue>
-- Jared, Scott, Calvin, Sam
+- Jared, Calvin, Sam
 ** DONE : <2014-04-17 Thu> Create Gantt Chart
    DEADLINE: <2014-04-14 Mon>
 - Jared
@@ -36,7 +35,7 @@ Jared Smith
 - Sam
 ** TODO : Access sample data to display
    DEADLINE: <2014-04-23 Wed>
-- Scott
+- 
 ** TODO : Home page design
    DEADLINE: <2014-04-23 Wed>
 - Calvin

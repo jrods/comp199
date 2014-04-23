@@ -1,7 +1,7 @@
 #+Title:Week 1 Review : Group 07
 #+Author: Jared Smith, Scott Cooper, Sam Beveridge, Calvin Lam
 #+Options: num:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="week1-style.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/week1-style.css" />
 #+HTML_HEAD_EXTRA: <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
 
 
