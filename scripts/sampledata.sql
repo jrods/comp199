@@ -22,6 +22,20 @@ insert into`c199grp07`. `artist` (
 	`artist_name`, `root_dir`)
 values (
 	'in my jaaaaaag', 'artistName');
+
+
+INSERT INTO `c199grp07`.`user` (
+	`artist_id`,
+	`first_name`, `last_name`, 
+	`birth_date`, 
+	`not_a_password`, `email_address`, 
+	`city`, `country`) 
+VALUES (
+	'1',
+	'Jezza', 'Clarkson', 
+	'1951-01-01', 'somepassword', 
+	'imacompleteclot@bbc.co.uk', 
+	'london', 'unitied kingdom');
  
 # Album example
 #delete from `testing`.`album` where `album_title` = '... on that bombshell';
@@ -52,6 +66,24 @@ values (
 	'good night', '100',
 	'good_night.mp3');
 
+# 
+insert into `c199grp07` . `song` (
+	`album_id`, `song_number`,
+	`song_title`,  `song_price`,
+	`file_name`)
+values (
+	'1', '2',
+	'powerrr', '150',
+	'powerrr.mp3');
+
+insert into `c199grp07` . `song` (
+	`album_id`, `song_number`,
+	`song_title`,  `song_price`,
+	`file_name`)
+values (
+	'1', '3',
+	'glorifed beetle', '125',
+	'glorifed_beetle.mp3');
 
 # Receipt example
 insert into `c199grp07` . `receipt` (
