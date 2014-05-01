@@ -76,7 +76,32 @@
 	
 	<aside class="top-sidebar">
 		<article>
-			<a href = "login.html"><button type="button">Log In/Register</button></a>
+		<div id='basic-modal'>
+		<input type='button' name='basic' value='Login' class='basic'/>
+		</div>
+
+		<!-- modal content -->
+		<div id="basic-modal-content">
+				        <form action="includes/process_login.php" method="post" name="login_form">
+            Email<br>
+            <input type="text" name="email" /><br><br>
+            Password<br>
+            <input type="password"
+                             name="password"
+                             id="password"/>  <br><br>
+            <input type="button"
+                   value="Login"
+                   onclick="formhash(this.form, this.form.password);" />
+        </form>
+        <p>If you don't have a login, please <a href="register.php">register</a></p>
+        <p>If you are done, please <a href="includes/logout.php">log out</a>.</p>
+        <p>If you are logged in, you can view this <a href="protected_page.php">page</a></p>
+        <p>You are currently logged out.</p>
+		</div>
+		
+		<div style='display:none'>
+			<img src='img/basic/x.png' alt='' />
+		</div>
 			 
 		</article>
 	</aside>
@@ -108,7 +133,10 @@
 	<p>Copyright &copy; 2014 <a href="copyright footer" title="tunesourceWebsite">tunesource.com</a></p>
 	</footer>
 
-
+        <!-- Load jQuery, SimpleModal and Basic JS files -->
+<script type='text/javascript' src='js/jquery.js'></script>
+<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
+<script type='text/javascript' src='js/basic.js'></script>
 
 </body>
 
