@@ -1,0 +1,49 @@
+#+Title:Week 1 Review : Group 07
+#+Author: Jared Smith, Scott Cooper, Sam Beveridge, Calvin Lam
+#+Options: num:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/week1-style.css" />
+#+HTML_HEAD_EXTRA: <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
+
+
+* Project Overview
+#+Begin_verse
+Our project is to create a music streaming website. Our website will provide an easy way for customers 
+to browse, listen and purchase music. Customers will be able to browse all music on the site via home 
+page gallery, along with additional search functionality to find artists, albums and/or individual songs.
+#+End_verse
+
+* Team Members
+#+Begin_verse
+Sam Beveridge
+Scott Cooperg
+Calvin Lam
+Jared Smith
+#+End_verse
+
+* Functional Requirements
+- Search for music by artist, album, song
+- Create account
+- Checkout/shopping cart
+- Use paypal for purchases
+- Stream music on site page
+- Download songs/albums from site
+- Delete items from shopping cart
+
+* Non-Functional Requirments
+- Instant (max 3 sec) stream playback
+- 3-4 clicks from checkout to payment
+- Instant shopping cart updates, no separate web page
+
+* Technology Infrustructure
+- All Open-source
+- DRM-free
+- MySQL for database
+- PHP backend management
+- Javascript/JQuery for content management
+- HTML5/CSS3 web design
+
+* Links
+- [[../project.html][Main Project Outline]]
+- [[./Week1ganttchart.pod][Gantt Chart, OpenProj]]
+
+

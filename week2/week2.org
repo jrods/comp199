@@ -1,0 +1,47 @@
+#+Title:Week 2 Review : Group 07
+#+Author:Sam Beveridge, Calvin Lam, Jared Smith
+#+Options: num:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/week2-style.css" />
+#+HTML_HEAD_EXTRA: <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
+
+* [[../index.html][Our Home Page]]
+* [[https://github.com/jrods/comp199][Github Source Page]]
+* Team Members
+#+Begin_verse
+Sam Beveridge
+Calvin Lam
+Jared Smith
+#+End_verse
+
+* Sam Beveridge: UX (User Experience) Designer
+** User Login
+I have set up a login/register which makes use of mySQL databases and securely stores passwords in the database. On the register page reCAPTCHA is implemented in order to protect against spam bots. The website is using session data in order to remember who is logged in and can see whether the user is logged on or off. The website can also return the username a logged-in user to the webpage. Certain pages are protected from viewing depending on whether or not you have logged in as a user or not.
+
+- Plans:
+  - implement into home page using transparent DIV popup
+  - add login attempt limits
+  - email verification
+  - implement session data into rest of webpage
+
+* Calvin Lam: Frontend Designer
+** Webpage
+On the webpage design, I have desgined a basic skelton of the webpage using CSS and HTML. We plan to add more onto the webpage and make it more dynamic with without the need to reload a new page and other similar features. The links on the menu bar have not been planned out yet. Some problems I've encounterd were in the CSS highlighting links to a specific color and the hover method. Other than that the webpage has gone very smoothly.
+
+* Jared Smith: Backend Designer
+** Database
+- Using MySQLWorkbench, I was able to create a base for our website's design structure.
+- There are 5 main tables:
+  - User
+  - Artist
+  - Album
+  - Song
+  - Receipt
+- The main problem I had designing the database was getting primary and foreign keys working, but eventually got everything to work (for now). Later on, the database will need to expand with more columns, which shouldn't be too much of a problem.
+
+* Project Status
+Currently the project is on schedule, detailed by our gantt chart. We were able to design a basic database, query with php and display the results in html. We have a basic index page for our website and will be able to add our other modules to make it somewhat useful. We were also able to get a basic login/register form to allow for people to sign up and have a user account. This coming week is abit short compared to the last milestone; We can manage (I think, we'll see) to stay on schedule.
+
+* Links
+- [[../project.html][Main Project Outline]]
+
+

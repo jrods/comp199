@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Mamp MySQL - @localhost" uuid="85d0223f-12c2-4a27-acbf-46823398686b">
+    <database-info product="MySQL" version="5.5.34" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.29 ( Revision: alexander.soklakov@oracle.com-20140120140810-s44574olh90i6i4l )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="c199grp07"/>
+    <table name="album" schema="" catalog="c199grp07" type="TABLE">
+      <column name="album_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="artist_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="album_title" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="album_price" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tags" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="date_of_release" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dir_location" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="album_id"/>
+      <foreign-key name="fk_artist_artist_id" columns="artist_id" ref-table="artist" ref-schema="" ref-catalog="c199grp07" ref-columns="artist_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_album_album_id" table="song" schema="" catalog="c199grp07" columns="album_id"/>
+      <index name="fk_artist_artist_id" unique="false" columns="artist_id"/>
+    </table>
+    <table name="artist" schema="" catalog="c199grp07" type="TABLE">
+      <column name="artist_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="artist_name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="root_dir" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="artist_id"/>
+      <exported-key name="fk_artist_artist_id" table="album" schema="" catalog="c199grp07" columns="artist_id"/>
+      <exported-key name="fk_artist_artist" table="user" schema="" catalog="c199grp07" columns="artist_id"/>
+    </table>
+    <table name="receipt" schema="" catalog="c199grp07" type="TABLE">
+      <column name="receipt_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="total_amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="items" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="purchase_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="receipt_id"/>
+      <foreign-key name="fk_user_user_id" columns="user_id" ref-table="user" ref-schema="" ref-catalog="c199grp07" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_user_user_id" unique="false" columns="user_id"/>
+    </table>
+    <table name="song" schema="" catalog="c199grp07" type="TABLE">
+      <column name="song_number" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="album_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="song_title" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="song_price" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="file_name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="length" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="song_number"/>
+      <foreign-key name="fk_album_album_id" columns="album_id" ref-table="album" ref-schema="" ref-catalog="c199grp07" ref-columns="album_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_album_album_id" unique="false" columns="album_id"/>
+    </table>
+    <table name="user" schema="" catalog="c199grp07" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="artist_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="first_name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="birth_date" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="not_a_password" sqlType="VARCHAR" precision="130" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email_address" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="created_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <foreign-key name="fk_artist_artist" columns="artist_id" ref-table="artist" ref-schema="" ref-catalog="c199grp07" ref-columns="artist_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_user_user_id" table="receipt" schema="" catalog="c199grp07" columns="user_id"/>
+      <index name="fk_artist_artist" unique="false" columns="artist_id"/>
+    </table>
+  </data-source>
+</component>
