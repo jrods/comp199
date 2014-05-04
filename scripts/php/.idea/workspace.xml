@@ -54,8 +54,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <breakpoint_rules converted="true" />
     <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -66,11 +66,11 @@
       <file leaf-file-name="dbFetch.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dbFetch.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6953846" vertical-offset="502" max-vertical-offset="1170">
+            <state vertical-scroll-proportion="0.7677419" vertical-offset="240" max-vertical-offset="1170">
               <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding>
-                <marker date="1398894945000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
-                <marker date="1398894945000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
+                <marker date="1399082426000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
+                <marker date="1399082426000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
               </folding>
             </state>
           </provider>
@@ -98,9 +98,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
+    <option name="x" value="501" />
     <option name="y" value="22" />
-    <option name="width" value="1280" />
-    <option name="height" value="774" />
+    <option name="width" value="1416" />
+    <option name="height" value="1054" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -138,20 +139,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -321,6 +312,10 @@
       <option name="usbDebugPort" value="7936" />
       <method />
     </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -340,10 +335,6 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
       <method />
     </configuration>
     <configuration default="true" type="ErlangUnitRunConfigurationType" factoryName="Erlang Eunit">
@@ -409,12 +400,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
-      <option name="VM_PARAMETERS" value="" />
-      <option name="USER_CFG_CLASS" />
-      <option name="CONTEXT_PROVIDER" />
-      <method />
-    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -433,6 +418,12 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
       <method />
     </configuration>
     <list size="0" />
@@ -457,15 +448,16 @@
       <workItem from="1398704023943" duration="482000" />
       <workItem from="1398880122858" duration="5344000" />
       <workItem from="1398992490856" duration="164000" />
+      <workItem from="1399083006847" duration="21000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7065000" />
+    <option name="totallyTimeSpent" value="7086000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="774" extended-state="6" />
-    <editor active="true" />
+    <frame x="501" y="22" width="1416" height="1054" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -485,7 +477,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1734375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19562148" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -527,8 +519,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="502" max-vertical-offset="1170">
           <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding>
-            <marker date="1398894945000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
-            <marker date="1398894945000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
+            <marker date="1399082426000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
+            <marker date="1399082426000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbFetch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="502" max-vertical-offset="1170">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding>
+            <marker date="1399082426000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
+            <marker date="1399082426000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
           </folding>
         </state>
       </provider>
@@ -538,8 +541,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="558">
           <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
           <folding>
-            <marker date="1398894945000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
-            <marker date="1398894945000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
+            <marker date="1399082426000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
+            <marker date="1399082426000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
           </folding>
         </state>
       </provider>
@@ -549,8 +552,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="558">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1398894945000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
-            <marker date="1398894945000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
+            <marker date="1399082426000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
+            <marker date="1399082426000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
           </folding>
         </state>
       </provider>
@@ -560,8 +563,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="558">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1398894945000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
-            <marker date="1398894945000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
+            <marker date="1399082426000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
+            <marker date="1399082426000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
           </folding>
         </state>
       </provider>
@@ -571,8 +574,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="558">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1398894945000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
-            <marker date="1398894945000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
+            <marker date="1399082426000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
+            <marker date="1399082426000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
           </folding>
         </state>
       </provider>
@@ -582,20 +585,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="496">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1398894945000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
-            <marker date="1398894945000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
+            <marker date="1399082426000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
+            <marker date="1399082426000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/d60cdf5b/85d0223f-12c2-4a27-acbf-46823398686b/c199grp07..user">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="uml://DATABASE/85d0223f-12c2-4a27-acbf-46823398686b">
@@ -624,11 +617,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dbFetch.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6953846" vertical-offset="502" max-vertical-offset="1170">
+        <state vertical-scroll-proportion="0.7677419" vertical-offset="240" max-vertical-offset="1170">
           <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding>
-            <marker date="1398894945000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
-            <marker date="1398894945000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
+            <marker date="1399082426000" expanded="true" signature="373:391" placeholder="select * fro..user..." />
+            <marker date="1399082426000" expanded="true" signature="1032:1052" placeholder="select * fro..artist..." />
           </folding>
         </state>
       </provider>

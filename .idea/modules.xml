@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/php/php.iml" filepath="$PROJECT_DIR$/php/php.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c199.iml" filepath="$PROJECT_DIR$/c199.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scripts/php/php.iml" filepath="$PROJECT_DIR$/scripts/php/php.iml" />
     </modules>
   </component>
 </project>
