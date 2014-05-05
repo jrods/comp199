@@ -3,82 +3,9 @@
 
 <head>
     <title>gallery gen test</title>
-    <link href="/css/cartButton.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/cartButton.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/galleryGenerator.css" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
-    <style>
-        * {
-            font-family: "Source Sans Pro";
-        }
-
-        a {
-            text-decoration: none;
-            color: #000;
-        }
-
-        .galleryWrapper {
-            width: 45em;
-            height: 30em;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .galleryContent {
-            width: 45em;
-            height: 30em;
-            display: inline-block;
-        }
-
-        .itemList {
-            list-style-type: none;
-            vertical-align: top;
-            display: inline-block;
-            padding-left: 0em;
-        }
-
-        li.item {
-            overflow: hidden;
-            display: inline-block;
-            margin: 0px 22px 0em 0px;
-        }
-
-        #albumObject {
-            position: relative;
-            display: inline-block;
-            width: 8.6em;
-            height: 12.5em;
-            border: 1px solid #ccc;
-        }
-
-        .albumText {
-            padding-left: 0.25em;
-        }
-
-        #albumTitle {
-            font-size: 0.9em;
-        }
-
-        #artistName {
-            font-size: 0.8em;
-        }
-
-        #tags {
-            font-size: 0.7em;
-            color: #aaa;
-        }
-
-        #art {
-            width: 8.6em;
-            height: 8.6em;
-            top: 1em;
-        }
-
-        .playButton img {
-            position: absolute;
-            top: 42px;
-            left: 38px;
-        }
-
-    </style>
 </head>
 
 <body>
@@ -120,20 +47,24 @@ if (!$userResults) {
     die($message);
 }
 
-while($row = $userResults->fetch_assoc()) {
-    $artistNameDiv = divIdClass("albumTitle", "albumText", $row['album_title']);
-    $albumTitleDiv = divIdClass("artistName", "albumText", $row['artist_name']);
-    $tags = divIdClass("tags", "albumText", "temp");
+$galleryListItem = '';
 
-    $playButton = spanBlock("playButton", imgBlock("playButton", "/res/image/play.png"));
-    $albumArt = spanBlock("albumArt", imgBlock("art", "/res/image/test.jpg") . $playButton);
-    $mainBlock = anchorBlock("albumObject", "/temp/link", $albumArt  . $artistNameDiv . $albumTitleDiv . $tags);
+while($row = $userResults->fetch_assoc()) {
+    $playButton = spanBlock("playButton", imgBlock("playButton", "../../res/image/play.png"));
+    $albumArt = spanBlock("albumArt", imgBlock("art", "../../res/image/test.jpg") . $playButton);
+    $albumArtButton = anchorBlock("/temp/link", $albumArt . $playButton);
+
+    $albumTitle = divIdClass("albumTitle", "albumText", $row['album_title']);
+    $artistName = divIdClass("artistName", "albumText", $row['artist_name']);
+    $tags = divIdClass("tags", "albumText", "genre");
+
+    $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $tags);
 
     $shoppingButton = '<button type="button" name="" value="" class="addToCartButton">+ add to cart</button>';
     $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $shoppingButton);
 
-    $albumObject = $mainBlock . $shoppingBlock;
-    $galleryListItem = $galleryListItem . listItem($albumObject);
+    $albumObject = $albumBlock . $shoppingBlock;
+    $galleryListItem .= listItem($albumObject);
 }
 
 $galleryList = unOrderList($galleryListItem);

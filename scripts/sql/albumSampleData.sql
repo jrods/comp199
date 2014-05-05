@@ -59,8 +59,8 @@ insert into `c199grp07` . `album` (
 	`description`)
 values (
 	'2',
-	'', '500',
-	'no wind', '2014-04-10',
+	'no wind', '500',
+	'', '2014-04-10',
 	'artistName/albumName',
 	'maybe run faster this time');
 

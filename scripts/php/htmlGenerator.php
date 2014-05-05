@@ -6,9 +6,19 @@
  * Time: 10:47 PM
  */
 
-function anchorBlock($idName, $link, $content) {
+function anchorBlockIdClassLink($idName, $className, $link, $content) {
+    $results = '<a id="%s" class="%s" href="%s">%s</a>';
+    return sprintf($results, $idName, $className, $link, $content);
+}
+
+function anchorBlockIdLink($idName, $link, $content) {
     $results = '<a id="%s" href="%s">%s</a>';
     return sprintf($results, $idName, $link, $content);
+}
+
+function anchorBlock($link, $content) {
+    $results = '<a href="%s">%s</a>';
+    return sprintf($results, $link, $content);
 }
 
 function listItem($content) {
@@ -31,9 +41,9 @@ function spanBlock($className, $content) {
     return sprintf($results, $className, $content);
 }
 
-function divId($className, $content) {
-    $results = '<div class="%s">%s</div>';
-    return sprintf($results, $className, $content);
+function divId($idName, $content) {
+    $results = '<div id="%s">%s</div>';
+    return sprintf($results, $idName, $content);
 }
 
 function divIdClass($idName, $className, $content) {

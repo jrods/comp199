@@ -1,0 +1,86 @@
+* {
+    font-family: "Source Sans Pro";
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+#albumObject:hover {
+    border: 1px solid rgba(204, 204, 204, 1.0);
+}
+
+#galleryWrapper {
+    width: 810px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.galleryContent {
+    display: inline-block;
+}
+
+.itemList {
+    list-style-type: none;
+    vertical-align: top;
+    display: inline-block;
+    padding-left: 0px;
+}
+
+li.item {
+    overflow: hidden;
+    display: inline-block;
+    margin: 0px 22px 0em 0px;
+}
+
+#albumObject {
+    position: relative;
+    display: inline-block;
+    width: 138px;
+    height: 200px;
+    border: 1px solid rgba(0,0,0,0);
+}
+
+.albumText {
+    padding-left: 0.25em;
+}
+
+.albumText:hover {
+    text-decoration: underline;
+}
+
+#albumTitle {
+    font-size: 0.9em;
+}
+
+#artistName {
+    font-size: 0.8em;
+}
+
+#tags {
+    font-size: 0.7em;
+    color: #aaa;
+}
+
+#art {
+    width: 138px;
+    height: 138px;
+    top: 16px;
+}
+
+.playButton {
+    position: absolute;
+    top: 42px;
+    left: 38px;
+}
+
+#playButton {
+    opacity: 0;
+}
+
+#albumObject:hover #playButton {
+    opacity: 100;
+    transition-property: opacity;
+    transition-duration: 0.4s;
+}
