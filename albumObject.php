@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 
     <title>Object Prototype</title>
-
+    <link href="css/cartButton.css" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
     <style type="text/css">
         * {
@@ -77,37 +77,6 @@
             position: absolute;
             top: 42px;
             left: 38px;
-        }
-
-        button.addToCartButton{
-            font-size: 14px;
-            color: #ffffff;
-            padding: 3px 10px;
-            margin: 3px 19px 2px;
-            background: -moz-linear-gradient(
-                top,
-                #00db00 0%,
-                #1f9900);
-            background: -webkit-gradient(
-                linear, left top, left bottom,
-                from(#00db00),
-                to(#1f9900));
-            -moz-border-radius: 9px;
-            -webkit-border-radius: 9px;
-            border-radius: 9px;
-            border: 0px solid #194d14;
-            -moz-box-shadow:
-            0px 1px 3px rgba(255,255,255,0),
-            inset 0px 0px 1px rgba(255,255,255,0.6);
-            -webkit-box-shadow:
-            0px 1px 3px rgba(255,255,255,0),
-            inset 0px 0px 1px rgba(255,255,255,0.6);
-            box-shadow:
-            0px 1px 3px rgba(255,255,255,0),
-            inset 0px 0px 1px rgba(255,255,255,0.6);
-            text-shadow:
-            1px 1px 1px rgba(000,000,000,0.7),
-            2px 2px 6px rgba(000,000,000,0.4);
         }
 
     </style>
