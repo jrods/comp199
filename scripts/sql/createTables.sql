@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `c199grp07`.`user` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `birth_date` VARCHAR(10) NOT NULL,
-  `not_a_password` VARCHAR(130) NOT NULL,
+  `not_a_password` VARCHAR(128) NOT NULL,
   `email_address` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NULL,
   `country` VARCHAR(45) NULL,
