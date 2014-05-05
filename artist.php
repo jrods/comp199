@@ -93,8 +93,6 @@ sec_session_start();
 					modal.open({content: data});
                                         e.preventDefault();
 				});
-
-
 			  });
                      });
 

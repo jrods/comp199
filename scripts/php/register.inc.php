@@ -19,10 +19,23 @@
 
 include_once 'db_connect.php';
 include_once 'psl-config.php';
+require_once('recaptchalib.php'); // reCAPTCHA Library
 
 $error_msg = "";
 
+
 if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
+  
+    $privkey = "6LedAfMSAAAAAIbvL2AZPZAADGL6-qY7S2Vl4l4k"; // Private API Key
+    $verify = recaptcha_check_answer($privkey, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
+
+    if ($verify->is_valid) {
+        # Enter Success Code
+        echo "Your response was correct!";
+    } else {
+        # Enter Failure Code
+        $error_msg .= '<p class="error">You entered the captcha wrong</p>';
+    }
     // Sanitize and validate the data passed in
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
@@ -77,11 +90,11 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
             $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {
-                header('Location: ../../error.php?err=Registration failure: INSERT');
+                header('Location: /error.php?err=Registration failure: INSERT');
                 exit();
             }
         }
-        header('Location: ../../register_success.php');
+        header('Location: /register_success.php');
         exit();
     }
 }

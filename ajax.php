@@ -73,12 +73,22 @@
 
 			// Wait until the DOM has loaded before querying the document
 			$(document).ready(function(){
-
+                       
                         $('a#register').click(function(e){
 
-			        modal.open({content: "Username:<br> <input type='text' name='username' id='username' /><br><br> Email:<br> <input type='text' name='email' id='email' /><br><br> Password: <br><input type='password' name='password' id='password'/><br><br> Confirm password: <br><input type='password' name='confirmpwd' id='confirmpwd' /><br><br> <input type='button' value='Register' onclick='return regformhash(this.form, this.form.username, this.form.email, this.form.password, this.form.confirmpwd);' /> "});
+                            $.get('register.php', function(data){
+					modal.open({content: data});
+                                        e.preventDefault();
+				});
+			  });
+                       /*
+                        $('a#register').click(function(e){
+
+			        modal.open({content: "Username:<br> <input type='text' name='username' id='username' /><br><br> Email:<br> <input type='text' name='email' id='email' /><br><br> Password: <br><input type='password' name='password' id='password'/><br><br> Confirm password: <br><input type='password' name='confirmpwd' id='confirmpwd' /><br> <input type='button' value='Register' onclick='return regformhash(this.form, this.form.username, this.form.email, this.form.password, this.form.confirmpwd);' /> "});
 			        e.preventDefault();
+
                         });
+                        */
                   });
       </script>
 </head>
