@@ -147,10 +147,10 @@ sec_session_start();
 		<a href="index.html"><img src='res/image/Logo.png'></a>
 		
 		<nav><ul>
-			<li class="active"><a href="index.html">MainPage</a></li>
-			<li><a href="Artist">Artist</a></li>
-			<li><a href="Songs">Songs</a></li>
-			<li><a href="Albums">Albums</a></li>
+			<li class="active"><a href="index.php">MainPage</a></li>
+			<li><a href="artist.php">Artist</a></li>
+			<li><a href="songs.php">Songs</a></li>
+			<li><a href="albums.php">Albums</a></li>
 			<li><a href="project.html">About</a></li>
 		</nav></ul>
 		</header>
