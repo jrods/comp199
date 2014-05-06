@@ -1,98 +1,93 @@
 <?php
 include('db_connect.php');
 
-class Cart {
-    private $cartOfItems = array();
-    private $totalCart;
+class Cart
+{
     private $correctValue;
+    private $totalCart;
+    private $login;
 
-    function __construct(){
-        //$cartOfItems = array();
-        $totalCart = 0;
-
+    function __construct($server, $username, $password, $schema)
+    {
+        $this->cartOfItems = array();
+        $this->totalCart = 0;
+        $this->correctValue = 0;
+        $this->login = @new mysqli($server, $username, $password, $schema);
     }
 
-    public function addItem($albumTitle){
-        
-        $server = 'localhost';
-        $username = 'c199grp07';
-        $password = 'c199grp07';
-        $schema = 'c199grp07';
+    public function addItem($albumTitle)
+    {
 
-        $login = @new mysqli($server, $username, $password, $schema);
-
-        if($login->connect_error) {
-            die("Connect Error: ". $login->connect_error);
+        if ($this->login->connect_error) {
+            die("Connect Error: " . $this->login->connect_error);
         }
 
-        $testQuery = $login;
-        
-        $baseQuery =
-           "select al.album_price, al.album_title
-            from album al
-            where al.album_title = '%s';
-           ";
+        $baseQuery = "select al.album_price, al.album_title from album al where al.album_title = '%s'; ";
         $baseQuery = sprintf($baseQuery, $albumTitle);
-        $results = $testQuery->query($baseQuery);
 
-        $album = $results;
-        array_push($this->cartOfItems, $album);
+        $results = $this->login->query($baseQuery);
+
+        $album = $results->fetch_assoc();
+
+        $inAlbum = @new Album($album['album_title'], $album['album_price']);
+
+        array_push($this->cartOfItems, $inAlbum);
     }
 
-    public function getTotal(){
-        /*
-        $albumTemp = self::$cartOfItems[0];
-        $album = $albumTemp->fetch_object();
-        echo $album->album_price;  */
+    public function getTotal()
+    {
+        $this->totalCart = 0;
 
-        foreach($this->cartOfItems as $value){
-
-            $album = $value->fetch_assoc();
-            //echo gettype($album);
-            $correctValue = number_format((float)($album["album_price"] / 100), 2, '.', '');
-            $this->totalCart += $correctValue;
+        foreach ($this->cartOfItems as $value) {
+            $albumPrice = number_format((float)($value->getPrice() / 100), 2, '.', '');
+            $this->totalCart += $albumPrice;
 
         }
-        $this->totalCart = number_format((float)($this->totalCart), 2, '.', '');
-        return $this->totalCart;
+
+        $formattedCart = number_format((float)($this->totalCart), 2, '.', '');
+        return $formattedCart;
     }
 
-    public function removeItem($albumTitle){
-      
-                $server = 'localhost';
-        $username = 'c199grp07';
-        $password = 'c199grp07';
-        $schema = 'c199grp07';
-
-        $login = @new mysqli($server, $username, $password, $schema);
-
-        if($login->connect_error) {
-            die("Connect Error: ". $login->connect_error);
-        }
-
-        $testQuery = $login;
-        
-        $baseQuery =
-           "select al.album_price, al.album_title
-            from album al
-            where al.album_title = '%s';
-           ";
-        $baseQuery = sprintf($baseQuery, $albumTitle);
-        $results = $testQuery->query($baseQuery);
-
-        $album = $results;
+    public function removeItem($lookingForTitle)
+    {
 
         $testArray = array();
-        foreach($this->cartOfItems as $value){
-            $album = $value->fetch_assoc();
-            echo gettype($value);
-            if(strcmp($album["album_title"],$albumTitle) == 0){
+
+        foreach ($this->cartOfItems as $value) {
+
+            $listAlbumTitle = $value->getName();
+            if (strcmp($listAlbumTitle, $lookingForTitle) == 0) {
                 continue;
             }
-            array_push($testArray, $album);
+
+            array_push($testArray, $value);
 
         }
+
         $this->cartOfItems = $testArray;
 
+    }
+}
+
+
+class Album
+{
+    private $albumName;
+    private $albumPrice;
+
+    function __construct($inName, $inPrice)
+    {
+        $this->albumName = $inName;
+        $this->albumPrice = $inPrice;
+    }
+
+    public function getName()
+    {
+        return $this->albumName;
+    }
+
+    public function getPrice()
+    {
+        return $this->albumPrice;
     }
 }

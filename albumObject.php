@@ -20,10 +20,10 @@
 
                     <a href="temp/link">
                         <span class="albumArt">
-                            <img id="art" src="/res/image/test.jpg">
+                            <img id="art" src="res/image/test.jpg">
 
                             <span class="playButton">
-                                <img id="playButton" src="/res/image/play.png">
+                                <img id="playButton" src="res/image/play.png">
                             </span>
                         </span>
                     </a>

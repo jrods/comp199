@@ -47,6 +47,10 @@ if (!$userResults) {
     die($message);
 }
 
+$album = $userResults->fe;
+
+echo $album->album_price;
+
 $galleryListItem = '';
 
 while($row = $userResults->fetch_assoc()) {
@@ -72,9 +76,7 @@ $galleryContent = divIdClass("galleryContent", "galleryContent", $galleryList);
 $galleryWrapper = divId("galleryWrapper", $galleryContent);
 
 echo $galleryWrapper;
-
 ?>
-
 
 </body>
 </html>
