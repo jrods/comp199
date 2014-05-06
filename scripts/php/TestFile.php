@@ -10,6 +10,7 @@ $testCart = new Cart($server, $username, $password, $schema);
 
 echo $testCart->addItem("no wind");
 echo $testCart->addItem("punchline");
+echo $testCart->addItem("some say");
 echo $testCart->getTotal();
 echo $testCart->removeItem("no wind");
 echo "<br>";

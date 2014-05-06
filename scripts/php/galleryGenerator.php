@@ -47,10 +47,6 @@ if (!$userResults) {
     die($message);
 }
 
-$album = $userResults->fe;
-
-echo $album->album_price;
-
 $galleryListItem = '';
 
 while($row = $userResults->fetch_assoc()) {
@@ -64,7 +60,8 @@ while($row = $userResults->fetch_assoc()) {
 
     $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $tags);
 
-    $shoppingButton = '<button type="button" name="" value="" class="addToCartButton">+ add to cart</button>';
+    $shoppingButton = '<button type="button" name="" value="%s" class="addToCartButton">+ add to cart</button>';
+    $shoppingButton = sprintf($shoppingButton, $row['album_title']);
     $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $shoppingButton);
 
     $albumObject = $albumBlock . $shoppingBlock;
