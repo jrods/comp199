@@ -33,7 +33,7 @@ if($login->connect_error) {
 $testQuery = $login;
 
 $baseQuery =
-"select ar.artist_name, al.album_title
+"select ar.artist_name, al.album_title, al.album_price
  from artist ar, album al
  where ar.artist_id = al.artist_id;
 ";
@@ -60,8 +60,9 @@ while($row = $userResults->fetch_assoc()) {
 
     $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $tags);
 
-    $shoppingButton = '<button type="button" name="" value="%s" class="addToCartButton">+ add to cart</button>';
-    $shoppingButton = sprintf($shoppingButton, $row['album_title']);
+    $shoppingButton = '<button type="button" value="%s" class="addToCartButton">+ $%s</button>';
+    $albumPrice = number_format((float)($row['album_price']) / 100, 2, '.', '');
+    $shoppingButton = sprintf($shoppingButton, $row['album_title'], $albumPrice);
     $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $shoppingButton);
 
     $albumObject = $albumBlock . $shoppingBlock;
