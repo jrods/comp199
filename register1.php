@@ -97,12 +97,12 @@ include_once 'scripts/php/functions.php';
       </script>
 </head>
 <body>
-        /*
+
         <?php
         if (!empty($error_msg)) {
             echo $error_msg;
         }
-        ?>      */
+        ?>
         <form method='post' name='registration_form' action='<?php echo esc_url($_SERVER['PHP_SELF']); ?>'>
             Username:<br>  <input type='text' name='username' id='username' /><br>
             Email:<br>  <input type='text' name='email' id='email' /><br>
