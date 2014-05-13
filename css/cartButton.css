@@ -53,3 +53,7 @@ button.addToCartButton:active {
     text-shadow:
     1px 1px 5px rgba(0,128,20,0.5);
 }
+
+#addToCartSpace {
+    text-align: center;
+}

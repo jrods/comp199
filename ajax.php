@@ -1,6 +1,6 @@
 <html>
 <head>
-  		<link rel="stylesheet" href="css/stylesheet.css" type="text/css" />
+  		<link rel="stylesheet" href="css/index-style.css" type="text/css" />
 		<meta name="viewpoint" content="width=device-width, initial-scale=1.0">
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

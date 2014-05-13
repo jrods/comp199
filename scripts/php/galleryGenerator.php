@@ -79,18 +79,21 @@ $galleryListItem = '';
 
 while($row = $userResults->fetch_assoc()) {
     $playButton = spanBlock("playButton", imgBlock("playButton", "../../res/image/play.png"));
+
     $albumArt = spanBlock("albumArt", imgBlock("art", "../../res/image/test.jpg") . $playButton);
     $albumArtButton = anchorBlock("/temp/link", $albumArt . $playButton);
+
     $albumTitle = divIdClass("albumTitle", "albumText", $row['album_title']);
     $artistName = divIdClass("artistName", "albumText", $row['artist_name']);
     $tags = divIdClass("tags", "albumText", "genre");
-    $currentAlbum = $row['album_title'];
+
     $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $tags);
     $albumPrice = number_format((float)($row['album_price']) / 100, 2, '.', '');
+    $currentAlbum = $row['album_title'];
     $addThisItem = "action=addAnItem($currentAlbum);";
-    //$shoppingButton = '<button method="POST" type="button" value="%s" class="addToCartButton" onclick="' . $addThisItem .'">+ $%s</button>';
+
     $shoppingButton = '<button type="button" value="%s" class="addToCartButton" >+ $%s</button>';
-    echo "\n";
+
     $shoppingButton = sprintf($shoppingButton, $row['album_title'], $albumPrice);
     $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $shoppingButton);
 
