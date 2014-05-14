@@ -6,7 +6,7 @@ include('scripts/php/shoppingCart.php');
         $username = 'c199grp07';
         $password = 'c199grp07';
         $schema = 'c199grp07';
-
+        //$_SESSION['allAlbums'] = array();
         $testCart = $_SESSION['testCart'];
         if(! isset($_SESSION['allAlbums'])) {
             $_SESSION['allAlbums'] = array();
@@ -16,6 +16,10 @@ include('scripts/php/shoppingCart.php');
         }
 
         $currentAlbum = $_POST['test2'];
+        if(in_array($currentAlbum, $_SESSION['allAlbums'])){
+            echo $currentAlbum . " already in cart";
+            die;
+        }
         array_push($_SESSION['allAlbums'],$currentAlbum);
         $testCart->addItem($currentAlbum);
         $_SESSION['cart']+=$testCart->getTotal();
@@ -35,6 +39,9 @@ include('scripts/php/shoppingCart.php');
             echo "<br>";
         }
     } else {
+       if(! isset($_SESSION['allAlbums'])) {
+            $_SESSION['allAlbums'] = array();
+        }
         $total = number_format((float)($_SESSION['cart']), 2, '.', '');
         echo "Total: $" . $total;
         echo "<br>";
@@ -43,7 +50,7 @@ include('scripts/php/shoppingCart.php');
         echo "All Albums: <br>";
         for($i = 0; $i < count($_SESSION['allAlbums']); $i++){
             echo $_SESSION['allAlbums'][$i];
-            echo "<br>"; 
+            echo "<br>";
         }
     }
 
