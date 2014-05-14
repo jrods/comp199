@@ -169,16 +169,16 @@
         ?>
         <form name="input" method="post">
         <?php
-        $shoppingButton = '<button type="button" value="%s" class="addToCartButton" name="addToCartButton'.$itemCounter.'">+ $%s</button>';
+        $removeButton = '<button type="button" value="%s" class="removeCartButton" name="removeFromCartButton'.$itemCounter.'">+ $%s</button>';
         ?>
         </form>
         <?php
-        $shoppingButton = sprintf($shoppingButton, $row['album_title'], $albumPrice);
-        $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $shoppingButton);
+        $removeButton = sprintf($removeButton, $row['album_title'], $albumPrice);
+        $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $removeButton);
 
         $albumObject = $albumBlock . $shoppingBlock;
         $galleryListItem .= listItem($albumObject);
-        $newThing[$itemCounter] = "addToCartButton".$itemCounter;
+        $newThing[$itemCounter] = "removeFromCartButton".$itemCounter;
         $itemCounter++;
 
         }
@@ -207,13 +207,13 @@
 
 <script>
 
-var itemCounter = <?php echo json_encode("addToCartButton$itemCounter") ?>;
+var itemCounter = <?php echo json_encode("removeFromCartButton$itemCounter") ?>;
 
  			  $('button[type=button]').click(function(e){
-                            var test2 = $(this).attr("name");
+                            var test3 = $(this).attr("name");
                             //var test4 = $('button[name=<?php echo json_encode("$newThing[0]") ?>]').val()
-                            var test4 = $('button[name='+test2+']').val();
-                            $.post('addToCart.php', {test2:test4}, function(data){
+                            var test5 = $('button[name='+test3+']').val();
+                            $.post('removeFromCart.php', {test3:test5}, function(data){
 					modal.open({content: data});
                                         e.preventDefault();
 				});

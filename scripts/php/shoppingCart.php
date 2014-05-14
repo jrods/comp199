@@ -33,6 +33,10 @@ class Cart {
         $inAlbum = @new Album($album['album_title'], $album['album_price'], $album['artist_name']);
 
         array_push($this->cartOfItems, $inAlbum);
+        
+        //$_SESSION['cart'] += $album['album_price'];
+
+
     }
 
     public function getTotal() {
@@ -68,7 +72,6 @@ class Cart {
 
     }
 }
-
 
 class Album {
     private $albumTitle;
