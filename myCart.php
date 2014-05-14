@@ -188,7 +188,10 @@
         $galleryWrapper = divId("galleryWrapper", $galleryContent);
 
         echo $galleryWrapper;
+        echo '<button type="submit" value="" class="removeCartButton" name="viewCart">View Cart</button>';
         $itemCounter--;
+
+
         ?>
         </div>
 
@@ -214,6 +217,14 @@ var itemCounter = <?php echo json_encode("removeFromCartButton$itemCounter") ?>;
                             //var test4 = $('button[name=<?php echo json_encode("$newThing[0]") ?>]').val()
                             var test5 = $('button[name='+test3+']').val();
                             $.post('removeFromCart.php', {test3:test5}, function(data){
+					modal.open({content: data});
+                                        e.preventDefault();
+				});
+			  });
+			  
+			  $('button[type=submit]').click(function(e){
+                            //var test4 = $('button[name=<?php echo json_encode("$newThing[0]") ?>]').val()
+                            $.post('addToCart.php', function(data){
 					modal.open({content: data});
                                         e.preventDefault();
 				});
