@@ -25,6 +25,7 @@ include('scripts/php/shoppingCart.php');
     $total = number_format((float)($_SESSION['cart']), 2, '.', '');
     if($total < 0){
       $total = 0;
-    }  
+      $_SESSION['cart'] = 0;
+    }
     echo "Total: $" . $total;
 ?>
