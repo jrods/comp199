@@ -206,14 +206,10 @@
 
 
 <script>
-
-var itemCounter = <?php echo json_encode("addToCartButton$itemCounter") ?>;
-
  			  $('button[type=button]').click(function(e){
-                            var test2 = $(this).attr("name");
-                            //var test4 = $('button[name=<?php echo json_encode("$newThing[0]") ?>]').val()
-                            var test4 = $('button[name='+test2+']').val();
-                            $.post('addToCart.php', {test2:test4}, function(data){
+                            var name = $(this).attr("name");
+                            var albumName = $('button[name='+name+']').val();
+                            $.post('addToCart.php', {name:albumName}, function(data){
 					modal.open({content: data});
                                         e.preventDefault();
 				});

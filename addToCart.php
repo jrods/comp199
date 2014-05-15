@@ -1,7 +1,7 @@
 <?php
 @session_start();
 include('scripts/php/shoppingCart.php');
-    if(isset($_POST['test2'])){
+    if(isset($_POST['name'])){
         $server = 'localhost';
         $username = 'c199grp07';
         $password = 'c199grp07';
@@ -15,7 +15,7 @@ include('scripts/php/shoppingCart.php');
     	$testCart = $_SESSION['testCart'] = new Cart($server, $username, $password, $schema);
         }
 
-        $currentAlbum = $_POST['test2'];
+        $currentAlbum = $_POST['name'];
         if(in_array($currentAlbum, $_SESSION['allAlbums'])){
             echo $currentAlbum . " already in cart";
             die;
