@@ -22,7 +22,7 @@ function anchorBlock($link, $content) {
 }
 
 function listItem($content) {
-    $results = '<li class="item">%s</li>';
+    $results = '<li class="galleryItem">%s</li>';
     return sprintf($results, $content);
 }
 

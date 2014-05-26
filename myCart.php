@@ -8,7 +8,7 @@
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
 
     <!-- Gallery Generator -->
-    <link href="css/cartButton.css" rel="stylesheet" type="text/css" />
+    <link href="css/buttons.css" rel="stylesheet" type="text/css" />
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
     

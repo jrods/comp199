@@ -2,117 +2,135 @@
 <html lang="en">
 <head>
     <title>Tune Source</title>
-    <meta charset = "utf-8" />
-		
-    <link href="css/index-style.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8"/>
+
+    <link href="css/index-style.css" rel="stylesheet" type="text/css"/>
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
 
     <!-- Gallery Generator -->
-    <link href="css/cartButton.css" rel="stylesheet" type="text/css" />
-    <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css" />
+    <link href="css/buttons.css" rel="stylesheet" type="text/css"/>
+    <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
-    
-    		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script>
-			var modal = (function(){
-				var 
-				method = {},
-				$overlay,
-				$modal,
-				$content,
-				$close;
 
-				// Center the modal in the viewport
-				method.center = function () {
-					var top, left;
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>
+        var modal = (function () {
+            var
+                method = {},
+                $overlay,
+                $modal,
+                $content,
+                $close;
 
-					top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
-					left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
+            // Center the modal in the viewport
+            method.center = function () {
+                var top, left;
 
-					$modal.css({
-						top:top + $(window).scrollTop(),
-						left:left + $(window).scrollLeft()
-					});
-				};
+                top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
+                left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
 
-				// Open the modal
-				method.open = function (settings) {
-					$content.empty().append(settings.content);
+                $modal.css({
+                    top: top + $(window).scrollTop(),
+                    left: left + $(window).scrollLeft()
+                });
+            };
 
-					$modal.css({
-						width: settings.width || 'auto', 
-						height: settings.height || 'auto'
-					});
+            // Open the modal
+            method.open = function (settings) {
+                $content.empty().append(settings.content);
 
-					method.center();
-					$(window).bind('resize.modal', method.center);
-					$modal.show();
-					$overlay.show();
-				};
+                $modal.css({
+                    width: settings.width || 'auto',
+                    height: settings.height || 'auto'
+                });
 
-				// Close the modal
-				method.close = function () {
-					$modal.hide();
-					$overlay.hide();
-					$content.empty();
-					$(window).unbind('resize.modal');
-				};
+                method.center();
+                $(window).bind('resize.modal', method.center);
+                $modal.show();
+                $overlay.show();
+            };
 
-				// Generate the HTML and add it to the document
-				$overlay = $('<div id="overlay"></div>');
-				$modal = $('<div id="modal"></div>');
-				$content = $('<div id="content"></div>');
-				$close = $('<a id="close" href="#"></a>');
+            // Close the modal
+            method.close = function () {
+                $modal.hide();
+                $overlay.hide();
+                $content.empty();
+                $(window).unbind('resize.modal');
+            };
 
-				$modal.hide();
-				$overlay.hide();
-				$modal.append($content, $close);
+            // Generate the HTML and add it to the document
+            $overlay = $('<div id="overlay"></div>');
+            $modal = $('<div id="modal"></div>');
+            $content = $('<div id="content"></div>');
+            $close = $('<a id="close" href="#"></a>');
 
-				$(document).ready(function(){
-					$('body').append($overlay, $modal);
-				});
+            $modal.hide();
+            $overlay.hide();
+            $modal.append($content, $close);
 
-				$close.click(function(e){
-					e.preventDefault();
-					method.close();
-				});
+            $(document).ready(function () {
+                $('body').append($overlay, $modal);
+            });
 
-				return method;
-			}());
+            $close.click(function (e) {
+                e.preventDefault();
+                method.close();
+            });
 
-			// Wait until the DOM has loaded before querying the document
-			$(document).ready(function(){
+            return method;
+        }());
 
- 			  $('a#login').click(function(e){
+        // Wait until the DOM has loaded before querying the document
+        $(document).ready(function () {
+            $('submit').click(function (e) {
+                $.get('ajax.php', function (data) {
+                    modal.open({content: data});
+                    e.preventDefault();
+                });
+            });
+        });
 
-                            $.get('ajax.php', function(data){
-					modal.open({content: data});
-                                        e.preventDefault();
-				});
-			  });
-                     });
-
-</script>
+    </script>
 
 </head>
 
-<header class="mainheader">
-
-    <a id="banner" href="index.php"><img src='res/image/Logo.png'></a>
-
+<header class="header fixed bar" role="banner">
     <nav>
-        <ul>
-            <li class="active"><a id="navbar" href="index.php">MainPage</a></li>
-            <li class="active"><a id="navbar" href="myCart.php">My Cart</a></li>
+        <ul class="bar" id="list">
+            <li id="navContent">
+                <div class="item">
+                    <div class="logoBlock"><span class="temp" id="whiteText">Tune Source</span></div>
+                </div>
+
+                <div class="item">
+                    <div class="searchBlock">
+                        <input type="search" placeholder="search" id="searchBar" />
+                        <div id="searchButton">
+                            <button value="searchButton"><img id="searchImage" src="res/image/search.png"></img></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="cartBlock"><a href="myCart.php" id="whiteText">Cart</a></div>
+                </div>
+
+                <div class="item">
+                    <div class="loginBlock">
+                        <input type="text" id="userInput" name="username" placeholder="username"/>
+                        <input type="password" id="passInput" name="password" placeholder="password"/>
+                        <input type="submit" value="Login" />
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
-
 </header>
 
 <body>
-    <div class="contentBody">
+<div class="contentBody">
 
-        <div id="gallery" class="contentBody">
+    <div id="gallery">
         <?php
         session_start();
         include('scripts/php/htmlGenerator.php');
@@ -123,63 +141,70 @@
         $password = 'c199grp07';
         $schema = 'c199grp07';
 
-        $testCart = new Cart($server,$username,$password,$schema);
-        $_POST = $testCart;
+        $userCart = new Cart($server, $username, $password, $schema);
+        $_POST = $userCart;
 
         $login = @new mysqli($server, $username, $password, $schema);
 
-        if($login->connect_error) {
-        die("Connect Error: ". $login->connect_error);
+        if ($login->connect_error) {
+            die("Connect Error: " . $login->connect_error);
         }
 
         $testQuery = $login;
 
         $baseQuery =
-        "select ar.artist_name, al.album_title, al.album_price
-        from artist ar, album al
-        where ar.artist_id = al.artist_id;
-        ";
+            "select ar.artist_name, al.album_title, al.album_price
+            from artist ar, album al
+            where ar.artist_id = al.artist_id;
+            ";
 
         $userQuery = sprintf($baseQuery);
         $userResults = $testQuery->query($userQuery);
 
         if (!$userResults) {
-        $message  = 'Invalid query: ' . $testQuery->errno . "<br />";
-        $message .= 'Whole query: ' . $userQuery;
-        die($message);
+            $message = 'Invalid query: ' . $testQuery->errno . "<br />";
+            $message .= 'Whole query: ' . $userQuery;
+            die($message);
         }
 
         $galleryListItem = '';
         $itemCounter = 0;
         $newThing[] = "";
-        while($row = $userResults->fetch_assoc()) {
-        $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
 
-        $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
-        $albumArtButton = anchorBlock("/temp/link", $albumArt . $playButton);
+        while ($row = $userResults->fetch_assoc()) {
 
-        $albumTitle = divIdClass("albumTitle", "albumText", $row['album_title']);
-        $artistName = divIdClass("artistName", "albumText", $row['artist_name']);
-        $tags = divIdClass("tags", "albumText", "genre");
+        // Album block creation
+            $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
+            $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
+            $albumArtButton = anchorBlock("/temp/link", $albumArt . $playButton);
 
-        $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $tags);
-        $albumPrice = number_format((float)($row['album_price']) / 100, 2, '.', '');
-        $currentAlbum = $row['album_title'];
-        $addThisItem = "action=addAnItem($currentAlbum);";
-        ?>
-        <form name="input" method="post">
-        <?php
-        $shoppingButton = '<button type="button" value="%s" class="addToCartButton" name="addToCartButton'.$itemCounter.'">+ $%s</button>';
-        ?>
-        </form>
-        <?php
-        $shoppingButton = sprintf($shoppingButton, $row['album_title'], $albumPrice);
-        $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $shoppingButton);
+        // Album Info and Link Block
+            $albumTitleLink = anchorBlock("/tmp/link", $row['album_title']);
+            $albumTitle = divIdClass("albumTitle", "albumText", $albumTitleLink);
 
-        $albumObject = $albumBlock . $shoppingBlock;
-        $galleryListItem .= listItem($albumObject);
-        $newThing[$itemCounter] = "addToCartButton".$itemCounter;
-        $itemCounter++;
+            $artistNameLink = anchorBlock("/tmp/link", $row['artist_name']);
+            $artistName = divIdClass("artistName", "albumText", $artistNameLink);
+
+            $genreLink = anchorBlock("/tmp/link", "genre");
+            $genre = divIdClass("genre", "albumText", $genreLink);
+
+            $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $genre);
+            $albumPrice = number_format((float)($row['album_price']) / 100, 2, '.', '');
+
+        // Album Object Button
+            $shoppingButton = "<button type=\"button\" value=\"%s\" class=\"addToCartButton\" name=\"addToCartButton" . $itemCounter . "\">+ $%s</button>";
+            $shoppingButton = sprintf($shoppingButton, $row['album_title'], $albumPrice);
+
+            // Allows album object to be submitted to sessions
+            $newThing[$itemCounter] = "addToCartButton" . $itemCounter;
+            $itemCounter++;
+
+            $formBlock = sprintf("<form name=\"input\" method=\"method\">%s</form>", $shoppingButton );
+            $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $formBlock);
+
+        // Where it all comes together
+            $albumObject = $albumBlock . $shoppingBlock;
+            $galleryListItem .= listItem($albumObject);
 
         }
 
@@ -188,16 +213,18 @@
         $galleryWrapper = divId("galleryWrapper", $galleryContent);
 
         echo $galleryWrapper;
+
         $itemCounter--;
         ?>
-        </div>
-
-        <aside class="top-sidebar">
-            <a id="login" href="#">Login</a>
-
-        </aside>
-
     </div>
+
+    <div class="rightSidebar fixed">
+        <aside class="musicPlayer">
+
+            <div class="playerArt"></div>
+        </aside>
+    </div>
+</div>
 
 <!-- Load jQuery, SimpleModal and Basic JS files -->
 <script type='text/javascript' src='js/jquery.js'></script>
@@ -206,19 +233,25 @@
 
 
 <script>
- 			  $('button[type=button]').click(function(e){
-                            var name = $(this).attr("name");
-                            var albumName = $('button[name='+name+']').val();
-                            $.post('addToCart.php', {name:albumName}, function(data){
-					modal.open({content: data});
-                                        e.preventDefault();
-				});
-			  });
+    $('button[type=button]').click(function (e) {
+        var name = $(this).attr("name");
+        var albumName = $('button[name=' + name + ']').val();
+        $.post('addToCart.php', {name: albumName}, function (data) {
+            modal.open({content: data});
+            e.preventDefault();
+        });
+    });
 
+    $('button[value=showCart]').click(function (showCart){
+
+    });
 </script>
 </body>
 
-<footer class="mainfooter">
-    <p>Copyright &copy; 2014 <a href="copyright footer" title="tunesourceWebsite">tunesource.com</a></p>
+<footer class="footer fixed bar">
+    <div>
+        <span id="whiteText">Copyright &copy; 2014</span><br />
+        <span id="whiteText">Authors: Sam Beveridge, Calvin Lam, Jared Smith</span>
+    </div>
 </footer>
 </html>

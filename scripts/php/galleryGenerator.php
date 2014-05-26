@@ -3,7 +3,7 @@
 
 <head>
     <title>gallery gen test</title>
-    <link href="../../css/cartButton.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/buttons.css" rel="stylesheet" type="text/css" />
     <link href="../../css/galleryGenerator.css" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

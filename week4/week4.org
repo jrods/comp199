@@ -1,0 +1,35 @@
+#+Title:Week 4 Review : Group 07
+#+Author:Sam Beveridge, Calvin Lam, Jared Smith
+#+Options: num:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/week4-style.css" />
+#+HTML_HEAD_EXTRA: <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
+
+* [[../index.html][Our Home Page]]
+* [[https://github.com/jrods/comp199][Github Source Page]]
+* Team Members
+#+Begin_verse
+Sam Beveridge
+Calvin Lam
+Jared Smith
+#+End_verse
+
+* Sam Beveridge: Backend Designer
+** Login and Shopping Cart Managment
+- popup modal for login + registration
+- cart page with removal buttons and semi-working calculations
+
+Could not save the value, but there is a working test file that is able to save the values and can add, remove, and get the total of the cart. We need to successfully implement this setup into our gallery page. We are able to get the price and add up a cart total manually in the code, but we cannot access the totals by pressing the buttons we have made yet. For next week I plan to get the add buttons and the remove buttons as well. We will also be able to display it in a nice format on our page.
+* Calvin Lam: UX (User Experience) Designer
+** Items to Cart
+In this week I attemted to create a shopping cart and a add to cart button. First I made a function to call the information such as price and album. Than i would post the imformation iinto the shopping cart. I ran into many problems such as the function not retriving infomtion. And the imformation not displaying the price in the cart. 
+* Jared Smith: Frontend Designer
+** Gallery Generator
+- This week I was responsible for getting our content to look pretty.
+- Most of my time was taken to creating a layout for the gallery
+- All scripted in PHP and styled with CSS
+One problem I had to overcome is figuring out a 'good' way to generate an *album object*. The div block was my friend to making sure every album object could be positioned were I wanted them to. I then had another problem, which was to figure out how to create multiple album objects within a space, each being unique. I ended up using an unorded list, then putting album objects in list blocks to easily display album objects in an in-line formation using some fancy css. So far, my script generates everything that comes in from a database query. In the future, this needs to be limited to about 10 album objects. In turn, a page functionality will be added to get the next or previous 10 and display those results.
+* Project Status
+This week we were able to get a basic shoppingCart and galleryGenerate scripts written and in minimum working condition. The main roadblock that we couldn't finish on time was able to add items to the shoppingCart class. Currently, once we finished the shopping cart, the login/registration is mostly complete and will just need some finishing touches.
+
+* Links
+- [[../project.html][Main Project Outline]]

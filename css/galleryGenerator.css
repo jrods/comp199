@@ -2,7 +2,7 @@
     font-family: "Source Sans Pro";
 }
 
-a {
+.galleryContent.a {
     text-decoration: none;
     color: #000;
 }
@@ -26,9 +26,10 @@ a {
     vertical-align: top;
     display: inline-block;
     padding-left: 0px;
+    margin: 0px;
 }
 
-li.item {
+li.galleryItem {
     overflow: hidden;
     display: inline-block;
     margin: 0px 22px 0em 0px;
@@ -58,7 +59,7 @@ li.item {
     font-size: 0.8em;
 }
 
-#tags {
+#genre {
     font-size: 0.7em;
     color: #aaa;
 }

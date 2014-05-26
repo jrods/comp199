@@ -57,3 +57,20 @@ button.addToCartButton:active {
 #addToCartSpace {
     text-align: center;
 }
+
+#searchBar {
+    width: 340px;
+    font-size: 18px;
+}
+
+#searchButton button {
+    background: rgba(0,0,0,0);
+    border: 0px;
+}
+
+#searchButton button img {
+    margin-top: 2px;
+    border: 1px #333;
+    width: 25px;
+    height: 25px;
+}
