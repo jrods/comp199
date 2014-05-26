@@ -38,4 +38,5 @@ include('scripts/php/shoppingCart.php');
         echo $_SESSION['allAlbums'][$i];
         echo "<br>";
     }
+    header('Location: index.php');
 ?>
