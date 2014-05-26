@@ -1,7 +1,7 @@
 <?php
 @session_start();
 include('scripts/php/shoppingCart.php');
-
+  
     $server = 'localhost';
     $username = 'c199grp07';
     $password = 'c199grp07';

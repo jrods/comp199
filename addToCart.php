@@ -17,7 +17,21 @@ include('scripts/php/shoppingCart.php');
 
         $currentAlbum = $_POST['name'];
         if(in_array($currentAlbum, $_SESSION['allAlbums'])){
+            $total = number_format((float)($_SESSION['cart']), 2, '.', '');
+            if($total < 0){
+                $total = 0;
+                $_SESSION['cart'] = 0;
+            }
             echo $currentAlbum . " already in cart";
+            echo "<br>";
+            echo "Total: $" . $total;
+            echo "<br>";
+            echo "<br>";
+            echo "All Albums: <br>";
+            for($i = 0; $i < count($_SESSION['allAlbums']); $i++){
+                echo $_SESSION['allAlbums'][$i];
+                echo "<br>";
+            }
             die;
         }
         array_push($_SESSION['allAlbums'],$currentAlbum);

@@ -14,6 +14,7 @@
 
     <!-- Gallery Generator -->
     <link href="css/buttons.css" rel="stylesheet" type="text/css"/>
+    <link href="js/jquery.qtip.css" rel="stylesheet" type="text/css"/>
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
 
@@ -22,6 +23,7 @@
     ?>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
     <script>
         var modal = (function () {
             var
@@ -98,6 +100,7 @@
                 });
             });
         });
+        
 
     </script>
 
@@ -121,7 +124,7 @@
                 </div>
 
                 <div class="item">
-                    <div class="cartBlock"><a href="myCart.php" id="whiteText">Cart</a></div>
+                    <div class="cartBlock"><a href="#test" id="whiteText" class="cartBox" title="<?php require_once "viewCart.php"; ?>">Cart</a></div>
                 </div>
 
                 <div class="item">
@@ -246,8 +249,34 @@
         var name = $(this).attr("name");
         var albumName = $('button[name=' + name + ']').val();
         $.post('addToCart.php', {name: albumName}, function (data) {
+          $('.cartBox').qtip({
+            show: 'click',
+            hide: 'click',
+            content: {
+              text:data
+            }
+          });
+        });
+    });
+    
+    // Create the tooltips only when document ready
+    $(document).ready(function(){
+        // Show tooltip on all <a/> elements with title attributes, but only when
+        // clicked. Clicking again will hide it.
+        $('.cartBox').qtip({
+            show: 'click',
+            hide: 'click',
+            content: {
+              url: 'viewCart.php'
+            }
+
+        });
+    });
+
+    $('button[type=submit]').click(function(e){
+        $.post('viewCart.php', function(data){
             modal.open({content: data});
-            e.preventDefault();
+        e.preventDefault();
         });
     });
 
@@ -255,6 +284,10 @@
 
     });
 </script>
+
+<script type="text/javascript" src="js/jquery.qtip.min.js"></script>
+<script type="text/javascript" src="js/jquery.qtip.js"></script>
+<script type="text/javascript" src="js/imagesloaded.pkg.min.js"></script>
 </body>
 
 <footer class="footer fixed bar">
