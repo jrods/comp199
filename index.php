@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--
+    Comp 199 Project, Digital Music Store
+    Created by: Sam Beveridge, Calvin Lam, Jared Smith
+    -->
+
     <title>Tune Source</title>
     <meta charset="utf-8"/>
 
@@ -11,6 +16,10 @@
     <link href="css/buttons.css" rel="stylesheet" type="text/css"/>
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
+
+    <?php
+    session_start();
+    ?>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>
@@ -132,7 +141,7 @@
 
     <div id="gallery">
         <?php
-        session_start();
+
         include('scripts/php/htmlGenerator.php');
         include('scripts/php/shoppingCart.php');
 
