@@ -250,13 +250,14 @@
         var albumName = $('button[name=' + name + ']').val();
         $.post('addToCart.php', {name: albumName}, function (data) {
           $('.cartBox').qtip({
-            show: 'click',
+            show: true,
             hide: 'click',
             content: {
               text:data
             }
           });
         });
+
     });
     
     // Create the tooltips only when document ready
@@ -264,7 +265,7 @@
         // Show tooltip on all <a/> elements with title attributes, but only when
         // clicked. Clicking again will hide it.
         $('.cartBox').qtip({
-            show: 'click',
+            show: true,
             hide: 'click',
             content: {
               url: 'viewCart.php'
