@@ -1,6 +1,6 @@
 <?php
     @session_start();
-
+    
     if(! isset($_SESSION['allAlbums'])) {
             $_SESSION['allAlbums'] = array();
         }
@@ -16,7 +16,7 @@
             echo $newAlbum;
             echo "<br>";
             echo "<form id='form1' action='removeFromCart.php' method='post'>";
-            echo "<a href='javascript:;' onclick='parentNode.submit();'>Remove</a>";
+            echo "<a href='javascript:;' onclick='parentNode.submit();'><b>Remove</b></a>";
             echo "<input type='hidden' name='test3' value='".$newAlbum."' />";
             echo "</form>";
             echo "<br>";

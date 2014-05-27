@@ -22,7 +22,9 @@ include('scripts/php/shoppingCart.php');
     $testCart->addItem($currentAlbum);
 
     $_SESSION['cart']-=$testCart->getTotal();
+
     $total = number_format((float)($_SESSION['cart']), 2, '.', '');
+    $_SESSION['change'] = 1;
     if($total < 0){
       $total = 0;
       $_SESSION['cart'] = 0;
