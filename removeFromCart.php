@@ -28,15 +28,5 @@ include('scripts/php/shoppingCart.php');
       $_SESSION['cart'] = 0;
     }
 
-    echo "Total: $" . $total;
-    echo "<br>";
-    echo $currentAlbum . " removed.";
-        echo "<br>";
-    echo "<br>";
-    echo "All Albums: <br>";
-    for($i = 0; $i < count($_SESSION['allAlbums']); $i++){
-        echo $_SESSION['allAlbums'][$i];
-        echo "<br>";
-    }
     header('Location: index.php');
 ?>

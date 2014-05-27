@@ -24,14 +24,7 @@ include('scripts/php/shoppingCart.php');
             }
             echo $currentAlbum . " already in cart";
             echo "<br>";
-            echo "Total: $" . $total;
-            echo "<br>";
-            echo "<br>";
-            echo "All Albums: <br>";
-            for($i = 0; $i < count($_SESSION['allAlbums']); $i++){
-                echo $_SESSION['allAlbums'][$i];
-                echo "<br>";
-            }
+            require_once('viewCart.php');
             die;
         }
         array_push($_SESSION['allAlbums'],$currentAlbum);
@@ -42,30 +35,10 @@ include('scripts/php/shoppingCart.php');
            $total = 0;
            $_SESSION['cart'] = 0;
         }
-        echo "Total: $" . $total;
-        echo "<br>";
+
         echo $currentAlbum . " added.";
         echo "<br>";
-        echo "<br>";
-        echo "All Albums: <br>";
-        for($i = 0; $i < count($_SESSION['allAlbums']); $i++){
-            echo $_SESSION['allAlbums'][$i];
-            echo "<br>";
-        }
-    } else {
-       if(! isset($_SESSION['allAlbums'])) {
-            $_SESSION['allAlbums'] = array();
-        }
-        $total = number_format((float)($_SESSION['cart']), 2, '.', '');
-        echo "Total: $" . $total;
-        echo "<br>";
-        echo "<br>";
-        echo "<br>";
-        echo "All Albums: <br>";
-        for($i = 0; $i < count($_SESSION['allAlbums']); $i++){
-            echo $_SESSION['allAlbums'][$i];
-            echo "<br>";
-        }
+        require_once('viewCart.php');
     }
 
 ?>
