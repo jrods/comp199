@@ -93,7 +93,17 @@
                      });
 
 </script>
-
+<script>
+function formhash(form, fname,lname,country,province,address,postal,phone,credit,expiry){
+if (fname.value==''||lname.value==''||country.value==''||province.value==''||address.value==''
+||postal.value==''||phone.value==''||credit.value==''||expiry.value==''){
+  alert("Not all Forms have to be Filled");
+  return false;
+  }
+  form.submit()
+  return true;
+}
+</script>
 </head>
 <header class="header fixed bar" role="banner">
     <nav>
@@ -132,10 +142,10 @@
 
  <form name   = "menduorder" method = "post"
        id     = "formbox"
-       action = "script/processform.php">
+	   >
        
   <fieldset>      
-   <legend>Register</legend>
+   <legend>checkout</legend>
      <div class= "row">
      <span class= "form_element">
       
@@ -166,8 +176,8 @@
 	<div class= "row">
     <span class= "form_element">
 	<input type= "text" 
-          name= "Province/State"
-          required id= "province/state"
+          name= "Province"
+          required id= "province"
           placeholder= "Province Or State" >
           </span>
         </div>
@@ -184,8 +194,8 @@
 	<div class= "row">
     <span class= "form_element">	
 	<input type= "text" 
-          name= "Postal Code/Zip"
-          required id= "postalcode/zip"
+          name= "postal"
+          required id= "postal"
           placeholder= "Postal Code Or Zip" >
           </span>
         </div>
@@ -222,8 +232,16 @@
           title= "Credit card expiry as MM-YY">
           </span>
         </div>
-		
-		<button type="button">Register</button>
+
+		<input type="button" value="Checkout" onclick="return formhash(this.form, this.form.firstname,
+														   this.form.lastname,
+														   this.form.Country,
+														   this.form.Province,
+														   this.form.Address,
+														   this.form.postal,
+														   this.form.phone,
+														   this.form.credit,
+														   this.form.expiry);"/>
 
 
         </div>
@@ -259,6 +277,7 @@ var itemCounter = <?php echo json_encode("removeFromCartButton$itemCounter") ?>;
 			  });
 
 </script>
+
 </body>
 
 <footer class="footer fixed bar">
