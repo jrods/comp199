@@ -145,7 +145,7 @@ if (fname.value==''||lname.value==''||country.value==''||province.value==''||add
 	   >
        
   <fieldset>      
-   <legend>checkout</legend>
+   <legend>Checkout</legend>
      <div class= "row">
      <span class= "form_element">
       
