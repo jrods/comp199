@@ -142,18 +142,7 @@
     </nav>
 </header>
 <body>
-<<<<<<< HEAD
-    <div class="contentBody">
 
- <form name   = "menduorder" method = "post"
-       id     = "formbox"
-	   >
-       
-  <fieldset>      
-   <legend>Checkout</legend>
-     <div class= "row">
-     <span class= "form_element">
-=======
 <div class="contentBody">
 
     <form name="menduorder" method="post"
@@ -163,7 +152,6 @@
             <legend>checkout</legend>
             <div class="row">
      <span class="form_element">
->>>>>>> 1c95ec0f70c83917e65d25434561f362b031d264
       
    <input type="text"
           name="firstname"
