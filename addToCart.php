@@ -7,12 +7,20 @@ include('scripts/php/shoppingCart.php');
         $password = 'c199grp07';
         $schema = 'c199grp07';
         //$_SESSION['allAlbums'] = array();
-        $testCart = $_SESSION['testCart'];
+        
+        if(! isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = 0;
+        }
+
+        if(! isset ($testCart)){
+            $testCart = null;
+        }
         if(! isset($_SESSION['allAlbums'])) {
             $_SESSION['allAlbums'] = array();
         }
+
         if(!is_object($testCart)) {
-    	$testCart = $_SESSION['testCart'] = new Cart($server, $username, $password, $schema);
+    	    $testCart = $_SESSION['testCart'] = new Cart($server, $username, $password, $schema);
         }
 
         $currentAlbum = $_POST['name'];
