@@ -95,110 +95,138 @@
 </script>
 
 </head>
-
-<header class="mainheader">
-
-    <a id="banner" href="index.php"><img src='res/image/Logo.png'></a>
-
+<header class="header fixed bar" role="banner">
     <nav>
-        <ul>
-            <li class="active"><a id="navbar" href="index.php">MainPage</a></li>
-            <li class="active"><a id="navbar" href="myCart.php">My Cart</a></li>
+        <ul class="bar" id="list">
+            <li id="navContent">
+                <div class="item">
+                    <div class="logoBlock"><span class="temp" id="whiteText">Tune Source</span></div>
+                </div>
+
+                <div class="item">
+                    <div class="searchBlock">
+                        <input type="search" placeholder="search" id="searchBar" />
+                        <div id="searchButton">
+                            <button value="searchButton"><img id="searchImage" src="res/image/search.png"></img></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="cartBlock"><a href="#cartMukery" id="whiteText" class="cartBox" title="<?php require_once "viewCart.php"; ?>Cart</a></div>
+                </div>
+
+                <div class="item">
+                    <div class="loginBlock">
+                        <input type="text" id="userInput" name="username" placeholder="username"/>
+                        <input type="password" id="passInput" name="password" placeholder="password"/>
+                        <input type="submit" value="Login" />
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
-
 </header>
-
 <body>
     <div class="contentBody">
 
-        <div id="gallery" class="contentBody">
-        <?php
-        session_start();
-        include('scripts/php/htmlGenerator.php');
-        include('scripts/php/shoppingCart.php');
-
-        $server = 'localhost';
-        $username = 'c199grp07';
-        $password = 'c199grp07';
-        $schema = 'c199grp07';
-
-        $testCart = new Cart($server,$username,$password,$schema);
-        $_POST = $testCart;
-
-        $login = @new mysqli($server, $username, $password, $schema);
-
-        if($login->connect_error) {
-        die("Connect Error: ". $login->connect_error);
-        }
-
-        $testQuery = $login;
-
-        $baseQuery =
-        "select ar.artist_name, al.album_title, al.album_price
-        from artist ar, album al
-        where ar.artist_id = al.artist_id;
-        ";
-
-        $userQuery = sprintf($baseQuery);
-        $userResults = $testQuery->query($userQuery);
-
-        if (!$userResults) {
-        $message  = 'Invalid query: ' . $testQuery->errno . "<br />";
-        $message .= 'Whole query: ' . $userQuery;
-        die($message);
-        }
-
-        $galleryListItem = '';
-        $itemCounter = 0;
-        $newThing[] = "";
-        while($row = $userResults->fetch_assoc()) {
-        $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
-
-        $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
-        $albumArtButton = anchorBlock("/temp/link", $albumArt . $playButton);
-
-        $albumTitle = divIdClass("albumTitle", "albumText", $row['album_title']);
-        $artistName = divIdClass("artistName", "albumText", $row['artist_name']);
-        $tags = divIdClass("tags", "albumText", "genre");
-
-        $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $tags);
-        $albumPrice = number_format((float)($row['album_price']) / 100, 2, '.', '');
-        $currentAlbum = $row['album_title'];
-        $addThisItem = "action=addAnItem($currentAlbum);";
-        ?>
-        <form name="input" method="post">
-        <?php
-        $removeButton = '<button type="button" value="%s" class="removeCartButton" name="removeFromCartButton'.$itemCounter.'">+ $%s</button>';
-        ?>
-        </form>
-        <?php
-        $removeButton = sprintf($removeButton, $row['album_title'], $albumPrice);
-        $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $removeButton);
-
-        $albumObject = $albumBlock . $shoppingBlock;
-        $galleryListItem .= listItem($albumObject);
-        $newThing[$itemCounter] = "removeFromCartButton".$itemCounter;
-        $itemCounter++;
-
-        }
-
-        $galleryList = unOrderList($galleryListItem);
-        $galleryContent = divIdClass("galleryContent", "galleryContent", $galleryList);
-        $galleryWrapper = divId("galleryWrapper", $galleryContent);
-
-        echo $galleryWrapper;
-        echo '<button type="submit" value="" class="removeCartButton" name="viewCart">View Cart</button>';
-        $itemCounter--;
-
-
-        ?>
+ <form name   = "menduorder" method = "post"
+       id     = "formbox"
+       action = "script/processform.php">
+       
+  <fieldset>      
+   <legend>Register</legend>
+     <div class= "row">
+     <span class= "form_element">
+      
+   <input type= "text" 
+          name= "firstname"
+          required id= "firstname"
+          placeholder= "Your First Name" >
+          </span>
         </div>
+            
+     <div class= "row">
+     <span class= "form_element"> 
+   <input type= "text" 
+          name= "lastname"
+          required id= "lastname"
+          placeholder= "Your Last Name" >
+          </span>
+        </div>
+	<div class= "row">
+    <span class= "form_element">	
+    <input type= "text" 
+          name= "Country"
+          required id= "Country"
+          placeholder= "Enter Your Country" >
+          </span>
+        </div>
+	
+	<div class= "row">
+    <span class= "form_element">
+	<input type= "text" 
+          name= "Province/State"
+          required id= "province/state"
+          placeholder= "Province Or State" >
+          </span>
+        </div>
+	
+	<div class= "row">
+    <span class= "form_element">	
+	<input type= "text" 
+          name= "Address"
+          required id= "Address"
+          placeholder= "Enter Your Address" >
+          </span>
+        </div>
+	
+	<div class= "row">
+    <span class= "form_element">	
+	<input type= "text" 
+          name= "Postal Code/Zip"
+          required id= "postalcode/zip"
+          placeholder= "Postal Code Or Zip" >
+          </span>
+        </div>
+            
+        <div class= "row">
+     <span class= "form_element">    
+   <input 
+          title= "Expected format as 250-999-9999"
+          type= "tel" 
+          name= "phone"
+          required id= "phone"
+          placeholder= "250-999-9999"
+          pattern="[\(]\d{3}[\)]\d{3}[\-]\d{4}">
+          </span>
+        </div> 
+            
+     <div class= "row">
+     <span class= "form_element"> 
+   <input type= "text" 
+          name= "credit"
+          required id= "credit"
+          placeholder= "Credit Card number"
+          pattern="[0-0]{4,6}">
+          </span>  
+        </div>        
+ 
+     <div class= "row">
+     <span class= "form_element">        
+   <input type= "text" 
+          name= "expiry"
+          required id= "expiry"
+          placeholder= "Credit card expiry"
+          pattern= "\d{2}-\d{2}"
+          title= "Credit card expiry as MM-YY">
+          </span>
+        </div>
+		
+		<button type="button">Register</button>
 
-        <aside class="top-sidebar">
-            <a id="login" href="#">Login</a>
 
-        </aside>
+        </div>
 
     </div>
 
@@ -233,7 +261,10 @@ var itemCounter = <?php echo json_encode("removeFromCartButton$itemCounter") ?>;
 </script>
 </body>
 
-<footer class="mainfooter">
-    <p>Copyright &copy; 2014 <a href="copyright footer" title="tunesourceWebsite">tunesource.com</a></p>
+<footer class="footer fixed bar">
+    <div>
+        <span id="whiteText">Copyright &copy; 2014</span><br />
+        <span id="whiteText">Authors: Sam Beveridge, Calvin Lam, Jared Smith</span>
+    </div>
 </footer>
 </html>
