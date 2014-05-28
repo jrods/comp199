@@ -32,7 +32,7 @@ include('scripts/php/shoppingCart.php');
             }
             echo $currentAlbum . " already in cart";
             echo "<br>";
-            require_once('viewCart.php');
+
             die;
         }
         array_push($_SESSION['allAlbums'],$currentAlbum);
@@ -45,8 +45,7 @@ include('scripts/php/shoppingCart.php');
         }
 
         echo $currentAlbum . " added.";
-        echo "<br>";
-        require_once('viewCart.php');
-    }
+        echo "<br><br>";
+        echo "Current Total: $" . $total;
 
-?>
+    }

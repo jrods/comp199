@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="item">
-                    <div class="cartBlock"><a href="#test" id="whiteText" class="cartBox" title="<?php require_once "viewCart.php"; ?>">Cart</a></div>
+                    <div class="cartBlock"><a href="#cartMukery" id="whiteText" class="cartBox" title="<?php require_once "viewCart.php"; ?>">Cart</a></div>
                 </div>
 
                 <div class="item">
@@ -253,12 +253,11 @@
         var name = $(this).attr("name");
         var albumName = $('button[name=' + name + ']').val();
         $.post('addToCart.php', {name: albumName}, function (data) {
-          $('.cartBox').qtip({
-            show: true,
-            hide: 'click',
-            content: {
-              text:data
-            }
+            $('.cartBox').qtip({
+                show: true,
+                hide: 'click',
+                content: { text: data },
+                position: { adjust: { y: 13 }, my:'top center' }
           });
         });
     });
@@ -270,24 +269,17 @@
         var a = "<?php echo $_SESSION['change']?>";
         if (a < 1){
             $('.cartBox').qtip({
-
                 show: 'click',
                 hide: 'click',
-                content: {
-
-                  url: 'viewCart.php'
-                }
+                content: { url: 'viewCart.php' },
+                position: { adjust: { y: 13 }, my:'top center' }
             });
         } else {
             $('.cartBox').qtip({
-
-              show: true,
-              hide: 'click',
-              content: {
-                url: 'viewCart.php'
-
-
-              }
+                show: true,
+                hide: 'click',
+                content: { url: 'viewCart.php' },
+                position: { my:'top center'}
             });
         }
         "<?php $_SESSION['change'] = 0?>"
