@@ -24,3 +24,7 @@ for ($i = 0; $i < count($_SESSION['allAlbums']); $i++) {
     echo "<br>";
 
 }
+
+echo "<br>";
+echo "<form action='myCart.php'><input type='submit' value='Checkout'></form>";
+echo "<br>";
