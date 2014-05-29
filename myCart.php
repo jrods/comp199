@@ -145,96 +145,96 @@
 
 <div class="contentBody">
 
-    <form name="menduorder" method="post"
-          id="formbox">
+    <form name="menduorder" method="post" id="formbox">
 
         <fieldset>
             <legend>checkout</legend>
+
             <div class="row">
-     <span class="form_element">
+                <span class="form_element">
       
-   <input type="text"
-          name="firstname"
-          required id="firstname"
-          placeholder="Your First Name">
-          </span>
+                    <input type="text"
+                           name="firstname"
+                           required id="firstname"
+                           placeholder="Your First Name">
+                </span>
             </div>
 
             <div class="row">
-     <span class="form_element">
-   <input type="text"
-          name="lastname"
-          required id="lastname"
-          placeholder="Your Last Name">
-          </span>
-            </div>
-            <div class="row">
-    <span class="form_element">
-    <input type="text"
-           name="Country"
-           required id="Country"
-           placeholder="Enter Your Country">
-          </span>
+                <span class="form_element">
+                    <input type="text"
+                           name="lastname"
+                           required id="lastname"
+                           placeholder="Your Last Name">
+                </span>
             </div>
 
             <div class="row">
-    <span class="form_element">
-	<input type="text"
-           name="Province"
-           required id="province"
-           placeholder="Province Or State">
-          </span>
+                <span class="form_element">
+                    <input type="text"
+                           name="Country"
+                           required id="Country"
+                           placeholder="Enter Your Country">
+                </span>
             </div>
 
             <div class="row">
-    <span class="form_element">
-	<input type="text"
-           name="Address"
-           required id="Address"
-           placeholder="Enter Your Address">
-          </span>
+                <span class="form_element">
+                    <input type="text"
+                           name="Province"
+                           required id="province"
+                           placeholder="Province Or State">
+                </span>
             </div>
 
             <div class="row">
-    <span class="form_element">
-	<input type="text"
-           name="postal"
-           required id="postal"
-           placeholder="Postal Code Or Zip">
-          </span>
+                <span class="form_element">
+                    <input type="text"
+                           name="Address"
+                           required id="Address"
+                           placeholder="Enter Your Address">
+                </span>
             </div>
 
             <div class="row">
-     <span class="form_element">
-   <input
-       title="Expected format as 250-999-9999"
-       type="tel"
-       name="phone"
-       required id="phone"
-       placeholder="250-999-9999"
-       pattern="[\(]\d{3}[\)]\d{3}[\-]\d{4}">
-          </span>
+                <span class="form_element">
+                    <input type="text"
+                           name="postal"
+                           required id="postal"
+                           placeholder="Postal Code Or Zip">
+                </span>
             </div>
 
             <div class="row">
-     <span class="form_element">
-   <input type="text"
-          name="credit"
-          required id="credit"
-          placeholder="Credit Card number"
-          pattern="[0-0]{4,6}">
-          </span>
+                <span class="form_element">
+                    <input title="Expected format as 250-999-9999"
+                           type="tel"
+                           name="phone"
+                           required id="phone"
+                           placeholder="250-999-9999"
+                           pattern="[\(]\d{3}[\)]\d{3}[\-]\d{4}">
+                </span>
             </div>
 
             <div class="row">
-     <span class="form_element">
-   <input type="text"
-          name="expiry"
-          required id="expiry"
-          placeholder="Credit card expiry"
-          pattern="\d{2}-\d{2}"
-          title="Credit card expiry as MM-YY">
-          </span>
+                <span class="form_element">
+                    <input type="text"
+                           name="credit"
+                           required id="credit"
+                           placeholder="Credit Card number"
+                           pattern="[0-0]{4,6}">
+                </span>
+            </div>
+
+            <div class="row">
+                <span class="form_element">
+                    <input type="text"
+                           name="expiry"
+                           required id="expiry"
+                           placeholder="Credit card expiry"
+                           pattern="\d{2}-\d{2}"
+                           title="Credit card expiry as MM-YY">
+                </span>
             </div>
 
             <input type="button" value="Checkout" onclick="return formhash(this.form, this.form.firstname,
@@ -258,19 +258,6 @@
 <script type='text/javascript' src='js/basic.js'></script>
 
 <script>
-    $('button[type=button]').click(function (e) {
-        var name = $(this).attr("name");
-        var albumName = $('button[name=' + name + ']').val();
-        $.post('addToCart.php', {name: albumName}, function (data) {
-            $('.cartBox').qtip({
-                show: true,
-                hide: 'click',
-                content: { text: data },
-                position: { adjust: { y: 13 }, my:'top center' }
-            });
-        });
-    });
-
     // Create the tooltips only when document ready
     $(document).ready(function(){
         // Show tooltip on all <a/> elements with title attributes, but only when
@@ -281,14 +268,14 @@
                 show: 'click',
                 hide: 'click',
                 content: { url: 'viewCart.php' },
-                position: { adjust: { y: 13 }, my:'top center' }
+                position: { adjust: { y: 13 }, my:'top center', at:'bottom center' }
             });
         } else {
             $('.cartBox').qtip({
                 show: true,
                 hide: 'click',
                 content: { url: 'viewCart.php' },
-                position: { my:'top center'}
+                position: { my:'top center', at:'bottom center'}
             });
         }
         "<?php $_SESSION['change'] = 0?>"

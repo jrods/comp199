@@ -28,3 +28,4 @@ for ($i = 0; $i < count($_SESSION['allAlbums']); $i++) {
 echo "<br>";
 echo "<form action='myCart.php'><input type='submit' value='Checkout'></form>";
 echo "<br>";
+echo "<a href='javascript:;' onclick='parentNode.submit();'><b>Clear Cart</b></a>";

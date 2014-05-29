@@ -1,5 +1,5 @@
 <?php
-include('db_connect.php');
+//include('db_connect.php');
 
 class Cart {
     private $correctValue;
@@ -13,6 +13,14 @@ class Cart {
         $this->login = @new mysqli($server, $username, $password, $schema);
     }
 
+    public function getAllItems(){
+        return $this->cartOfItems;
+    }
+
+    public function clearCart() {
+        $this->cartOfItems = array();
+    }
+
     public function addItem($albumTitle) {
 
         if ($this->login->connect_error) {
@@ -24,6 +32,7 @@ class Cart {
              from album al, artist ar
              where al.artist_id = ar.artist_id
              and al.album_title = '%s'; ";
+
         $baseQuery = sprintf($baseQuery, $albumTitle);
 
         $results = $this->login->query($baseQuery);
@@ -33,10 +42,6 @@ class Cart {
         $inAlbum = @new Album($album['album_title'], $album['album_price'], $album['artist_name']);
 
         array_push($this->cartOfItems, $inAlbum);
-        
-        //$_SESSION['cart'] += $album['album_price'];
-
-
     }
 
     public function getTotal() {
@@ -54,7 +59,7 @@ class Cart {
 
     public function removeItem($lookingForTitle) {
 
-        $testArray = array();
+        $newArray = array();
 
         foreach ($this->cartOfItems as $value) {
 
@@ -64,11 +69,11 @@ class Cart {
                 continue;
             }
 
-            array_push($testArray, $value);
+            array_push($newArray, $value);
 
         }
 
-        $this->cartOfItems = $testArray;
+        $this->cartOfItems = $newArray;
 
     }
 }

@@ -30,12 +30,7 @@
 
     <script>
         var modal = (function () {
-            var
-                method = {},
-                $overlay,
-                $modal,
-                $content,
-                $close;
+            var method = {}, $overlay, $modal, $content, $close;
 
             // Center the modal in the viewport
             method.center = function () {
@@ -44,20 +39,14 @@
                 top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
                 left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
 
-                $modal.css({
-                    top: top + $(window).scrollTop(),
-                    left: left + $(window).scrollLeft()
-                });
+                $modal.css({ top: top + $(window).scrollTop(), left: left + $(window).scrollLeft()});
             };
 
             // Open the modal
             method.open = function (settings) {
                 $content.empty().append(settings.content);
 
-                $modal.css({
-                    width: settings.width || 'auto',
-                    height: settings.height || 'auto'
-                });
+                $modal.css({ width: settings.width || 'auto', height: settings.height || 'auto'});
 
                 method.center();
                 $(window).bind('resize.modal', method.center);
@@ -66,12 +55,7 @@
             };
 
             // Close the modal
-            method.close = function () {
-                $modal.hide();
-                $overlay.hide();
-                $content.empty();
-                $(window).unbind('resize.modal');
-            };
+            method.close = function () { $modal.hide(); $overlay.hide(); $content.empty(); $(window).unbind('resize.modal'); };
 
             // Generate the HTML and add it to the document
             $overlay = $('<div id="overlay"></div>');
@@ -257,7 +241,7 @@
                 show: true,
                 hide: 'click',
                 content: { text: data },
-                position: { adjust: { y: 13 }, my:'top center' }
+                position: {adjust: { y: 13 }, my:'top center', at:'bottom right', target:'.cartBox'}
           });
         });
     });
@@ -272,14 +256,14 @@
                 show: 'click',
                 hide: 'click',
                 content: { url: 'viewCart.php' },
-                position: { adjust: { y: 13 }, my:'top center' }
+                position: { adjust: { y: 13 }, my:'top center', at:'bottom center' }
             });
         } else {
             $('.cartBox').qtip({
                 show: true,
                 hide: 'click',
                 content: { url: 'viewCart.php' },
-                position: { my:'top center'}
+                position: { adjust: { y: 13 }, my:'top center', at:'bottom center' }
             });
         }
         "<?php $_SESSION['change'] = 0?>"
