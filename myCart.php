@@ -98,7 +98,7 @@
         function formhash(form, fname, lname, country, province, address, postal, phone, credit, expiry) {
             if (fname.value == '' || lname.value == '' || country.value == '' || province.value == '' || address.value == ''
                 || postal.value == '' || phone.value == '' || credit.value == '' || expiry.value == '') {
-                alert("Not all Forms have to be Filled");
+                alert("Not all fields have been filled");
                 return false;
             }
             form.submit()
@@ -237,7 +237,7 @@
                 </span>
             </div>
 
-            <input type="button" value="Checkout" onclick="return formhash(this.form, this.form.firstname,
+            <button type="button" style="border: 0; background: transparent" onclick="return formhash(this.form, this.form.firstname,
 														   this.form.lastname,
 														   this.form.Country,
 														   this.form.Province,
@@ -245,7 +245,8 @@
 														   this.form.postal,
 														   this.form.phone,
 														   this.form.credit,
-														   this.form.expiry);"/>
+														   this.form.expiry);" ><img src="https://www.paypalobjects.com/en_US/i/btn/x-click-but6.gif" alt="Pay with PayPal" />
+            </input>
 
 
 </div>
