@@ -145,7 +145,7 @@
 
 <div class="contentBody">
 
-    <form name="menduorder" method="post" id="formbox">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 
         <fieldset>
             <legend>checkout</legend>
@@ -211,8 +211,7 @@
                            type="tel"
                            name="phone"
                            required id="phone"
-                           placeholder="250-999-9999"
-                           pattern="[\(]\d{3}[\)]\d{3}[\-]\d{4}">
+                           placeholder="250-999-9999">
                 </span>
             </div>
 
@@ -221,8 +220,7 @@
                     <input type="text"
                            name="credit"
                            required id="credit"
-                           placeholder="Credit Card number"
-                           pattern="[0-0]{4,6}">
+                           placeholder="Credit Card number">
                 </span>
             </div>
 
@@ -232,12 +230,11 @@
                            name="expiry"
                            required id="expiry"
                            placeholder="Credit card expiry"
-                           pattern="\d{2}-\d{2}"
                            title="Credit card expiry as MM-YY">
                 </span>
             </div>
 
-            <button type="button" style="border: 0; background: transparent" onclick="return formhash(this.form, this.form.firstname,
+          <!--  <button type="button" style="border: 0; background: transparent" onclick="return formhash(this.form, this.form.firstname,
 														   this.form.lastname,
 														   this.form.Country,
 														   this.form.Province,
@@ -247,6 +244,21 @@
 														   this.form.credit,
 														   this.form.expiry);" ><img src="https://www.paypalobjects.com/en_US/i/btn/x-click-but6.gif" alt="Pay with PayPal" />
             </input>
+-->
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_donations">
+<input type="hidden" name="business" value="comp19907@gmail.com">
+<input type="hidden" name="lc" value="CA">
+<input type="hidden" name="no_note" value="0">
+<input type="hidden" name="currency_code" value="CAD">
+<input type="hidden" name="amount" value="<?php echo number_format((float)($_SESSION['cart']), 2, '.', ''); ?>">
+<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+
 
 
 </div>
