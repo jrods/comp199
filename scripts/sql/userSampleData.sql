@@ -6,11 +6,13 @@ use `c199grp07`;
 INSERT INTO `c199grp07`.`user` (
 	`first_name`, `last_name`, 
 	`birth_date`, 
-	`not_a_password`, `email_address`, 
+	`not_a_password`, `salt`,
+	`email_address`, 
 	`city`, `country`) 
 VALUES (
 	'Jared', 'Smith', 
-	'1991-06-30', 'willhashandsaltlater', 
+	'1991-06-30', 
+	'temp', 'temp', 
 	'jaredsmith@persona.ca', 
 	'victoria', 'canada');
 
@@ -18,11 +20,13 @@ VALUES (
 INSERT INTO `c199grp07`.`user` (
 	`first_name`, `last_name`, 
 	`birth_date`, 
-	`not_a_password`, `email_address`, 
+	`not_a_password`, `salt`,
+	`email_address`, 
 	`city`, `country`) 
 VALUES (
 	'Calvin', 'Lam', 
-	'2009-01-01', 'willhashandsaltlater', 
+	'2009-01-01', 
+	'temp', 'temp', 
 	'calvinsemail@hotmail.com', 
 	'victoria', 'canada');
 
@@ -30,11 +34,13 @@ VALUES (
 INSERT INTO `c199grp07`.`user` (
 	`first_name`, `last_name`, 
 	`birth_date`, 
-	`not_a_password`, `email_address`, 
+	`not_a_password`, `salt`,
+	`email_address`, 
 	`city`, `country`) 
 VALUES (
 	'Sam', 'Beveridge', 
-	'2008-01-01', 'willhashandsaltlater', 
+	'2008-01-01', 
+	'temp', 'temp',
 	'samsemail@gmail.com', 
 	'victoria', 'canada');
 
@@ -42,23 +48,27 @@ VALUES (
 INSERT INTO `c199grp07`.`user` (
 	`first_name`, `last_name`, 
 	`birth_date`, 
-	`not_a_password`, `email_address`, 
+	`not_a_password`, `salt`,
+	`email_address`, 
 	`city`, `country`) 
 VALUES (
 	'Jezza', 'Clarkson', 
-	'1951-01-01', 'somepassword', 
+	'1951-01-01', 
+	'temp', 'temp',
 	'imacompleteclot@bbc.co.uk', 
 	'london', 'unitied kingdom');
  
-##   user_id 5
+## Template user_id 5
 #INSERT INTO `c199grp07`.`user` (
 #	`first_name`, `last_name`, 
 #	`birth_date`, 
-#	`not_a_password`, `email_address`, 
-#	`city`, `country`) 
+#	`not_a_password`, `salt`,
+#	`email_address`, 
+#	`city`, `country`)
 #VALUES (
 #	'', '', 
-#	'2000-01-01', 'somepassword', 
+#	'2000-01-01', 
+#	'somepassword', 'asalt',
 #	'', 
 #	'', '');
  
