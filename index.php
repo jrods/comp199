@@ -27,6 +27,8 @@
     ?>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/JavaScript" src="js/sha512.js"></script>
+    <script type="text/JavaScript" src="js/forms.js"></script>
 
     <script>
         var modal = (function () {
@@ -117,9 +119,10 @@
 
                 <div class="item">
                     <div class="loginBlock">
-                        <input type="text" id="userInput" name="username" placeholder="username"/>
-                        <input type="password" id="passInput" name="password" placeholder="password"/>
-                        <input type="submit" value="Login" />
+                        <form action="scripts/php/process_login.php" method="post" name="login_form">
+                        <input type="text" id="username" name="username" placeholder="username"/>
+                        <input type="password" id="password" name="password" placeholder="password"/>
+                        <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" />
                     </div>
                 </div>
             </li>
@@ -135,6 +138,16 @@
 
         include('scripts/php/htmlGenerator.php');
         include('scripts/php/shoppingCart.php');
+        include_once 'scripts/php/db_connect.php';
+        include_once 'scripts/php/functions.php';
+        
+        //sec_session_start();
+
+        if (login_check($mysqli) == true) {
+           $logged = 'in';
+        } else {
+           $logged = 'out';
+        }
 
         $server = 'localhost';
         $username = 'c199grp07';
