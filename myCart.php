@@ -271,6 +271,7 @@
     $(document).ready(function(){
             $('.cartBox').qtip({
                 show: true,
+                hide: false,
                 content: { url: 'viewCart.php' },
                 position: { adjust: { y: 70 }, my:'top center', at:'bottom center'}
             });
