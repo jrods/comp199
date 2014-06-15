@@ -111,7 +111,7 @@
         <ul class="bar" id="list">
             <li id="navContent">
                 <div class="item">
-                    <div class="logoBlock"><span class="temp" id="whiteText">Tune Source</span></div>
+                    <div class="logoBlock"><span class="temp"><a href="index.php" id="whiteText">Tune Source</a></span></div>
                 </div>
 
                 <div class="item">

@@ -17,18 +17,75 @@
     <link href="js/jquery.qtip.css" rel="stylesheet" type="text/css"/>
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="./includes/index.css" media="screen">
 
     <?php
+    include('scripts/php/htmlGenerator.php');
+    include('scripts/php/shoppingCart.php');
+    include_once 'scripts/php/db_connect.php';
+    include_once 'scripts/php/functions.php';
     session_start();
     if(! isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
     }
 
+    $_SESSION['songPlaying'] = "No song playing.";
     ?>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/JavaScript" src="js/sha512.js"></script>
     <script type="text/JavaScript" src="js/forms.js"></script>
+    <script>var _gaq=[['_setAccount','UA-20257902-1'],['_trackPageview']];(function(d,t){ var g=d.createElement(t),s=d.getElementsByTagName(t)[0]; g.async=1;g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+    <script src="./audiojs/audio.min.js"></script>
+
+    <script>
+      $(function() { 
+        // Setup the player to autoplay the next track
+
+        var a = audiojs.createAll({
+          trackEnded: function() {
+            var next = $('ol li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.addClass('playing').siblings().removeClass('playing');
+            audio.load($('a', next).attr('data-src'));
+            audio.play();
+          }
+        });
+
+        // Load in the first track
+        var audio = a[0];
+            first = $('ol a').attr('data-src');
+        $('ol li').first().addClass('playing');
+        audio.load(first);
+
+        // Load in a track on click
+        $('ol li').click(function(e) {
+          e.preventDefault();
+          //"<?php $_SESSION['songPlaying'] = 0; ?>";
+          $(this).addClass('playing').siblings().removeClass('playing');
+          audio.load($('a', this).attr('data-src'));
+          audio.play();
+        });
+        // Keyboard shortcuts
+        $(document).keydown(function(e) {
+          var unicode = e.charCode ? e.charCode : e.keyCode;
+             // right arrow
+          if (unicode == 39) {
+            var next = $('li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.click();
+            // back arrow
+          } else if (unicode == 37) {
+            var prev = $('li.playing').prev();
+            if (!prev.length) prev = $('ol li').last();
+            prev.click();
+            // spacebar
+          } else if (unicode == 32) {
+            audio.playPause();
+          }
+        })
+      });
+    </script>
 
     <script>
         var modal = (function () {
@@ -83,15 +140,13 @@
 
         // Wait until the DOM has loaded before querying the document
         $(document).ready(function () {
-            $('submit').click(function (e) {
-                $.get('ajax.php', function (data) {
+            $('a#register').click(function (e) {
+                $.get('register1.php', function (data) {
                     modal.open({content: data});
                     e.preventDefault();
                 });
             });
         });
-        
-
     </script>
 
 </head>
@@ -101,7 +156,7 @@
         <ul class="bar" id="list">
             <li id="navContent">
                 <div class="item">
-                    <div class="logoBlock"><span class="temp" id="whiteText">Tune Source</span></div>
+                    <div class="logoBlock"><span class="temp" ><a id="whiteText" href="index.php">Tune Source</a></span></div>
                 </div>
 
                 <div class="item">
@@ -123,6 +178,8 @@
                         <input type="text" id="username" name="username" placeholder="username"/>
                         <input type="password" id="password" name="password" placeholder="password"/>
                         <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" />
+                        </form>
+                        <a id="register" href="#">Register</a>
                     </div>
                 </div>
             </li>
@@ -135,13 +192,6 @@
 
     <div id="gallery">
         <?php
-
-        include('scripts/php/htmlGenerator.php');
-        include('scripts/php/shoppingCart.php');
-        include_once 'scripts/php/db_connect.php';
-        include_once 'scripts/php/functions.php';
-        
-        //sec_session_start();
 
         if (login_check($mysqli) == true) {
            $logged = 'in';
@@ -166,7 +216,7 @@
         $testQuery = $login;
 
         $baseQuery =
-            "select ar.artist_name, al.album_title, al.album_price
+            "select ar.artist_name, al.album_title, al.album_price, al.album_id
             from artist ar, album al
             where ar.artist_id = al.artist_id;
             ";
@@ -183,14 +233,20 @@
         $galleryListItem = '';
         $itemCounter = 0;
         $newThing[] = "";
+        $songsArray = array("http://kolber.github.io/audiojs/demos/mp3/01-dead-wrong-intro.mp3",
+                       "http://kolber.github.io/audiojs/demos/mp3/02-juicy-r.mp3",
+                       "http://kolber.github.io/audiojs/demos/mp3/03-its-all-about-the-crystalizabeths.mp3",
+                       "http://kolber.github.io/audiojs/demos/mp3/04-islands-is-the-limit.mp3",
+                       "http://kolber.github.io/audiojs/demos/mp3/05-one-more-chance-for-a-heart-to-skip-a-beat.mp3",
+                       "http://kolber.github.io/audiojs/demos/mp3/06-suicidal-fantasy.mp3");
 
         while ($row = $userResults->fetch_assoc()) {
 
         // Album block creation
             $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
             $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
-            $albumArtButton = anchorBlock("/temp/link", $albumArt . $playButton);
-
+            $albumArtButton = songBlock($songsArray[$itemCounter], $albumArt . $playButton);
+            //$_SESSION['songPlaying'][0] = "test";
         // Album Info and Link Block
             $albumTitleLink = anchorBlock("/tmp/link", $row['album_title']);
             $albumTitle = divIdClass("albumTitle", "albumText", $albumTitleLink);
@@ -202,6 +258,7 @@
             $genre = divIdClass("genre", "albumText", $genreLink);
 
             $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $genre);
+
             $albumPrice = number_format((float)($row['album_price']) / 100, 2, '.', '');
 
         // Album Object Button
@@ -234,7 +291,7 @@
     <div class="rightSidebar fixed">
         <aside class="musicPlayer">
 
-            <div class="playerArt"></div>
+            <div class="playerArt"><?php if(isset($_SESSION['allAlbums'][0])){ echo $_SESSION['allAlbums'][0]; } ?><audio preload></audio></div>
         </aside>
     </div>
 </div>

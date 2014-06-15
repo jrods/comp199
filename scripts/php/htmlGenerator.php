@@ -21,6 +21,11 @@ function anchorBlock($link, $content) {
     return sprintf($results, $link, $content);
 }
 
+function songBlock($link, $content) {
+    $results = '<ol><li><a href="#" data-src="%s">%s</a></li></ol>';
+    return sprintf($results, $link, $content);
+}
+
 function listItem($content) {
     $results = '<li class="galleryItem">%s</li>';
     return sprintf($results, $content);

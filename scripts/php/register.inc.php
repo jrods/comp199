@@ -26,7 +26,7 @@ $error_msg = "";
 
 if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
   
-    $privkey = "6LedAfMSAAAAAIbvL2AZPZAADGL6-qY7S2Vl4l4k"; // Private API Key
+    /*$privkey = "6LedAfMSAAAAAIbvL2AZPZAADGL6-qY7S2Vl4l4k"; // Private API Key
     $verify = recaptcha_check_answer($privkey, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
 
     if ($verify->is_valid) {
@@ -35,7 +35,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     } else {
         # Enter Failure Code
         $error_msg .= '<p class="error">You entered the captcha wrong</p>';
-    }
+    }                        */
     // Sanitize and validate the data passed in
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
@@ -57,7 +57,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     // breaking these rules.
     //
     
-    $prep_stmt = "SELECT id FROM members WHERE email = ? LIMIT 1";
+    $prep_stmt = "SELECT user_id FROM user WHERE email_address = ? LIMIT 1";
     $stmt = $mysqli->prepare($prep_stmt);
     
     if ($stmt) {
@@ -86,7 +86,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         $password = hash('sha512', $password . $random_salt);
 
         // Insert the new user into the database 
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO members (username, email, password, salt) VALUES (?, ?, ?, ?)")) {
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO user (user_id, email, not_a_password, salt) VALUES (?, ?, ?, ?)")) {
             $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {
@@ -94,7 +94,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
                 exit();
             }
         }
-        header('Location: /register_success.php');
+        header('Location: index.php');
         exit();
     }
 }
