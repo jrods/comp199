@@ -269,25 +269,11 @@
 <script>
     // Create the tooltips only when document ready
     $(document).ready(function(){
-        // Show tooltip on all <a/> elements with title attributes, but only when
-        // clicked. Clicking again will hide it.
-        var a = "<?php echo $_SESSION['change']?>";
-        if (a < 1){
-            $('.cartBox').qtip({
-                show: 'click',
-                hide: 'click',
-                content: { url: 'viewCart.php' },
-                position: { adjust: { y: 13 }, my:'top center', at:'bottom center' }
-            });
-        } else {
             $('.cartBox').qtip({
                 show: true,
-                hide: 'click',
                 content: { url: 'viewCart.php' },
-                position: { my:'top center', at:'bottom center'}
+                position: { adjust: { y: 70 }, my:'top center', at:'bottom center'}
             });
-        }
-        "<?php $_SESSION['change'] = 0?>"
     });
 
 </script>
