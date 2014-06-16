@@ -150,7 +150,7 @@
 <body>
 
 <div class="contentBody">
-
+  <!-----
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 
         <fieldset>
@@ -240,7 +240,7 @@
                 </span>
             </div>
 
-          <!--  <button type="button" style="border: 0; background: transparent" onclick="return formhash(this.form, this.form.firstname,
+            <button type="button" style="border: 0; background: transparent" onclick="return formhash(this.form, this.form.firstname,
 														   this.form.lastname,
 														   this.form.Country,
 														   this.form.Province,
@@ -251,26 +251,17 @@
 														   this.form.expiry);" ><img src="https://www.paypalobjects.com/en_US/i/btn/x-click-but6.gif" alt="Pay with PayPal" />
             </input>
 -->
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_donations">
-<input type="hidden" name="business" value="comp19907@gmail.com">
-<input type="hidden" name="lc" value="CA">
-<input type="hidden" name="no_note" value="0">
-<input type="hidden" name="currency_code" value="CAD">
-<input type="hidden" name="amount" value="<?php echo number_format((float)($_SESSION['cart']), 2, '.', ''); ?>">
-<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+
+<form action="makePayment.php" method="post">
+<input type="hidden" name="total" value="<?php echo number_format((float)($_SESSION['cart']), 2, '.', ''); ?>">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" src="" align="left"
+           style="margin-right:7px;" name="submit" alt="PayPal - The safer, easier way to pay online!">
+</input>
 </form>
 
 </div>
 
 </div>
-
-<!-- Load jQuery, SimpleModal and Basic JS files -->
-<script type='text/javascript' src='js/jquery.js'></script>
-<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
-<script type='text/javascript' src='js/basic.js'></script>
 
 <script>
     // Create the tooltips only when document ready
