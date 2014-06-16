@@ -62,7 +62,7 @@ li#navContent div.item {
 }
 
 li#navContent div.logoBlock {
-    width: 250px;
+    width: 225px;
     font-size: 32px;
     margin-top: 3px;
 }
@@ -81,19 +81,31 @@ li#navContent div.searchBlock div#searchButton {
 }
 
 li#navContent div.cartBlock {
-    width: 150px;
+    width: 80px;
     text-align: right;
     margin-top: 16px;
     margin-right: 20px;
 }
 
 li#navContent div.loginBlock {
-    width: 338px;
-    margin-top: 13px;
+    display: inline-block;
+    width: 425px;
+
+}
+
+div.loginBlock form {
+    float: left;
+    width: 325px;
+    margin-top: 14px;
 }
 
 #whiteText {
     color: #fff;
+}
+
+.register {
+    float: left;
+    margin-top: 16px;
 }
 
 body {
@@ -125,9 +137,14 @@ body {
 }
 
 .playerArt {
-    width: 225px;
-    height: 225px;
+    width: 275px;
+    height: 275px;
     border: 1px solid rgba(204, 204, 204, 1.0);
+}
+
+img#playerArt {
+    width: 275px;
+    height: 275px;
 }
 
 .footer {

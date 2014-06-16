@@ -2,9 +2,6 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
 USE `c199grp07` ;
 
 -- -----------------------------------------------------
@@ -30,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `c199grp07`.`user` (
   `artist_id` INT NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   `birth_date` VARCHAR(10) NOT NULL,
   `not_a_password` CHAR(128) NOT NULL,
   `salt` CHAR(128) NOT NULL,
