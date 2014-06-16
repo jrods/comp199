@@ -1,10 +1,12 @@
 <html>
 <head>
+    <link rel="stylesheet" href="./includes/index.css" media="screen">
+    <link href="css/index-style.css" rel="stylesheet" type="text/css"/>
     <script>var _gaq=[['_setAccount','UA-20257902-1'],['_trackPageview']];(function(d,t){ var g=d.createElement(t),s=d.getElementsByTagName(t)[0]; g.async=1;g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
     <script src="./audiojs/audio.min.js"></script>
 
     <script>
-      $(function() { 
+      $(function() {
         // Setup the player to autoplay the next track
 
         var a = audiojs.createAll({
@@ -54,8 +56,9 @@
 </head>
 
 <body>
+        <aside class="musicPlayer">
 
-<?php
+    <div class="playerArt"><?php
     include('scripts/php/htmlGenerator.php');
     include('scripts/php/shoppingCart.php');
     include_once 'scripts/php/db_connect.php';
@@ -98,10 +101,12 @@
         $song[$songNumber] = $row['song_title'];
         $songFile = $row['file_name'];
         echo "<ol><li><a href='#' data-src='songs/$songFile'>$song[$songNumber]</a></ul></ol>";
-        echo "<br>";
+        echo "<br>"; 
         }
 
-   ?>
+   ?><audio preload></audio></div>
+   
+   </aside>
 
     </body>
 </html>

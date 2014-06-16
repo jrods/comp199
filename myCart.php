@@ -12,7 +12,13 @@
     <link href="js/jquery.qtip.css" rel="stylesheet" type="text/css"/>
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
-
+    <?php
+    
+        if(! isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = 0;
+    }
+    
+    ?>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>
         var modal = (function () {

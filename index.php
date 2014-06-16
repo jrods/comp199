@@ -288,15 +288,12 @@
         $itemCounter--;
         ?>
     </div>
-
-    <div class="rightSidebar fixed">
-        <aside class="musicPlayer">
-
-            <div class="playerArt"><?php if(isset($_SESSION['allAlbums'][0])){ echo $_SESSION['allAlbums'][0]; } ?><audio preload></audio></div>
-        </aside>
-    </div>
 </div>
+    <div class="rightSidebar fixed">
+                <aside class="musicPlayer">
 
+        </aside>
+</div>
 <!-- Load jQuery, SimpleModal and Basic JS files -->
 <script type='text/javascript' src='js/jquery.js'></script>
 <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
@@ -318,15 +315,16 @@
         });
     });
 
-    $('a').click(function (e) {
-        //var name = $(this).attr("name");
-        //var albumName = $('button[name=' + name + ']').val();
+    $('.1').click(function (e) {
         $.post('showSongs.php', function (data) {
-            $('.1').qtip({
+
+            $('.musicPlayer').qtip({
                 show: true,
                 hide: 'click',
                 content: { text: data },
-          });
+                position: {adjust: { x: 50 }, my:'top center', at:'bottom right', target:'.musicPlayer'}
+
+          });   
         });
     });
     // Create the tooltips only when document ready
