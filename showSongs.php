@@ -56,9 +56,8 @@
 </head>
 
 <body>
-        <aside class="musicPlayer">
-
-    <div class="playerArt"><?php
+<div class="playerArt">
+<?php
     include('scripts/php/htmlGenerator.php');
     include('scripts/php/shoppingCart.php');
     include_once 'scripts/php/db_connect.php';
@@ -93,20 +92,18 @@
             $message .= 'Whole query: ' . $userSongQuery;
             die($message);
         }
-
+        echo "<ol>";
         $song = array();
         $songNumber = 0;
         while ($row = $songResults->fetch_assoc()) {
 
         $song[$songNumber] = $row['song_title'];
         $songFile = $row['file_name'];
-        echo "<ol><li><a href='#' data-src='songs/$songFile'>$song[$songNumber]</a></ul></ol>";
-        echo "<br>"; 
+        echo "<li><a href='#' data-src='songs/$songFile'>$song[$songNumber]</a></ul>";
         }
-
-   ?><audio preload></audio></div>
-   
-   </aside>
-
+        echo "</ol>";
+        ?>
+        <audio preload></audio>
+        </div>
     </body>
 </html>

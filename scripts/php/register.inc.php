@@ -25,7 +25,7 @@ $error_msg = "";
 
 
 if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
-  
+
     /*$privkey = "6LedAfMSAAAAAIbvL2AZPZAADGL6-qY7S2Vl4l4k"; // Private API Key
     $verify = recaptcha_check_answer($privkey, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
 
@@ -59,7 +59,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     
     $prep_stmt = "SELECT user_id FROM user WHERE email_address = ? LIMIT 1";
     $stmt = $mysqli->prepare($prep_stmt);
-    
+
     if ($stmt) {
         $stmt->bind_param('s', $email);
         $stmt->execute();
@@ -86,7 +86,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         $password = hash('sha512', $password . $random_salt);
 
         // Insert the new user into the database 
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO user (user_id, email, not_a_password, salt) VALUES (?, ?, ?, ?)")) {
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO user (username, email_address, not_a_password, salt) VALUES (?, ?, ?, ?)")) {
             $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {

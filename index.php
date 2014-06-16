@@ -28,7 +28,9 @@
     if(! isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
     }
-
+            if (login_check($mysqli) == true) {
+                echo htmlentities($_SESSION['username']);
+            }    
     $_SESSION['songPlaying'] = "No song playing.";
     ?>
 
@@ -140,7 +142,7 @@
 
         // Wait until the DOM has loaded before querying the document
         $(document).ready(function () {
-            $('a#register').click(function (e) {
+            $('a.register').click(function (e) {
                 $.get('register1.php', function (data) {
                     modal.open({content: data});
                     e.preventDefault();
@@ -179,7 +181,7 @@
                         <input type="password" id="password" name="password" placeholder="password"/>
                         <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" />
                         </form>
-                        <a id="register" href="#">Register</a>
+                        <a class="register" id="whiteText" href="#">Register</a>
                     </div>
                 </div>
             </li>
@@ -292,7 +294,7 @@
     <div class="rightSidebar fixed">
         <aside class="musicPlayer">
 
-            <div class="playerArt"><?php if(isset($_SESSION['allAlbums'][0])){ echo $_SESSION['allAlbums'][0]; } ?><audio preload></audio></div>
+              <div class="playerArt"><audio preload></audio></div>
         </aside>
     </div>
 </div>
@@ -318,17 +320,22 @@
         });
     });
 
-    $('a').click(function (e) {
-        //var name = $(this).attr("name");
-        //var albumName = $('button[name=' + name + ']').val();
-        $.post('showSongs.php', function (data) {
-            $('.1').qtip({
-                show: true,
-                hide: 'click',
-                content: { text: data },
-          });
-        });
-    });
+$('.1').click(function (e) {
+    function geturl(addr) {
+        var r = $.ajax({
+          type: 'GET',
+          url: addr,
+          async: false
+        }).responseText;
+        return r;
+    }
+
+    function changediv() {
+        $('.musicPlayer').html(geturl('showSongs.php'));
+    }
+    changediv();
+});
+
     // Create the tooltips only when document ready
     $(document).ready(function(){
         // Show tooltip on all <a/> elements with title attributes, but only when
