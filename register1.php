@@ -8,7 +8,8 @@ include_once 'scripts/php/functions.php';
 <head>
   		<link rel="stylesheet" href="css/index-style.css" type="text/css" />
 		<meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-
+                <script type="text/JavaScript" src="js/sha512.js"></script>
+                <script type="text/JavaScript" src="js/forms.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script>
 			var modal = (function(){
@@ -95,16 +96,22 @@ include_once 'scripts/php/functions.php';
                         });   */
                   });
       </script>
+
 </head>
 <body>
 
         <?php
+    include_once 'scripts/php/functions.php';
+    include_once 'scripts/php/register.inc.php';
         if (!empty($error_msg)) {
             echo $error_msg;
         }
         ?>
         <form method='post' name='registration_form' action='<?php echo esc_url($_SERVER['PHP_SELF']); ?>'>
             Username:<br>  <input type='text' name='username' id='username' /><br>
+            First Name:<br>  <input type='text' name='firstname' id='firstname' /><br>
+            Last Name:<br>  <input type='text' name='lastname' id='lastname' /><br>
+            Birthday:<br>  <input type='text' name='bday' id='bday' /><br>
             Email:<br>  <input type='text' name='email' id='email' /><br>
             Password:<br>  <input type='password'
                              name='password'
@@ -116,10 +123,13 @@ include_once 'scripts/php/functions.php';
                    value='Register'
                    onclick='return regformhash(this.form,
                                    this.form.username,
+                                   this.form.bday,
+                                   this.form.firstname,
+                                   this.form.lastname,
                                    this.form.email,
                                    this.form.password,
                                    this.form.confirmpwd);' />
         </form>
-        <p>Return to the <a href="index.php">login page</a>.</p>
+        <p>Return to the <a id="whiteText" href="index.php">login page</a>.</p>
 </body>
 </html>
