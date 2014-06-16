@@ -24,7 +24,7 @@ require_once('recaptchalib.php'); // reCAPTCHA Library
 $error_msg = "";
 
 
-if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
+if (isset($_POST['username'], $_POST['email'], $_POST['bday'], $_POST['firstname'], $_POST['lastname'], $_POST['p'])) {
 
     /*$privkey = "6LedAfMSAAAAAIbvL2AZPZAADGL6-qY7S2Vl4l4k"; // Private API Key
     $verify = recaptcha_check_answer($privkey, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
@@ -38,6 +38,9 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     }                        */
     // Sanitize and validate the data passed in
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $bday = filter_input(INPUT_POST, 'bday', FILTER_SANITIZE_STRING);
+    $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
+    $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -55,21 +58,21 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     // Username validity and password validity have been checked client side.
     // This should should be adequate as nobody gains any advantage from
     // breaking these rules.
-    //
-    
-    $prep_stmt = "SELECT user_id FROM user WHERE email_address = ? LIMIT 1";
+
+    $prep_stmt = "SELECT user_id FROM user WHERE username = ? LIMIT 1";
     $stmt = $mysqli->prepare($prep_stmt);
 
     if ($stmt) {
-        $stmt->bind_param('s', $email);
+        $stmt->bind_param('s', $username);
         $stmt->execute();
         $stmt->store_result();
-        
+
         if ($stmt->num_rows == 1) {
             // A user with this email address already exists
-            $error_msg .= '<p class="error">A user with this email address already exists.</p>';
+            $error_msg .= '<p class="error">A user with this username already exists.</p>';
         }
     } else {
+
         $error_msg .= '<p class="error">Database error</p>';
     }
     
@@ -85,9 +88,9 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         // Create salted password 
         $password = hash('sha512', $password . $random_salt);
 
-        // Insert the new user into the database 
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO user (username, email_address, not_a_password, salt) VALUES (?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
+        // Insert the new user into the database
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO user (username, birth_date, first_name, last_name, email_address, not_a_password, salt) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+            $insert_stmt->bind_param('sssssss', $username, $bday, $first_name, $last_name, $email, $password, $random_salt);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {
                 header('Location: /error.php?err=Registration failure: INSERT');
