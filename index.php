@@ -140,7 +140,7 @@
 
         // Wait until the DOM has loaded before querying the document
         $(document).ready(function () {
-            $('a.register').click(function (e) {
+            $('a#register').click(function (e) {
                 $.get('register1.php', function (data) {
                     modal.open({content: data});
                     e.preventDefault();
@@ -179,7 +179,7 @@
                         <input type="password" id="password" name="password" placeholder="password"/>
                         <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" />
                         </form>
-                        <a id="whiteText" class="register" href="#">Register</a>
+                        <a id="register" href="#">Register</a>
                     </div>
                 </div>
             </li>
@@ -229,6 +229,8 @@
             $message .= 'Whole query: ' . $userQuery;
             die($message);
         }
+        
+
 
         $galleryListItem = '';
         $itemCounter = 0;
@@ -289,11 +291,8 @@
 
     <div class="rightSidebar fixed">
         <aside class="musicPlayer">
-            <div class="playerArt">
-                <img id="playerArt" src="temp">
-            </div>
-            <?php if(isset($_SESSION['allAlbums'][0])){ echo $_SESSION['allAlbums'][0]; } ?>
-            <audio preload></audio>
+
+            <div class="playerArt"><?php if(isset($_SESSION['allAlbums'][0])){ echo $_SESSION['allAlbums'][0]; } ?><audio preload></audio></div>
         </aside>
     </div>
 </div>
