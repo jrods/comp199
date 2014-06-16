@@ -229,6 +229,8 @@
             $message .= 'Whole query: ' . $userQuery;
             die($message);
         }
+        
+
 
         $galleryListItem = '';
         $itemCounter = 0;
@@ -245,8 +247,7 @@
         // Album block creation
             $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
             $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
-            $albumArtButton = songBlock($songsArray[$itemCounter], $albumArt . $playButton);
-            //$_SESSION['songPlaying'][0] = "test";
+            $albumArtButton = albumBlock($row['album_id'], $albumArt . $playButton);
         // Album Info and Link Block
             $albumTitleLink = anchorBlock("/tmp/link", $row['album_title']);
             $albumTitle = divIdClass("albumTitle", "albumText", $albumTitleLink);
@@ -303,7 +304,8 @@
 
 
 <script>
-    $('button[type=button]').click(function (e) {
+
+        $('button[type=button]').click(function (e) {
         var name = $(this).attr("name");
         var albumName = $('button[name=' + name + ']').val();
         $.post('addToCart.php', {name: albumName}, function (data) {
@@ -316,11 +318,23 @@
         });
     });
 
+    $('a').click(function (e) {
+        //var name = $(this).attr("name");
+        //var albumName = $('button[name=' + name + ']').val();
+        $.post('showSongs.php', function (data) {
+            $('.1').qtip({
+                show: true,
+                hide: 'click',
+                content: { text: data },
+          });
+        });
+    });
     // Create the tooltips only when document ready
     $(document).ready(function(){
         // Show tooltip on all <a/> elements with title attributes, but only when
         // clicked. Clicking again will hide it.
         var a = "<?php echo $_SESSION['change']?>";
+
         if (a < 1){
             $('.cartBox').qtip({
                 show: 'click',

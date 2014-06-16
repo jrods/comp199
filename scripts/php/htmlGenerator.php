@@ -26,6 +26,12 @@ function songBlock($link, $content) {
     return sprintf($results, $link, $content);
 }
 
+function albumBlock($id, $content) {
+
+    $results = '<a href="#Album" class="%s">%s</a>';
+    return sprintf($results, $id, $content);
+}
+
 function listItem($content) {
     $results = '<li class="galleryItem">%s</li>';
     return sprintf($results, $content);
