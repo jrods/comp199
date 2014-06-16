@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2013 peredur.net
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,9 +32,9 @@ function formhash(form, password) {
     form.submit();
 }
 
-function regformhash(form, uid, email, password, conf) {
+function regformhash(form, uid, bday, fname, lname, email, password, conf) {
     // Check each field has a value
-    if (uid.value == '' || email.value == '' || password.value == '' || conf.value == '') {
+    if (uid.value == '' || email.value == '' || bday.value == '' || fname.value == '' || lname.value == '' ||password.value == '' || conf.value == '') {
         alert('You must provide all the requested details. Please try again');
         return false;
     }
