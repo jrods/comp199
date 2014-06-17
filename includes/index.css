@@ -9,12 +9,12 @@
 .audiojs {
     top: 277px;
     width: 277px;
+
 }
 
 .audiojs .scrubber {
     width: 140px;
 }
-
 
 .download {
     background: url('./divider.png') top center no-repeat, url('./divider.png') bottom center no-repeat;

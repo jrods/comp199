@@ -28,9 +28,7 @@
     if(! isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
     }
-            if (login_check($mysqli) == true) {
-                echo htmlentities($_SESSION['username']);
-            }    
+
     $_SESSION['songPlaying'] = "No song playing.";
     ?>
 
@@ -39,117 +37,6 @@
     <script type="text/JavaScript" src="js/forms.js"></script>
     <script>var _gaq=[['_setAccount','UA-20257902-1'],['_trackPageview']];(function(d,t){ var g=d.createElement(t),s=d.getElementsByTagName(t)[0]; g.async=1;g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
     <script src="./audiojs/audio.min.js"></script>
-
-    <script>
-      $(function() { 
-        // Setup the player to autoplay the next track
-
-        var a = audiojs.createAll({
-          trackEnded: function() {
-            var next = $('ol li.playing').next();
-            if (!next.length) next = $('ol li').first();
-            next.addClass('playing').siblings().removeClass('playing');
-            audio.load($('a', next).attr('data-src'));
-            audio.play();
-          }
-        });
-
-        // Load in the first track
-        var audio = a[0];
-            first = $('ol a').attr('data-src');
-        $('ol li').first().addClass('playing');
-        audio.load(first);
-
-        // Load in a track on click
-        $('ol li').click(function(e) {
-          e.preventDefault();
-          //"<?php $_SESSION['songPlaying'] = 0; ?>";
-          $(this).addClass('playing').siblings().removeClass('playing');
-          audio.load($('a', this).attr('data-src'));
-          audio.play();
-        });
-        // Keyboard shortcuts
-        $(document).keydown(function(e) {
-          var unicode = e.charCode ? e.charCode : e.keyCode;
-             // right arrow
-          if (unicode == 39) {
-            var next = $('li.playing').next();
-            if (!next.length) next = $('ol li').first();
-            next.click();
-            // back arrow
-          } else if (unicode == 37) {
-            var prev = $('li.playing').prev();
-            if (!prev.length) prev = $('ol li').last();
-            prev.click();
-            // spacebar
-          } else if (unicode == 32) {
-            audio.playPause();
-          }
-        })
-      });
-    </script>
-
-    <script>
-        var modal = (function () {
-            var method = {}, $overlay, $modal, $content, $close;
-
-            // Center the modal in the viewport
-            method.center = function () {
-                var top, left;
-
-                top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
-                left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
-
-                $modal.css({ top: top + $(window).scrollTop(), left: left + $(window).scrollLeft()});
-            };
-
-            // Open the modal
-            method.open = function (settings) {
-                $content.empty().append(settings.content);
-
-                $modal.css({ width: settings.width || 'auto', height: settings.height || 'auto'});
-
-                method.center();
-                $(window).bind('resize.modal', method.center);
-                $modal.show();
-                $overlay.show();
-            };
-
-            // Close the modal
-            method.close = function () { $modal.hide(); $overlay.hide(); $content.empty(); $(window).unbind('resize.modal'); };
-
-            // Generate the HTML and add it to the document
-            $overlay = $('<div id="overlay"></div>');
-            $modal = $('<div id="modal"></div>');
-            $content = $('<div id="content"></div>');
-            $close = $('<a id="close" href="#"></a>');
-
-            $modal.hide();
-            $overlay.hide();
-            $modal.append($content, $close);
-
-            $(document).ready(function () {
-                $('body').append($overlay, $modal);
-            });
-
-            $close.click(function (e) {
-                e.preventDefault();
-                method.close();
-            });
-
-            return method;
-        }());
-
-        // Wait until the DOM has loaded before querying the document
-        $(document).ready(function () {
-            $('a.register').click(function (e) {
-                $.get('register1.php', function (data) {
-                    modal.open({content: data});
-                    e.preventDefault();
-                });
-            });
-        });
-    </script>
 
 </head>
 
@@ -178,18 +65,21 @@
                     <div class="loginBlock">
                         <?php
 
-                        if($_SESSION['user_id'] != null) {
-                            echo "<div id=\"whiteText\">" . $_SESSION['username'] . "</div>";
+                        if(login_check($mysqli) == true) {
+                            echo "<a id=\"whiteText\" class=\"user logout\">Logout</a>";
+                            echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s</div>",  $_SESSION['username'] );
+                        } else {
+                            printf('<a class="register" id="whiteText" href="#">Register</a>
+                                    <form action="scripts/php/process_login.php" method="post" name="login_form">
+                                    <input class="textBox" type="text" id="username" name="username" placeholder="username"/>
+                                    <input class="textBox" type="password" id="password" name="password" placeholder="password"/>
+                                    <input type="button" value="Login" id="whiteText" class="loginButton" onclick="formhash(this.form, this.form.password);" />
+                                    </form>');
                         }
 
                         ?>
 
-                        <form action="scripts/php/process_login.php" method="post" name="login_form">
-                        <input type="text" id="username" name="username" placeholder="username"/>
-                        <input type="password" id="password" name="password" placeholder="password"/>
-                        <input type="button" value="Login" onclick="formhash(this.form, this.form.password);" />
-                        </form>
-                        <a class="register" id="whiteText" href="#">Register</a>
+
                     </div>
                 </div>
             </li>
@@ -239,18 +129,10 @@
             $message .= 'Whole query: ' . $userQuery;
             die($message);
         }
-        
-
 
         $galleryListItem = '';
         $itemCounter = 0;
         $newThing[] = "";
-        $songsArray = array("http://kolber.github.io/audiojs/demos/mp3/01-dead-wrong-intro.mp3",
-                       "http://kolber.github.io/audiojs/demos/mp3/02-juicy-r.mp3",
-                       "http://kolber.github.io/audiojs/demos/mp3/03-its-all-about-the-crystalizabeths.mp3",
-                       "http://kolber.github.io/audiojs/demos/mp3/04-islands-is-the-limit.mp3",
-                       "http://kolber.github.io/audiojs/demos/mp3/05-one-more-chance-for-a-heart-to-skip-a-beat.mp3",
-                       "http://kolber.github.io/audiojs/demos/mp3/06-suicidal-fantasy.mp3");
 
         while ($row = $userResults->fetch_assoc()) {
 
@@ -303,8 +185,13 @@
 
     <div class="rightSidebar fixed">
         <aside class="musicPlayer">
+            <div class="playerArt">
+                <img src="" id="playerArt">
+            </div>
 
-              <div class="playerArt"><audio preload></audio></div>
+            <div class="playerContainer">
+
+            </div>
 
         </aside>
     </div>
@@ -315,6 +202,67 @@
 <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 <script type='text/javascript' src='js/basic.js'></script>
 
+<script>
+    var modal = (function () {
+        var method = {}, $overlay, $modal, $content, $close;
+
+        // Center the modal in the viewport
+        method.center = function () {
+            var top, left;
+
+            top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
+            left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
+
+            $modal.css({ top: top + $(window).scrollTop(), left: left + $(window).scrollLeft()});
+        };
+
+        // Open the modal
+        method.open = function (settings) {
+            $content.empty().append(settings.content);
+
+            $modal.css({ width: settings.width || 'auto', height: settings.height || 'auto'});
+
+            method.center();
+            $(window).bind('resize.modal', method.center);
+            $modal.show();
+            $overlay.show();
+        };
+
+        // Close the modal
+        method.close = function () { $modal.hide(); $overlay.hide(); $content.empty(); $(window).unbind('resize.modal'); };
+
+        // Generate the HTML and add it to the document
+        $overlay = $('<div id="overlay"></div>');
+        $modal = $('<div id="modal"></div>');
+        $content = $('<div id="content"></div>');
+        $close = $('<a id="close" href="#"></a>');
+
+        $modal.hide();
+        $overlay.hide();
+        $modal.append($content, $close);
+
+        $(document).ready(function () {
+            $('body').append($overlay, $modal);
+        });
+
+        $close.click(function (e) {
+            e.preventDefault();
+            method.close();
+        });
+
+        return method;
+    }());
+
+    // Wait until the DOM has loaded before querying the document
+    $(document).ready(function () {
+        $('a.register').click(function (e) {
+            $.get('register.php', function (data) {
+                modal.open({content: data});
+                e.preventDefault();
+            });
+        });
+    });
+</script>
 
 <script>
 
@@ -342,7 +290,7 @@ $('.1').click(function (e) {
     }
 
     function changediv() {
-        $('.musicPlayer').html(geturl('showSongs.php'));
+        $('.playerContainer').html(geturl('showSongs.php'));
     }
     changediv();
 });

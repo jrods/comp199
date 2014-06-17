@@ -13,26 +13,27 @@ a {
 
 .header {
     background: #161616; /* Old browsers */
-    background: -moz-linear-gradient(top,  #161616 0%, #2d2d2d 94%, #565656 96%, #686868 98%, #aaaaaa 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#161616), color-stop(94%,#2d2d2d), color-stop(96%,#565656), color-stop(98%,#686868), color-stop(100%,#aaaaaa)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #161616 0%,#2d2d2d 94%,#565656 96%,#686868 98%,#aaaaaa 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #161616 0%,#2d2d2d 94%,#565656 96%,#686868 98%,#aaaaaa 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #161616 0%,#2d2d2d 94%,#565656 96%,#686868 98%,#aaaaaa 100%); /* IE10+ */
-    background: linear-gradient(to bottom, #161616 0%,#2d2d2d 94%,#565656 96%,#686868 98%,#aaaaaa 100%); /* W3C */
+    background: -moz-linear-gradient(top, rgba(22,22,22,0.8) 0%, #2d2d2d 94%, #565656 96%, #686868 98%, #aaaaaa 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(22,22,22,0.8)), color-stop(94%,#2d2d2d), color-stop(96%,#565656), color-stop(98%,#686868), color-stop(100%,#aaaaaa)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(22,22,22,0.8) 0%,#2d2d2d 94%,#565656 96%,#686868 98%,#aaaaaa 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(22,22,22,0.8) 0%,#2d2d2d 94%,#565656 96%,#686868 98%,#aaaaaa 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(22,22,22,0.8) 0%,#2d2d2d 94%,#565656 96%,#686868 98%,#aaaaaa 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(22,22,22,0.8) 0%,#2d2d2d 94%,#565656 96%,#686868 98%,#aaaaaa 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#aaaaaa',GradientType=0 ); /* IE6-9 */
-    z-index: 500;
+    z-index: 1000;
+
 }
 
 .footer {
     background: #161616; /* Old browsers */
-    background: -moz-linear-gradient(top,  #aaaaaa 0%, #686868 2%, #565656 4%, #2d2d2d 6%, #161616 100%, #ededed 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#aaaaaa), color-stop(2%,#686868), color-stop(4%,#565656), color-stop(6%,#2d2d2d), color-stop(100%,#161616), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #aaaaaa 0%,#686868 2%,#565656 4%,#2d2d2d 6%,#161616 100%,#ededed 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #aaaaaa 0%,#686868 2%,#565656 4%,#2d2d2d 6%,#161616 100%,#ededed 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #aaaaaa 0%,#686868 2%,#565656 4%,#2d2d2d 6%,#161616 100%,#ededed 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #aaaaaa 0%,#686868 2%,#565656 4%,#2d2d2d 6%,#161616 100%,#ededed 100%); /* W3C */
+    background: -moz-linear-gradient(top,  #aaaaaa 0%, #686868 2%, #565656 4%, #2d2d2d 6%, rgba(22,22,22,0.8) 100%, #ededed 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#aaaaaa), color-stop(2%,#686868), color-stop(4%,#565656), color-stop(6%,#2d2d2d), color-stop(100%,rgba(22,22,22,0.8)), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #aaaaaa 0%,#686868 2%,#565656 4%,#2d2d2d 6%,rgba(22,22,22,0.8) 100%,#ededed 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #aaaaaa 0%,#686868 2%,#565656 4%,#2d2d2d 6%,rgba(22,22,22,0.8) 100%,#ededed 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #aaaaaa 0%,#686868 2%,#565656 4%,#2d2d2d 6%,rgba(22,22,22,0.8) 100%,#ededed 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #aaaaaa 0%,#686868 2%,#565656 4%,#2d2d2d 6%,rgba(22,22,22,0.8) 100%,#ededed 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aaaaaa', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
-    z-index: 500;
+    z-index: 1000;
 }
 
 .bar {
@@ -73,6 +74,15 @@ li#navContent div.searchBlock {
     margin-top: 9px;
 }
 
+li#navContent div.searchBlock #searchBar {
+    border: 1px solid #444;
+    border-radius: 0;
+    padding: 3px;
+    -moz-box-shadow: inset 0 0 4px #777;
+    -webkit-box-shadow: inset 0 0 4px #777;
+    box-shadow: inset 0 0 4px #777;
+}
+
 li#navContent div.searchBlock div#searchButton {
     position: absolute;
     top: 0px;
@@ -81,10 +91,14 @@ li#navContent div.searchBlock div#searchButton {
 }
 
 li#navContent div.cartBlock {
-    width: 80px;
+    width: 90px;
     text-align: right;
     margin-top: 16px;
     margin-right: 20px;
+}
+
+a.cartBox:hover {
+    text-decoration: underline;
 }
 
 li#navContent div.loginBlock {
@@ -94,18 +108,45 @@ li#navContent div.loginBlock {
 }
 
 div.loginBlock form {
+    float: right;
+    display: inline-block;
+    width: 350px;
+    margin-top: 13px;
+}
+
+div.loginBlock form input {
     float: left;
-    width: 325px;
-    margin-top: 14px;
+}
+
+div.loginBlock form .textBox {
+    margin-top: 3px;
+    margin-right: 5px;
 }
 
 #whiteText {
     color: #fff;
 }
 
+.loginButton {
+    background: none;
+    border: none;
+    font-size: 16px;
+    margin-top: 2px;
+    padding: 0;
+}
+
+.loginButton:hover {
+    text-decoration: underline;
+}
+
 .register {
-    float: left;
-    margin-top: 16px;
+    float: right;
+    font-size: 13px;
+    margin-top: 18px;
+}
+
+.register:hover {
+    text-decoration: underline;
 }
 
 body {
@@ -122,14 +163,14 @@ body {
 
 #gallery {
     float: left;
-    margin-top: 40px;
+    margin-top: 25px;
 }
 
 .rightSidebar {
     position: absolute;
     right: 10px;
     width: 280px;
-	margin-top: 40px;
+	margin-top: 25px;
 }
 
 .musicPlayer {
@@ -145,6 +186,27 @@ body {
 img#playerArt {
     width: 275px;
     height: 275px;
+}
+
+.user {
+    float: right;
+    margin-top: 16px;
+    margin-left: 10px;
+}
+
+.logout {
+    width: 50px;
+    margin-top: 18px;
+    font-size: 13px;
+}
+
+.logout:hover {
+    text-decoration: underline;
+}
+
+.username {
+    text-align: right;
+    width: 200px;
 }
 
 .footer {
@@ -168,7 +230,7 @@ img#playerArt {
     width:600px;
     color:#bbb;
     background-color:#333;
-    border:4px solid #444;
+    border:2px solid #444;
     padding:12px;
 }
 
@@ -178,10 +240,10 @@ img#playerArt {
 
 #simplemodal-container code {
     background:#141414;
-    border-left:3px solid #65B43D;
+    border-left:2px solid #65B43D;
     color:#bbb;
     display:block;
-    font-size:12px;
+    font-size:16px;
     margin-bottom:12px;
     padding:4px 6px 6px;
 }
@@ -191,11 +253,11 @@ img#playerArt {
 }
 
 #simplemodal-container a.modalCloseImg {
-    background:url(../res/image/x.png) no-repeat;
+    background:url(../res/image/newX.png) no-repeat;
     width:25px;
     height:29px;
     display:inline;
-    z-index:3200;
+    z-index: 500;
     position:absolute;
     top:-15px;
     right:-16px;
@@ -213,15 +275,12 @@ img#playerArt {
     width:100%;
     height:100%;
     background:#000;
-    opacity:0.5;
-    filter:alpha(opacity=50);
+    opacity:0.15;
+
 }
 
 #modal {
-    position:absolute;
-    background:url(tint20.png) 0 0 repeat;
-    background:rgba(0,0,0,0.2);
-    border-radius:14px;
+    position: absolute;
     padding:8px;
 }
 
@@ -229,18 +288,46 @@ img#playerArt {
     height:360px;
     width:600px;
     color:#bbb;
-    background-color:#333;
-    border:4px solid #444;
+    background-color: rgba(40,40,40,0.95);
     padding:12px;
 }
 
 #close {
     position:absolute;
-    background:url(../res/image/x.png) 0 0 no-repeat;
-    width:24px;
-    height:27px;
+    background: url(../res/image/newX.png) 0 0 no-repeat;
+    background-size: 15px 15px;
+    width:15px;
+    height:15px;
     display:block;
     text-indent:-9999px;
-    top:-7px;
-    right:-7px;
+    top: 15px;
+    right: 15px;
+}
+
+.registerBlock {
+    padding: 10px;
+}
+
+.registerBlock form {
+    display: inline-block;
+    padding: 2px;
+}
+
+.registerBlock form input {
+    float: left;
+    width: 200px;
+    margin-right: 100px;
+    font-size: 16px;
+}
+
+.registerBlock form .label {
+    float: left;
+    width: 100px;
+    margin-left: 50px;
+    color: #fff;
+}
+
+.registerInfo h2{
+    margin: 10px 20px 10px 20px;
+    color: #fff;
 }

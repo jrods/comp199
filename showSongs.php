@@ -56,7 +56,8 @@
 </head>
 
 <body>
-<div class="playerArt">
+<div class="player">
+    <audio preload></audio>
 <?php
     include('scripts/php/htmlGenerator.php');
     include('scripts/php/shoppingCart.php');
@@ -97,13 +98,13 @@
         $songNumber = 0;
         while ($row = $songResults->fetch_assoc()) {
 
-        $song[$songNumber] = $row['song_title'];
-        $songFile = $row['file_name'];
-        echo "<li><a href='#' data-src='songs/$songFile'>$song[$songNumber]</a></ul>";
+            $song[$songNumber] = $row['song_title'];
+            $songFile = $row['file_name'];
+            echo "<li><a href='#' data-src='songs/$songFile'>$song[$songNumber]</a></ul>";
         }
         echo "</ol>";
         ?>
-        <audio preload></audio>
+
         </div>
     </body>
 </html>
