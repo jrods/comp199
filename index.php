@@ -24,7 +24,7 @@
     include('scripts/php/shoppingCart.php');
     include_once 'scripts/php/db_connect.php';
     include_once 'scripts/php/functions.php';
-    session_start();
+    sec_session_start();
     if(! isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
     }
@@ -176,6 +176,14 @@
 
                 <div class="item">
                     <div class="loginBlock">
+                        <?php
+
+                        if($_SESSION['user_id'] != null) {
+                            echo "<div id=\"whiteText\">" . $_SESSION['username'] . "</div>";
+                        }
+
+                        ?>
+
                         <form action="scripts/php/process_login.php" method="post" name="login_form">
                         <input type="text" id="username" name="username" placeholder="username"/>
                         <input type="password" id="password" name="password" placeholder="password"/>
@@ -289,12 +297,15 @@
 
         $itemCounter--;
         ?>
+
+
     </div>
 
     <div class="rightSidebar fixed">
         <aside class="musicPlayer">
 
               <div class="playerArt"><audio preload></audio></div>
+
         </aside>
     </div>
 </div>
