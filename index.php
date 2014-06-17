@@ -186,7 +186,7 @@
     <div class="rightSidebar fixed">
         <aside class="musicPlayer">
             <div class="playerArt">
-                <img src="" id="playerArt">
+                <img src="res/image/blank.png" id="playerArt">
             </div>
 
             <div class="playerContainer">

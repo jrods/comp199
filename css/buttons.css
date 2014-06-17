@@ -66,11 +66,12 @@ button.addToCartButton:active {
 #searchButton button {
     background: rgba(0,0,0,0);
     border: 0px;
+    margin-top: 2px;
 }
 
 #searchButton button img {
     margin-top: 2px;
     border: 1px #333;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }

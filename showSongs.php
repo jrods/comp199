@@ -67,9 +67,9 @@
         $username = 'c199grp07';
         $password = 'c199grp07';
         $schema = 'c199grp07';
-
+/*
         $userCart = new Cart($server, $username, $password, $schema);
-        $_POST = $userCart;
+        $_POST = $userCart;*/
 
         $login = @new mysqli($server, $username, $password, $schema);
 
@@ -102,6 +102,7 @@
             $songFile = $row['file_name'];
             echo "<li><a href='#' data-src='songs/$songFile'>$song[$songNumber]</a></ul>";
         }
+
         echo "</ol>";
         ?>
 
