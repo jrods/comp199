@@ -100,7 +100,7 @@
 
             $song[$songNumber] = $row['song_title'];
             $songFile = $row['file_name'];
-            echo "<li><a href='#' data-src='songs/$songFile'>$song[$songNumber]</a></ul>";
+            echo "<li><a href='#' data-src='http://23.226.228.26/userupload/songs/$songFile'>$song[$songNumber]</a></ul>";
         }
 
         echo "</ol>";
