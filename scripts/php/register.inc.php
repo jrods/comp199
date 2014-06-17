@@ -19,23 +19,13 @@
 
 include_once 'db_connect.php';
 include_once 'psl-config.php';
-require_once('recaptchalib.php'); // reCAPTCHA Library
+
 
 $error_msg = "";
 
 
 if (isset($_POST['username'], $_POST['email'], $_POST['bday'], $_POST['firstname'], $_POST['lastname'], $_POST['p'])) {
 
-    /*$privkey = "6LedAfMSAAAAAIbvL2AZPZAADGL6-qY7S2Vl4l4k"; // Private API Key
-    $verify = recaptcha_check_answer($privkey, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
-
-    if ($verify->is_valid) {
-        # Enter Success Code
-        echo "Your response was correct!";
-    } else {
-        # Enter Failure Code
-        $error_msg .= '<p class="error">You entered the captcha wrong</p>';
-    }                        */
     // Sanitize and validate the data passed in
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $bday = filter_input(INPUT_POST, 'bday', FILTER_SANITIZE_STRING);
@@ -43,6 +33,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['bday'], $_POST['firstname
     $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // Not a valid email
         $error_msg .= '<p class="error">The email address you entered is not valid</p>';
@@ -69,13 +60,18 @@ if (isset($_POST['username'], $_POST['email'], $_POST['bday'], $_POST['firstname
 
         if ($stmt->num_rows == 1) {
             // A user with this email address already exists
-            $error_msg .= '<p class="error">A user with this username already exists.</p>';
+            $error_msg = '<p class="error">A user with this username already exists.</p>';
+            echo $error_msg;
+            $stmt->close();
+            die;
         }
     } else {
-
-        $error_msg .= '<p class="error">Database error</p>';
+        $error_msg = '<p class="error">Database error</p>';
+        echo $error_msg;
+        $stmt->close();
+        die;
     }
-    
+
     // TODO: 
     // We'll also have to account for the situation where the user doesn't have
     // rights to do registration, by checking what type of user is attempting to
@@ -90,13 +86,18 @@ if (isset($_POST['username'], $_POST['email'], $_POST['bday'], $_POST['firstname
 
         // Insert the new user into the database
         if ($insert_stmt = $mysqli->prepare("INSERT INTO user (username, birth_date, first_name, last_name, email_address, not_a_password, salt) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('sssssss', $username, $bday, $first_name, $last_name, $email, $password, $random_salt);
+            $insert_stmt->bind_param('sssssss', $username, $bday, $firstname, $lastname, $email, $password, $random_salt);
+
             // Execute the prepared query.
-            if (! $insert_stmt->execute()) {
+            if ($insert_stmt->execute() == false) {
+                echo $insert_stmt->error;
                 header('Location: /error.php?err=Registration failure: INSERT');
+                $stmt->close();
                 exit();
             }
         }
+
+        $stmt->close();
         header('Location: index.php');
         exit();
     }

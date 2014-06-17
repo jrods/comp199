@@ -28,7 +28,7 @@ if (isset($_POST['username'], $_POST['p'])) {
 
     if (login($user, $password, $mysqli) == true) {
         // Login success
-        header("Location: ../../index.html");
+        header("Location: ../../index.php");
         exit();
     } else {
         // Login failed
