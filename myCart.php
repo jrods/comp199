@@ -27,7 +27,7 @@
     include_once 'scripts/php/db_connect.php';
     include_once 'scripts/php/functions.php';
 
-    sec_session_start();
+    @session_start();
 
     if(! isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
@@ -75,6 +75,7 @@
         #cart {
             float: right;
             width: 600px;
+            margin-top: 4px;
             margin-right: 50px;
         }
 
@@ -95,10 +96,10 @@
                     </div>
                 </div>
 
-                <div class="item" style="float:right;">
+                <!--<div class="item" style="float:right;">
                     <div class="loginBlock">
                         <?php
-
+/*
                         if (login_check($mysqli) == true) {
                             echo "<a id=\"whiteText\" class=\"user logout\">Logout</a>";
                             echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s</div>", $_SESSION['username']);
@@ -110,9 +111,9 @@
                                     <input type="button" value="Login" id="whiteText" class="loginButton" onclick="formhash(this.form, this.form.password);" />
                                     </form>');
                         }
-                        ?>
+                        */?>
                     </div>
-                </div>
+                </div>-->
             </li>
         </ul>
     </nav>

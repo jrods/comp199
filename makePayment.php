@@ -14,7 +14,7 @@ use PayPal\Api\FundingInstrument;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Rest\ApiContext;
-session_start();
+@session_start();
 
 // ### Payer
 // A resource representing a Payer that funds a payment
@@ -36,7 +36,7 @@ $amount->setTotal($_POST['total']);
 // a `Payee` and `Amount` types
 $transaction = new Transaction();
 $transaction->setAmount($amount);
-$transaction->setDescription($_POST['total']);
+$transaction->setDescription("Total charged: $".$_POST['total']);
 
 // ### Redirect urls
 // Set the urls that the buyer must be redirected to after 
