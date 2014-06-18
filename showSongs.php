@@ -47,8 +47,6 @@
             if (!prev.length) prev = $('ol li').last();
             prev.click();
             // spacebar
-          } else if (unicode == 32) {
-            audio.playPause();
           }
         })
       });
