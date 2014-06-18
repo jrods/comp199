@@ -192,12 +192,18 @@ body {
 }
 
 .cart .info div {
-    float: left;
+
     width: 100%;
 }
 
-.cart .info form {
+.cart .info #form1 {
+
     display: inline-block;
+}
+
+.cart .info #form2 {
+
+    width: 100%;
 }
 
 .cart .info form span {

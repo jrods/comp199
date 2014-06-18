@@ -268,56 +268,52 @@
 </script>
 
 <script>
+    var cartSwitch = false;
+
+    function getPage(address) {
+        var r = $.ajax({
+            type: 'GET',
+            url: address,
+            async: false
+        }).responseText;
+
+        return r;
+    }
+
+
+    function displayPage(div, address) {
+        $(div).html(getPage(address));
+    }
+
+    $('a#album').click(function (e) {
+            displayPage('.playContainer', 'showSongs.php');
+    });
+
+    $('a.cartBox').click(function (e) {
+        cartSwitch = (!cartSwitch);
+
+        if(cartSwitch) {
+            displayPage('.cartContainer', 'viewCart.php');
+        } else {
+            function unDisplayCart(){
+                var cart = document.getElementById('cart');
+                var innerCart = document.getElementById('cartInfo')
+                cart.removeChild(innerCart);
+            }
+
+            unDisplayCart();
+        }
+    });
 
     $('button[type=button]').click(function (e) {
         var name = $(this).attr("name");
         var albumName = $('button[name=' + name + ']').val();
+
         $.post('addToCart.php', {name: albumName}, function (data) {
-            $('.cartBox').qtip({
-                show: true,
-                hide: 'click',
-                content: { text: data },
-                position: {adjust: { y: 13 }, my: 'top center', at: 'bottom right', target: '.cartBox'}
-            });
+            displayPage('.cartContainer', 'viewCart.php');
+            cartSwitch = true;
         });
     });
-
-    $('a#album').click(function (e) {
-        function geturl(addr) {
-            var r = $.ajax({
-                type: 'GET',
-                url: addr,
-                async: false
-            }).responseText;
-
-            return r;
-        }
-
-        function changediv() {
-            $('.playerContainer').html(geturl('showSongs.php'));
-        }
-
-        changediv();
-    });
-
-    $('a.cartBox').click(function (e) {
-        function getCart(address) {
-            var r = $.ajax({
-                type: 'GET',
-                url: address,
-                async: false
-            }).responseText;
-
-            return r;
-        }
-
-        function displayCart() {
-            $('.cartContainer').html(getCart('viewCart.php'));
-        }
-
-        displayCart();
-    });
-
 /*    // Create the tooltips only when document ready
     $(document).ready(function () {
         // Show tooltip on all <a/> elements with title attributes, but only when

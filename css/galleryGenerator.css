@@ -20,6 +20,7 @@
 
 .galleryContent {
     display: inline-block;
+    height: 500px;
 }
 
 .itemList {

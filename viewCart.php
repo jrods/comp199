@@ -1,6 +1,6 @@
 <html>
 <body>
-<div class="cart whiteText">
+<div id="cartInfo" class="cart whiteText">
     <div class="info">
         <?php
         @session_start();
@@ -16,8 +16,6 @@
 
         echo divIdClass("item", "itemTitle", "<h3>Items</h3>");
 
-        $allItems = "";
-
         echo "<form id='form1' action='removeFromCart.php' method='post'>";
 
         for ($i = 0; $i < count($_SESSION['allAlbums']); $i++) {
@@ -27,7 +25,8 @@
             echo sprintf("<input type='hidden' name='test3' value='%s' />", $newAlbum);
         }
 
-        echo "<form action='myCart.php'><input class='button whiteText' type='submit' value='Checkout'></form>";
+        echo "</form>";
+        echo "<form id=\"form2\" action='myCart.php'><input class='button whiteText' type='submit' value='Checkout'></form>";
 
         ?>
     </div>
