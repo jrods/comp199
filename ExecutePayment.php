@@ -41,41 +41,6 @@
                 <div class="item">
                     <div class="logoBlock"><span class="temp" ><a id="whiteText" href="index.php">Tune Source</a></span></div>
                 </div>
-
-                <div class="item">
-                    <div class="searchBlock">
-                        <input type="search" placeholder="search" id="searchBar" />
-                        <div id="searchButton">
-                            <button value="searchButton"><img id="searchImage" src="res/image/search.png"></img></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="cartBlock"><a href="#cartMukery" id="whiteText" class="cartBox">Cart</a></div>
-                </div>
-
-                <div class="item">
-                    <div class="loginBlock">
-                        <?php
-
-                        if(login_check($mysqli) == true) {
-                            echo "<a id=\"whiteText\" class=\"user logout\">Logout</a>";
-                            echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s</div>",  $_SESSION['username'] );
-                        } else {
-                            printf('<a class="register" id="whiteText" href="#">Register</a>
-                                    <form action="scripts/php/process_login.php" method="post" name="login_form">
-                                    <input class="textBox" type="text" id="username" name="username" placeholder="username"/>
-                                    <input class="textBox" type="password" id="password" name="password" placeholder="password"/>
-                                    <input type="button" value="Login" id="whiteText" class="loginButton" onclick="formhash(this.form, this.form.password);" />
-                                    </form>');
-                        }
-
-                        ?>
-
-
-                    </div>
-                </div>
             </li>
         </ul>
     </nav>
@@ -211,6 +176,15 @@ foreach($_SESSION['allAlbums'] as $album){
 
             unDisplayCart();
         }
+    });
+
+    $(document).ready(function (e) {
+        displayPage('.displayCart', 'viewCart.php');
+
+        var parent = this.getElementById('info');
+        var removeCheckout = this.getElementById('form2');
+
+        parent.removeChild(removeCheckout);
     });
 
     $('button[type=button]').click(function (e) {

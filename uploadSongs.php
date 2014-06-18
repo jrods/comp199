@@ -13,12 +13,19 @@
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
     <?php
-    
-        if(! isset($_SESSION['cart'])) {
+    include('scripts/php/htmlGenerator.php');
+    include('scripts/php/shoppingCart.php');
+    include_once 'scripts/php/db_connect.php';
+    include_once 'scripts/php/functions.php';
+    sec_session_start();
+
+
+    if(! isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
     }
     
     ?>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>
         var modal = (function () {
@@ -117,32 +124,45 @@
         <ul class="bar" id="list">
             <li id="navContent">
                 <div class="item">
-                    <div class="logoBlock"><span class="temp"><a href="index.php" id="whiteText">Tune Source</a></span></div>
+                    <div class="logoBlock"><span class="temp"><a id="whiteText" href="index.php">Tune Source</a></span>
+                    </div>
                 </div>
 
                 <div class="item">
                     <div class="searchBlock">
-                        <input type="search" placeholder="search" id="searchBar"/>
+
+                        <input type="text" id="searchBar" placeholder="Search for something" autocomplete="off">
 
                         <div id="searchButton">
                             <button value="searchButton"><img id="searchImage" src="res/image/search.png"></img>
                             </button>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="cartBlock"><a href="#cartMukery" id="whiteText" class="cartBox"
-                                              title="<?php require_once "viewCart.php";?>">Cart</a></div>
+                    <div class="cartBlock"><a href="#cartMukery" id="whiteText" class="cartBox">Cart</a></div>
                 </div>
 
-                <div class=" item">
-                        <div class="loginBlock">
-                            <input type="text" id="userInput" name="username" placeholder="username"/>
-                            <input type="password" id="passInput" name="password" placeholder="password"/>
-                            <input type="submit" value="Login"/>
-                        </div>
+                <div class="item">
+                    <div class="loginBlock">
+                        <?php
+
+                        if (login_check($mysqli) == true) {
+                            echo "<a id=\"whiteText\" class=\"user logout\">Logout</a>";
+                            echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s <a href=\"uploadSongs.php\" class=\"whiteText showLine\" style=\"margin-left:10px;\">Upload</a></div>", $_SESSION['username']);
+                        } else {
+                            printf('<a class="register" id="whiteText" href="#">Register</a>
+                                    <form action="scripts/php/process_login.php" method="post" name="login_form">
+                                    <input class="textBox" type="text" id="username" name="username" placeholder="username"/>
+                                    <input class="textBox" type="password" id="password" name="password" placeholder="password"/>
+                                    <input type="button" value="Login" id="whiteText" class="loginButton" onclick="formhash(this.form, this.form.password);" />
+                                    </form>');
+                        }
+                        ?>
                     </div>
+                </div>
             </li>
         </ul>
     </nav>

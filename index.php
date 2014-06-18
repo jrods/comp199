@@ -89,7 +89,7 @@
 
                         if (login_check($mysqli) == true) {
                             echo "<a id=\"whiteText\" class=\"user logout\">Logout</a>";
-                            echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s</div>", $_SESSION['username']);
+                            echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s <a href=\"uploadSongs.php\" class=\"whiteText showLine\" style=\"margin-left:10px;\">Upload</a></div>", $_SESSION['username']);
                         } else {
                             printf('<a class="register" id="whiteText" href="#">Register</a>
                                     <form action="scripts/php/process_login.php" method="post" name="login_form">

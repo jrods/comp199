@@ -12,6 +12,19 @@ include_once 'scripts/php/functions.php';
     <script type="text/JavaScript" src="js/forms.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
+    <style type="text/css">
+        form input, form div {
+            margin-top: 10px;
+        }
+
+        input.registerTemp {
+            width: 450px;
+            height: 30px;
+            margin-top: 10px;
+            color: #71c0ff;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -50,7 +63,7 @@ if (!empty($error_msg)) {
     <input type='password' name='confirmpwd' id='confirmpwd'/>
 
     <div id="submitButton"class="button">
-    <input type='button' value='Register' id="whiteText" class="loginButton" onclick='return regformhash(this.form, this.form.username, this.form.bday,
+    <input type='button' value='Register' id="whiteText" class="loginButton registerTemp" onclick='return regformhash(this.form, this.form.username, this.form.bday,
                                                                       this.form.firstname, this.form.lastname, this.form.email,
                                                                       this.form.password, this.form.confirmpwd);'/>
     </div>

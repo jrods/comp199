@@ -314,6 +314,10 @@ img#playerArt {
     text-decoration: underline;
 }
 
+.showLine:hover {
+    text-decoration: underline;
+}
+
 .username {
     text-align: right;
     width: 200px;
@@ -396,7 +400,7 @@ img#playerArt {
 }
 
 #content {
-    height:360px;
+    height:380px;
     width:600px;
     color:#bbb;
     background-color: rgba(40,40,40,0.95);
@@ -416,7 +420,7 @@ img#playerArt {
 }
 
 .registerBlock {
-    padding: 10px;
+
 }
 
 .registerBlock form {
@@ -433,7 +437,7 @@ img#playerArt {
 
 .registerBlock form .label {
     float: left;
-    width: 100px;
+    width: 150px;
     margin-left: 50px;
     color: #fff;
 }
