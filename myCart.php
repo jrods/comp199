@@ -27,14 +27,14 @@
 
 <body>
 <div class="billingContainer">
-<form action="makePayment.php" method="post">
+    <form action="makePayment.php" method="post">
 
 
-    <input type="hidden" name="total" value="<?php echo number_format((float)($_SESSION['cart']), 2, '.', ''); ?>">
-    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" src="" align="left"
-           style="margin-right:7px;" name="submit" alt="PayPal - The safer, easier way to pay online!">
-    </input>
-</form>
+        <input type="hidden" name="total" value="<?php echo number_format((float)($_SESSION['cart']), 2, '.', ''); ?>">
+        <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" src="" align="left"
+               style="margin-right:7px;" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        </input>
+    </form>
 </div>
 
 

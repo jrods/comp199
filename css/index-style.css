@@ -7,7 +7,7 @@ a {
     color: #000;
 }
 
-h3 {
+h3, h4 {
     margin: 0 0px 10px 0;
 }
 
@@ -194,6 +194,11 @@ body {
     width: 100%;
 }
 
+div#album h4 {
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
 .cart .info #form1 {
     display: inline-block;
 }
@@ -204,7 +209,7 @@ body {
 
 .cart .info form span {
     float: left;
-    margin-left: 15px;
+    margin-left: 30px;
 }
 
 .cart .info form a {
@@ -262,15 +267,13 @@ a.remove:hover {
     text-decoration: underline;
 }
 
-#gallery1 {
+#searchGallery {
     float: left;
 }
 
-#gallery2 {
+#gallery {
     float: left;
 }
-
-
 
 .rightSidebar {
     position: absolute;

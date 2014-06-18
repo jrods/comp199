@@ -17,6 +17,13 @@
 
         echo divIdClass("item", "itemTitle", "<h3>Items</h3>");
 
+        if(count($_SESSION['allAlbums']) == 1) {
+            echo "<div id=\"album\"><h4>Album:</h4></div>";
+
+        } elseif (count($_SESSION['allAlbums']) > 1) {
+            echo "<div id=\"album\"><h4>Albums:</h4></div>";
+        }
+
         echo "<form id='form1' action='removeFromCart.php' method='post'>";
 
         for ($i = 0; $i < count($_SESSION['allAlbums']); $i++) {

@@ -25,19 +25,34 @@
     include_once 'scripts/php/functions.php';
     sec_session_start();
 
-    if(! isset($_SESSION['cart'])) {
+    if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
     }
+
     $_SESSION['songPlaying'] = "No song playing.";
     ?>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/JavaScript" src="js/sha512.js"></script>
     <script type="text/JavaScript" src="js/forms.js"></script>
-    <script>var _gaq=[['_setAccount','UA-20257902-1'],['_trackPageview']];(function(d,t){ var g=d.createElement(t),s=d.getElementsByTagName(t)[0]; g.async=1;g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+
+    <script>
+        var _gaq = [
+            ['_setAccount', 'UA-20257902-1'],
+            ['_trackPageview']
+        ];
+
+        (function (d, t) {
+            var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            g.async = 1;
+            g.src = '//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g, s)
+        }(document, 'script'))
+
+    </script>
+
     <script src="./audiojs/audio.min.js"></script>
     <script type="text/javascript" src="custom.js"></script>
-    
 
 
 </head>
@@ -47,15 +62,18 @@
         <ul class="bar" id="list">
             <li id="navContent">
                 <div class="item">
-                    <div class="logoBlock"><span class="temp" ><a id="whiteText" href="index.php">Tune Source</a></span></div>
+                    <div class="logoBlock"><span class="temp"><a id="whiteText" href="index.php">Tune Source</a></span>
+                    </div>
                 </div>
 
                 <div class="item">
                     <div class="searchBlock">
-                    
-                        		<input type="text" id="searchBar" autocomplete="off">
+
+                        <input type="text" id="searchBar" placeholder="Search for something" autocomplete="off">
+
                         <div id="searchButton">
-                            <button value="searchButton"><img id="searchImage" src="res/image/search.png"></img></button>
+                            <button value="searchButton"><img id="searchImage" src="res/image/search.png"></img>
+                            </button>
                         </div>
 
                     </div>
@@ -69,9 +87,9 @@
                     <div class="loginBlock">
                         <?php
 
-                        if(login_check($mysqli) == true) {
+                        if (login_check($mysqli) == true) {
                             echo "<a id=\"whiteText\" class=\"user logout\">Logout</a>";
-                            echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s</div>",  $_SESSION['username'] );
+                            echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s</div>", $_SESSION['username']);
                         } else {
                             printf('<a class="register" id="whiteText" href="#">Register</a>
                                     <form action="scripts/php/process_login.php" method="post" name="login_form">
@@ -80,10 +98,7 @@
                                     <input type="button" value="Login" id="whiteText" class="loginButton" onclick="formhash(this.form, this.form.password);" />
                                     </form>');
                         }
-
                         ?>
-
-
                     </div>
                 </div>
             </li>
@@ -93,21 +108,24 @@
 
 <body>
 <div class="contentBody">
-        <div id="gallery1">
+
+    <div id="searchGallery">
+        <?php
+        require_once('search.php');
+        ?>
+    </div>
+
+    <div id="gallery">
         <div id="cart" class="cartContainer"></div>
 
         <?php
 
         if (login_check($mysqli) == true) {
-           $logged = 'in';
+            $logged = 'in';
         } else {
-           $logged = 'out';
+            $logged = 'out';
         }
 
-          require_once('search.php');
-   ?>
-  <div id="gallery2">
-        <?php
         $server = 'localhost';
         $username = 'c199grp07';
         $password = 'c199grp07';
@@ -119,76 +137,76 @@
             die("Connect Error: " . $login->connect_error);
         }
 
-
         $testQuery = $login;
 
-          $baseQuery =
-              "select ar.artist_name, al.album_title, al.album_price, al.album_id
-              from artist ar, album al
-              where ar.artist_id = al.artist_id;
-              ";
+        $baseQuery =
+            "select ar.artist_name, al.album_title, al.album_price, al.album_id
+            from artist ar, album al
+            where ar.artist_id = al.artist_id;
+            ";
 
-          $userQuery = sprintf($baseQuery);
-          $userResults = $testQuery->query($userQuery);
+        $userQuery = sprintf($baseQuery);
+        $userResults = $testQuery->query($userQuery);
 
-          if (!$userResults) {
-              $message = 'Invalid query: ' . $testQuery->errno . "<br />";
-              $message .= 'Whole query: ' . $userQuery;
-              die($message);
-          }
+        if (!$userResults) {
+            $message = 'Invalid query: ' . $testQuery->errno . "<br />";
+            $message .= 'Whole query: ' . $userQuery;
+            die($message);
+        }
 
-          $galleryListItem = '';
-          $itemCounter = 0;
-          $newThing[] = "";
+        $galleryListItem = '';
+        $itemCounter = 0;
+        $newThing[] = "";
 
-          while ($row = $userResults->fetch_assoc()) {
+        while ($row = $userResults->fetch_assoc()) {
 
-          // Album block creation
-              $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
-              $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
-              $albumArtButton = albumBlock("album" ,$row['album_id'], $albumArt . $playButton);
+            // Album block creation
+            $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
+            $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
+            $albumArtButton = albumBlock("album", $row['album_id'], $albumArt . $playButton);
 
-          // Album Info and Link Block
-              $albumTitleLink = anchorBlock("/tmp/link", $row['album_title']);
-              $albumTitle = divIdClass("albumTitle", "albumText", $albumTitleLink);
+            // Album Info and Link Block
+            $albumTitleLink = anchorBlock("/tmp/link", $row['album_title']);
+            $albumTitle = divIdClass("albumTitle", "albumText", $albumTitleLink);
 
-              $artistNameLink = anchorBlock("/tmp/link", $row['artist_name']);
-              $artistName = divIdClass("artistName", "albumText", $artistNameLink);
+            $artistNameLink = anchorBlock("/tmp/link", $row['artist_name']);
+            $artistName = divIdClass("artistName", "albumText", $artistNameLink);
 
-              $genreLink = anchorBlock("/tmp/link", "genre");
-              $genre = divIdClass("genre", "albumText", $genreLink);
+            $genreLink = anchorBlock("/tmp/link", "genre");
+            $genre = divIdClass("genre", "albumText", $genreLink);
 
-              $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $genre);
+            $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $genre);
 
-              $albumPrice = number_format((float)($row['album_price']) / 100, 2, '.', '');
+            $albumPrice = number_format((float)($row['album_price']) / 100, 2, '.', '');
 
-          // Album Object Button
-              $shoppingButton = "<button type=\"button\" value=\"%s\" class=\"addToCartButton\" name=\"addToCartButton" . $itemCounter . "\">+ $%s</button>";
-              $shoppingButton = sprintf($shoppingButton, $row['album_title'], $albumPrice);
+            // Album Object Button
+            $shoppingButton = "<button type=\"button\" value=\"%s\" class=\"addToCartButton\" name=\"addToCartButton" . $itemCounter . "\">+ $%s</button>";
+            $shoppingButton = sprintf($shoppingButton, $row['album_title'], $albumPrice);
 
-              // Allows album object to be submitted to sessions
-              $newThing[$itemCounter] = "addToCartButton" . $itemCounter;
-              $itemCounter++;
+            // Allows album object to be submitted to sessions
+            $newThing[$itemCounter] = "addToCartButton" . $itemCounter;
+            $itemCounter++;
 
-              $formBlock = sprintf("<form name=\"input\" method=\"method\">%s</form>", $shoppingButton );
-              $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $formBlock);
+            $formBlock = sprintf("<form name=\"input\" method=\"method\">%s</form>", $shoppingButton);
+            $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $formBlock);
 
-          // Where it all comes together
-              $albumObject = $albumBlock . $shoppingBlock;
-              $galleryListItem .= listItem($albumObject);
+            // Where it all comes together
+            $albumObject = $albumBlock . $shoppingBlock;
+            $galleryListItem .= listItem($albumObject);
 
-          }
+        }
 
-          $galleryList = unOrderList($galleryListItem);
-          $galleryContent = divIdClass("galleryContent", "galleryContent", $galleryList);
-          $galleryWrapper = divId("galleryWrapper", $galleryContent);
+        $galleryList = unOrderList($galleryListItem);
+        $galleryContent = divIdClass("galleryContent", "galleryContent", $galleryList);
+        $galleryWrapper = divId("galleryWrapper", $galleryContent);
 
-          echo $galleryWrapper;
+        echo $galleryWrapper;
 
-          $itemCounter--;
+        $itemCounter--;
 
-          ?>
-   </div>
+        ?>
+    </div>
+
 
     <div class="rightSidebar fixed">
         <aside class="musicPlayer">
@@ -236,7 +254,12 @@
         };
 
         // Close the modal
-        method.close = function () { $modal.hide(); $overlay.hide(); $content.empty(); $(window).unbind('resize.modal'); };
+        method.close = function () {
+            $modal.hide();
+            $overlay.hide();
+            $content.empty();
+            $(window).unbind('resize.modal');
+        };
 
         // Generate the HTML and add it to the document
         $overlay = $('<div id="overlay"></div>');
@@ -290,16 +313,16 @@
     }
 
     $('a#album').click(function (e) {
-            displayPage('.playerContainer', 'showSongs.php');
+        displayPage('.playerContainer', 'showSongs.php');
     });
 
     $('a.cartBox').click(function (e) {
         cartSwitch = (!cartSwitch);
 
-        if(cartSwitch) {
+        if (cartSwitch) {
             displayPage('.cartContainer', 'viewCart.php');
         } else {
-            function unDisplayCart(){
+            function unDisplayCart() {
                 var cart = document.getElementById('cart');
                 var innerCart = document.getElementById('cartInfo')
                 cart.removeChild(innerCart);
@@ -326,7 +349,7 @@
 
 <footer class="footer fixed bar">
     <div>
-        <span id="whiteText">Copyright &copy; 2014</span><br />
+        <span id="whiteText">Copyright &copy; 2014</span><br/>
         <span id="whiteText">Authors: Sam Beveridge, Calvin Lam, Jared Smith</span>
     </div>
 </footer>
