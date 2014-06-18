@@ -38,7 +38,7 @@ if (!empty($error_msg)) {
     <input type='text' name='lastname' id='lastname'/>
 
     <div id="birthday" class="label">Birthday:</div>
-    <input type='text' name='bday' id='bday'/>
+    <input type='text' name='bday' id='bday' placeholder="yyyy-mm-dd"/>
 
     <div id="email" class="label">Email:</div>
     <input type='text' name='email' id='email'/>

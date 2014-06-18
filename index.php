@@ -307,7 +307,6 @@
         return r;
     }
 
-
     function displayPage(div, address) {
         $(div).html(getPage(address));
     }

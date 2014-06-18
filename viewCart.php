@@ -1,7 +1,7 @@
 <html>
 <body>
 <div id="cartInfo" class="cart whiteText">
-    <div class="info">
+    <div id="info" class="info">
         <?php
         @session_start();
 
@@ -34,7 +34,7 @@
         }
 
         echo "</form>";
-        echo "<form id=\"form2\" action='myCart.php'><input class='button whiteText' type='submit' value='Checkout'></form>";
+        echo "<form id=\"form2\" action='myCart.php'><input id='checkout' class='button whiteText' type='submit' value='Checkout'></form>";
 
         ?>
     </div>
