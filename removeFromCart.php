@@ -36,3 +36,5 @@ if ($total < 0) {
     $total = 0;
     $_SESSION['cart'] = 0;
 }
+
+header('Location: index.php');
