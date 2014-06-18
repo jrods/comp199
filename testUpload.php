@@ -19,7 +19,9 @@ else
 print "<form enctype=\"multipart/form-data\" "
 . "action=\"http://23.226.228.26/userupload/uploader.php\" method=\"post\" >\n";
 print '<p>
-<input type="file" name="file">
+Album Name: <input type="text" name="albumName">
+<br>
+File name:<input type="file" name="file">
 </p>
 <p>
 <input type="submit" name="Submit" value="Submit">

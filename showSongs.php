@@ -80,7 +80,7 @@
         $testSongQuery = $login;
 
         $baseSongQuery =
-            "select so.song_title, so.song_price, so.file_name, al.album_id
+            "select so.song_title, so.song_price, so.file_name, al.album_id, al.album_title
             from song so, album al
             where so.album_id = al.album_id;
             ";
@@ -97,10 +97,11 @@
         $song = array();
         $songNumber = 0;
         while ($row = $songResults->fetch_assoc()) {
-
+            $albumName = $row['album_title'];
+            $albumName = str_replace(' ', '', $albumName);
             $song[$songNumber] = $row['song_title'];
             $songFile = $row['file_name'];
-            echo "<li><a href='#' data-src='http://23.226.228.26/userupload/songs/$songFile'>$song[$songNumber]</a></ul>";
+            echo "<li><a href='#' data-src='http://23.226.228.26/userupload/$albumName/$songFile'>$song[$songNumber]</a></ul>";
         }
 
         echo "</ol>";
