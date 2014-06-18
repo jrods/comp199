@@ -13,6 +13,7 @@
 
 #galleryWrapper {
     width: 810px;
+    margin-top: 25px;
     margin-left: auto;
     margin-right: auto;
 }
