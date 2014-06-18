@@ -109,6 +109,8 @@
 <body>
 <div class="contentBody">
 
+    <div id="cart" class="cartContainer"></div>
+
     <div id="searchGallery">
         <?php
         require_once('search.php');
@@ -116,7 +118,7 @@
     </div>
 
     <div id="gallery">
-        <div id="cart" class="cartContainer"></div>
+
 
         <?php
 
@@ -210,9 +212,7 @@
 
     <div class="rightSidebar fixed">
         <aside class="musicPlayer">
-            <div class="playerArt">
-                <img src="res/image/blank.png" id="playerArt">
-            </div>
+
             <div class="playerContainer">
 
             </div>
@@ -312,7 +312,11 @@
     }
 
     $('a#album').click(function (e) {
-        displayPage('.playerContainer', 'showSongs.php');
+        //var image = document.getElementById('playerArt');
+
+        //image.setAttribute('src', 'res/image/test.jpg');
+
+        displayPage('.musicPlayer', 'showSongs.php');
     });
 
     $('a.cartBox').click(function (e) {
