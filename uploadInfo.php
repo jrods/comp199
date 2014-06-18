@@ -45,7 +45,7 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
 
         if ($stmt = $mysqli->prepare("SELECT artist_id
 				  FROM artist WHERE artist_name = ? LIMIT 1")) {
-        $stmt->bind_param('i', $artist_id);  // Bind "$email" to parameter.
+        $stmt->bind_param('i', $username);  // Bind "$email" to parameter.
         $stmt->execute();    // Execute the prepared query.
         $stmt->store_result();
 
@@ -58,8 +58,8 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
         exit();
     }
       }
+       $artist_id = 5;
        $daterelease = '1000-10-10';
-       $artist_id = 1;
                 // Insert the new user into the database
         if ($insert_stmt = $mysqli->prepare("INSERT INTO album (artist_id, album_title, album_price, date_of_release) VALUES (?, ?, ?, ?)")) {
             $insert_stmt->bind_param('isis',$artist_id, $albumName, $albumPrice, $daterelease);
