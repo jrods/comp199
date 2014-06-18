@@ -88,10 +88,11 @@
 require_once('viewCart.php');
 echo "Download your album here:";
 echo "<br>";
+if(isset($_SESSION['paymentId'])){
 ?>
 <form action="http://23.226.228.26/userupload/download.php" method="post">
 <?php
-//if(isset($_SESSION['paymentId'])){
+
   $albumCounter = 0;
 
 foreach($_SESSION['allAlbums'] as $album){
@@ -99,10 +100,10 @@ foreach($_SESSION['allAlbums'] as $album){
     echo '<br>';
 }
 
-/*
+
 } else {
   echo "No albums purchased";
-}   */
+}
 ?>
 </form>
 
