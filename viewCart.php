@@ -9,6 +9,7 @@
 
         if (empty($_SESSION['allAlbums'])) {
             $_SESSION['allAlbums'] = array();
+            $_SESSION['cart'] = 0;
         }
 
         $total = number_format((float)($_SESSION['cart']), 2, '.', '');

@@ -295,7 +295,8 @@ img#playerArt {
 }
 
 .logout {
-    width: 50px;
+    float: right;
+    width: 40px;
     margin-top: 18px;
     font-size: 13px;
 }

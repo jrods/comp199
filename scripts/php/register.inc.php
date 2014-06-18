@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-include_once 'db_connect.php';
-include_once 'psl-config.php';
+//include_once 'db_connect.php';
+//include_once 'psl-config.php';
 
 
 $error_msg = "";
@@ -50,6 +50,12 @@ if (isset($_POST['username'], $_POST['email'], $_POST['bday'], $_POST['firstname
     // This should should be adequate as nobody gains any advantage from
     // breaking these rules.
 
+    $mysqli = @new mysqli('localhost', 'c199grp07', 'c199grp07', 'c199grp07');
+
+    if ($mysqli->connect_error) {
+        die("Connect Error: " . $mysqli->connect_error);
+    }
+
     $prep_stmt = "SELECT user_id FROM user WHERE username = ? LIMIT 1";
     $stmt = $mysqli->prepare($prep_stmt);
 
@@ -65,10 +71,10 @@ if (isset($_POST['username'], $_POST['email'], $_POST['bday'], $_POST['firstname
             $stmt->close();
             die;
         }
+
     } else {
         $error_msg = '<p class="error">Database error</p>';
         echo $error_msg;
-        $stmt->close();
         die;
     }
 
