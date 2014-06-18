@@ -162,6 +162,11 @@ body {
     padding-top: 50px;
 }
 
+.cartContainer {
+    margin: 0 auto !important;
+    width: 810px;
+}
+
 #gallery {
     float: left;
     margin-top: 25px;
@@ -283,6 +288,7 @@ img#playerArt {
 #modal {
     position: absolute;
     padding:8px;
+    z-index: 2;
 }
 
 #content {

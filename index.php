@@ -25,6 +25,7 @@
     include_once 'scripts/php/db_connect.php';
     include_once 'scripts/php/functions.php';
     sec_session_start();
+
     if(! isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
     }
@@ -58,7 +59,7 @@
                 </div>
 
                 <div class="item">
-                    <div class="cartBlock"><a href="#cartMukery" id="whiteText" class="cartBox" title="<?php require_once "viewCart.php"; ?>">Cart</a></div>
+                    <div class="cartBlock"><a href="#cartMukery" id="whiteText" class="cartBox">Cart</a></div>
                 </div>
 
                 <div class="item">
@@ -89,8 +90,9 @@
 
 <body>
 <div class="contentBody">
-
     <div id="gallery">
+        <div id="cart" class="cartContainer"></div>
+
         <?php
 
         if (login_check($mysqli) == true) {
@@ -139,7 +141,8 @@
         // Album block creation
             $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
             $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
-            $albumArtButton = albumBlock($row['album_id'], $albumArt . $playButton);
+            $albumArtButton = albumBlock("album" ,$row['album_id'], $albumArt . $playButton);
+
         // Album Info and Link Block
             $albumTitleLink = anchorBlock("/tmp/link", $row['album_title']);
             $albumTitle = divIdClass("albumTitle", "albumText", $albumTitleLink);
@@ -266,7 +269,7 @@
 
 <script>
 
-        $('button[type=button]').click(function (e) {
+    $('button[type=button]').click(function (e) {
         var name = $(this).attr("name");
         var albumName = $('button[name=' + name + ']').val();
         $.post('addToCart.php', {name: albumName}, function (data) {
@@ -274,50 +277,70 @@
                 show: true,
                 hide: 'click',
                 content: { text: data },
-                position: {adjust: { y: 13 }, my:'top center', at:'bottom right', target:'.cartBox'}
-          });
+                position: {adjust: { y: 13 }, my: 'top center', at: 'bottom right', target: '.cartBox'}
+            });
         });
     });
 
-$('.1').click(function (e) {
-    function geturl(addr) {
-        var r = $.ajax({
-          type: 'GET',
-          url: addr,
-          async: false
-        }).responseText;
-        return r;
-    }
+    $('a#album').click(function (e) {
+        function geturl(addr) {
+            var r = $.ajax({
+                type: 'GET',
+                url: addr,
+                async: false
+            }).responseText;
 
-    function changediv() {
-        $('.playerContainer').html(geturl('showSongs.php'));
-    }
-    changediv();
-});
+            return r;
+        }
 
-    // Create the tooltips only when document ready
-    $(document).ready(function(){
+        function changediv() {
+            $('.playerContainer').html(geturl('showSongs.php'));
+        }
+
+        changediv();
+    });
+
+    $('a.cartBox').click(function (e) {
+        function getCart(address) {
+            var r = $.ajax({
+                type: 'GET',
+                url: address,
+                async: false
+            }).responseText;
+
+            return r;
+        }
+
+        function displayCart() {
+            $('.cartContainer').html(getCart('viewCart.php'));
+        }
+
+        displayCart();
+    });
+
+/*    // Create the tooltips only when document ready
+    $(document).ready(function () {
         // Show tooltip on all <a/> elements with title attributes, but only when
         // clicked. Clicking again will hide it.
         var a = "<?php echo $_SESSION['change']?>";
 
-        if (a < 1){
+        if (a < 1) {
             $('.cartBox').qtip({
                 show: 'click',
                 hide: 'click',
                 content: { url: 'viewCart.php' },
-                position: { adjust: { y: 13 }, my:'top center', at:'bottom center' }
+                position: { adjust: { y: 13 }, my: 'top center', at: 'bottom center' }
             });
         } else {
             $('.cartBox').qtip({
                 show: true,
                 hide: 'click',
                 content: { url: 'viewCart.php' },
-                position: { adjust: { y: 13 }, my:'top center', at:'bottom center' }
+                position: { adjust: { y: 13 }, my: 'top center', at: 'bottom center' }
             });
         }
         "<?php $_SESSION['change'] = 0?>"
-    });
+    });*/
 
 </script>
 
