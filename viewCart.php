@@ -7,7 +7,7 @@
 
         include("scripts/php/htmlGenerator.php");
 
-        if (!isset($_SESSION['allAlbums'])) {
+        if (empty($_SESSION['allAlbums'])) {
             $_SESSION['allAlbums'] = array();
         }
 

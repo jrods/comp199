@@ -14,7 +14,6 @@
 
     <!-- Gallery Generator -->
     <link href="css/buttons.css" rel="stylesheet" type="text/css"/>
-    <link href="js/jquery.qtip.css" rel="stylesheet" type="text/css"/>
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" href="./includes/index.css" media="screen">
@@ -286,7 +285,7 @@
     }
 
     $('a#album').click(function (e) {
-            displayPage('.playContainer', 'showSongs.php');
+            displayPage('.playerContainer', 'showSongs.php');
     });
 
     $('a.cartBox').click(function (e) {
@@ -314,34 +313,9 @@
             cartSwitch = true;
         });
     });
-/*    // Create the tooltips only when document ready
-    $(document).ready(function () {
-        // Show tooltip on all <a/> elements with title attributes, but only when
-        // clicked. Clicking again will hide it.
-        var a = "<?php echo $_SESSION['change']?>";
-
-        if (a < 1) {
-            $('.cartBox').qtip({
-                show: 'click',
-                hide: 'click',
-                content: { url: 'viewCart.php' },
-                position: { adjust: { y: 13 }, my: 'top center', at: 'bottom center' }
-            });
-        } else {
-            $('.cartBox').qtip({
-                show: true,
-                hide: 'click',
-                content: { url: 'viewCart.php' },
-                position: { adjust: { y: 13 }, my: 'top center', at: 'bottom center' }
-            });
-        }
-        "<?php $_SESSION['change'] = 0?>"
-    });*/
 
 </script>
 
-<script type="text/javascript" src="js/jquery.qtip.min.js"></script>
-<script type="text/javascript" src="js/jquery.qtip.js"></script>
 <script type="text/javascript" src="js/imagesloaded.pkg.min.js"></script>
 </body>
 

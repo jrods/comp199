@@ -104,10 +104,10 @@ li#navContent div.searchBlock div#searchButton {
 }
 
 li#navContent div.cartBlock {
-    width: 90px;
+    width: 145px;
     text-align: right;
     margin-top: 16px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 a.cartBox:hover {
@@ -116,14 +116,13 @@ a.cartBox:hover {
 
 li#navContent div.loginBlock {
     display: inline-block;
-    width: 425px;
-
+    width: 375px;
 }
 
 div.loginBlock form {
     float: right;
     display: inline-block;
-    width: 350px;
+    width: 325px;
     margin-top: 13px;
 }
 
@@ -192,17 +191,14 @@ body {
 }
 
 .cart .info div {
-
     width: 100%;
 }
 
 .cart .info #form1 {
-
     display: inline-block;
 }
 
 .cart .info #form2 {
-
     width: 100%;
 }
 
@@ -272,7 +268,7 @@ a.remove:hover {
 
 .rightSidebar {
     position: absolute;
-    right: 10px;
+    right: 5px;
     width: 280px;
 	margin-top: 25px;
 }
