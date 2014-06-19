@@ -86,8 +86,7 @@
                         <?php
 
                         if (login_check($mysqli) == true) {
-                            echo "<form method=\"post\" action=\"scripts/php/logout.php\">";
-                            echo "<input type=\"submit\" value=\"Logout\"></input>";
+                            echo '<a class="logout" id="whiteText" href="scripts/php/logout.php">&nbsp;Logout</a>';
                             echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s <a href=\"uploadSongs.php\" class=\"whiteText showLine\" style=\"margin-left:10px;\">Upload</a></div>", $_SESSION['username']);
                         } else {
                             printf('<a class="register" id="whiteText" href="#">Register</a>
