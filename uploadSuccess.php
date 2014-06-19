@@ -106,9 +106,8 @@
           
 <form method='post' name='song_form' action='uploadInfo.php'>
     <input type='hidden' value ="<?php echo $_SESSION['username']; ?>" name='username' id='username'/>
-    <div id="albumName" class="label">Album Name:</div>
-    <input type='text' name='albumName' id='albumName'/>
-    <input type='hidden' value ="<?php echo $_SESSION['uploadedSong']; ?>" name='fileName' id='fileName'/>
+    <input type='hidden' name='albumName' id='albumName' value ="<?php echo $_POST['albumName']; ?>" />
+    <input type='hidden' value ="<?php echo $_POST['fileName']; ?>" name='fileName' id='fileName'/>
     <div id="albumPrice" class="label">Album Price:</div>
     <input type='text' name='albumPrice' id='albumPrice'/>
     <div id="songTitle" class="label">Song Title:</div>
