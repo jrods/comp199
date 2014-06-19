@@ -69,10 +69,12 @@
     </div>
     <audio preload></audio>
     <?php
+
     include('scripts/php/htmlGenerator.php');
     include('scripts/php/shoppingCart.php');
     include_once 'scripts/php/db_connect.php';
     include_once 'scripts/php/functions.php';
+    sec_session_start();
     $server = 'localhost';
     $username = 'c199grp07';
     $password = 'c199grp07';
@@ -85,11 +87,13 @@
     }
 
     $testSongQuery = $login;
-
+    $thing = $_GET['name'];
+    //$_SESSION['albumPicked'][$row['album_id']];
+   
     $baseSongQuery =
         "select ar.artist_name, so.song_title, so.song_price, so.file_name, al.album_id, al.album_title
         from song so, album al, artist ar
-        where ar.artist_name = 'in my jaaaaaag'
+        where al.album_id = '".$thing."'
         and ar.artist_id = al.artist_id
         and so.album_id = al.album_id;
         ";
@@ -111,6 +115,7 @@
     $albumName = "";
 
     while ($row = $songResults->fetch_assoc()) {
+
         $artistName = $row['artist_name'];
         $albumName = $row['album_title'];
         $albumNameFile = str_replace(' ', '', $albumName);

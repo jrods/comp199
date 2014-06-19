@@ -29,7 +29,7 @@
         $_SESSION['cart'] = 0;
     }
 
-    $_SESSION['songPlaying'] = "No song playing.";
+    $_SESSION['albumPicked'] = array();
     ?>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -88,7 +88,8 @@
                         <?php
 
                         if (login_check($mysqli) == true) {
-                            echo "<a id=\"whiteText\" class=\"user logout\">Logout</a>";
+                            echo "<form method=\"post\" action=\"scripts/php/logout.php\">";
+                            echo "<input type=\"submit\" value=\"Logout\"></input>";
                             echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s <a href=\"uploadSongs.php\" class=\"whiteText showLine\" style=\"margin-left:10px;\">Upload</a></div>", $_SESSION['username']);
                         } else {
                             printf('<a class="register" id="whiteText" href="#">Register</a>
@@ -161,7 +162,7 @@
         $newThing[] = "";
 
         while ($row = $userResults->fetch_assoc()) {
-
+            $_SESSION['albumPicked'][$row['album_id']] = $row['album_id'];
             // Album block creation
             $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
             $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
@@ -226,6 +227,7 @@
 <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 <script type='text/javascript' src='js/basic.js'></script>
 <script type="text/javascript" src="custom.js"></script>
+
 
 <script>
     var modal = (function () {
@@ -297,26 +299,27 @@
 <script>
     var cartSwitch = false;
 
-    function getPage(address) {
+    function getPage(address, album) {
         var r = $.ajax({
             type: 'GET',
             url: address,
+            data: {'name':album},
             async: false
         }).responseText;
 
         return r;
     }
 
-    function displayPage(div, address) {
-        $(div).html(getPage(address));
+    function displayPage(div, address, album) {
+        $(div).html(getPage(address, album));
     }
 
     $('a#album').click(function (e) {
-        //var image = document.getElementById('playerArt');
-
-        //image.setAttribute('src', 'res/image/test.jpg');
-
-        displayPage('.musicPlayer', 'showSongs.php');
+        //var name = elem.name;
+        var myClass = $(this).attr("class");
+        $.post('retrieveAlbum.php', {name: myClass}, function (data) {
+        });
+        displayPage('.musicPlayer', 'showSongs.php', myClass);
     });
 
     $('a.cartBox').click(function (e) {
