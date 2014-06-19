@@ -28,8 +28,6 @@
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
     }
-
-    $_SESSION['albumPicked'] = array();
     ?>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -315,10 +313,7 @@
     }
 
     $('a#album').click(function (e) {
-        //var name = elem.name;
         var myClass = $(this).attr("class");
-        $.post('retrieveAlbum.php', {name: myClass}, function (data) {
-        });
         displayPage('.musicPlayer', 'showSongs.php', myClass);
     });
 
