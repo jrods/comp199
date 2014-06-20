@@ -5,24 +5,25 @@
     Comp 199 Project, Digital Music Store
     Created by: Sam Beveridge, Calvin Lam, Jared Smith
     -->
-
     <title>Tune Source</title>
     <meta charset="utf-8"/>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
 
     <link href="css/index-style.css" rel="stylesheet" type="text/css"/>
-    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+
 
     <!-- Gallery Generator -->
     <link href="css/buttons.css" rel="stylesheet" type="text/css"/>
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" href="./includes/index.css" media="screen">
+    <link rel="stylesheet" href="css/index.css" media="screen">
 
     <?php
     include('scripts/php/htmlGenerator.php');
     include('scripts/php/shoppingCart.php');
-    include_once 'scripts/php/db_connect.php';
-    include_once 'scripts/php/functions.php';
+    include_once('scripts/php/db_connect.php');
+    include_once('script/php/psl-config.php');
+    include_once('scripts/php/functions.php');
     sec_session_start();
 
     if (!isset($_SESSION['cart'])) {
@@ -33,6 +34,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/JavaScript" src="js/sha512.js"></script>
     <script type="text/JavaScript" src="js/forms.js"></script>
+    <script src="./audiojs/audio.min.js"></script>
+    <script type="text/javascript" src="custom.js"></script>
 
     <script>
         var _gaq = [
@@ -48,11 +51,6 @@
         }(document, 'script'))
 
     </script>
-
-    <script src="./audiojs/audio.min.js"></script>
-    <script type="text/javascript" src="custom.js"></script>
-
-
 </head>
 
 <header class="header fixed bar" role="banner">
@@ -78,7 +76,7 @@
                 </div>
 
                 <div class="item">
-                    <div class="cartBlock"><a href="#cartMukery" id="whiteText" class="cartBox">Cart</a></div>
+                    <div class="cartBlock"><button value="false" onclick="cartDisplay(this)" id="removeItem" class="cartBox loginButton whiteText" style="font-size: 18px;">Cart</button></div>
                 </div>
 
                 <div class="item">
@@ -116,8 +114,6 @@
     </div>
 
     <div id="gallery">
-
-
         <?php
 
         if (login_check($mysqli) == true) {
@@ -126,12 +122,7 @@
             $logged = 'out';
         }
 
-        $server = 'localhost';
-        $username = 'c199grp07';
-        $password = 'c199grp07';
-        $schema = 'c199grp07';
-
-        $login = @new mysqli($server, $username, $password, $schema);
+        $login = @new mysqli(HOST, USER, PASSWORD, DATABASE);
 
         if ($login->connect_error) {
             die("Connect Error: " . $login->connect_error);
@@ -180,7 +171,7 @@
             $albumPrice = number_format((float)($row['album_price']) / 100, 2, '.', '');
 
             // Album Object Button
-            $shoppingButton = "<button type=\"button\" value=\"%s\" class=\"addToCartButton\" name=\"addToCartButton" . $itemCounter . "\">+ $%s</button>";
+            $shoppingButton = "<button id=\"addToCart\" type=\"button\" value=\"%s\" class=\"addToCartButton\" name=\"addToCartButton" . $itemCounter . "\">+ $%s</button>";
             $shoppingButton = sprintf($shoppingButton, $row['album_title'], $albumPrice);
 
             // Allows album object to be submitted to sessions
@@ -293,58 +284,9 @@
     });
 </script>
 
-<script>
-    var cartSwitch = false;
-
-    function getPage(address, album) {
-        var r = $.ajax({
-            type: 'GET',
-            url: address,
-            data: {'name':album},
-            async: false
-        }).responseText;
-
-        return r;
-    }
-
-    function displayPage(div, address, album) {
-        $(div).html(getPage(address, album));
-    }
-
-    $('a#album').click(function (e) {
-        var myClass = $(this).attr("class");
-        displayPage('.musicPlayer', 'showSongs.php', myClass);
-    });
-
-    $('a.cartBox').click(function (e) {
-        cartSwitch = (!cartSwitch);
-
-        if (cartSwitch) {
-            displayPage('.cartContainer', 'viewCart.php');
-        } else {
-            function unDisplayCart() {
-                var cart = document.getElementById('cart');
-                var innerCart = document.getElementById('cartInfo')
-                cart.removeChild(innerCart);
-            }
-
-            unDisplayCart();
-        }
-    });
-
-    $('button[type=button]').click(function (e) {
-        var name = $(this).attr("name");
-        var albumName = $('button[name=' + name + ']').val();
-
-        $.post('addToCart.php', {name: albumName}, function (data) {
-            displayPage('.cartContainer', 'viewCart.php');
-            cartSwitch = true;
-        });
-    });
-
-</script>
-
+<script type="text/javascript" src="js/cartController.js"></script>
 <script type="text/javascript" src="js/imagesloaded.pkg.min.js"></script>
+
 </body>
 
 <footer class="footer fixed bar">

@@ -9,7 +9,7 @@
 
     <!-- Gallery Generator -->
     <link href="css/buttons.css" rel="stylesheet" type="text/css"/>
-    <link href="js/jquery.qtip.css" rel="stylesheet" type="text/css"/>
+
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
     <?php
@@ -189,8 +189,7 @@
     });
 
 </script>
-<script type="text/javascript" src="js/jquery.qtip.min.js"></script>
-<script type="text/javascript" src="js/jquery.qtip.js"></script>
+
 <script type="text/javascript" src="js/imagesloaded.pkg.min.js"></script>
 
 </body>

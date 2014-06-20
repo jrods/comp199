@@ -1,0 +1,61 @@
+#artistColumn {
+    width: 225px;
+    margin-left: 40px;
+}
+
+#priceColumn {
+    width: 100px;
+}
+
+#removeColumn {
+    width: 80px;
+}
+
+#albumItems .item {
+    overflow-x: auto;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #bbb;
+}
+
+.column {
+    float: left;
+    width: 200px;
+}
+
+.slightlyGreen {
+    color: #96ff92;
+}
+
+#cartInfo #albumItems {
+    display: inline-block;
+    min-height: 50px;
+}
+
+#item {
+    margin-left: 15px;
+}
+
+#cartInfo #formCheckout {
+    margin-top: 8px;
+}
+
+button#checkout, button#clearCart {
+    margin-left: 0;
+}
+
+button.remove {
+    margin: 0;
+    padding: 0 10px;
+}
+
+#cartInfo {
+    padding: 25px;
+}
+
+a.remove:hover {
+    text-decoration: underline;
+}

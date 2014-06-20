@@ -106,7 +106,7 @@ li#navContent div.searchBlock div#searchButton {
 li#navContent div.cartBlock {
     width: 145px;
     text-align: right;
-    margin-top: 16px;
+    margin-top: 12px;
     margin-right: 10px;
 }
 
@@ -259,13 +259,7 @@ div#album h4 {
     0px -1px 8px rgba(255,255,255,1);
 }
 
-a.remove {
-    margin-left: 20px;
-}
 
-a.remove:hover {
-    text-decoration: underline;
-}
 
 #searchGallery {
     float: left;

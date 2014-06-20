@@ -1,5 +1,4 @@
 <?php
-//include('db_connect.php');
 
 class Cart {
     private $correctValue;
@@ -10,7 +9,7 @@ class Cart {
         $this->cartOfItems = array();
         $this->totalCart = 0;
         $this->correctValue = 0;
-        $this->login = @new mysqli($server, $username, $password, $schema);
+        $this->login = new mysqli($server, $username, $password, $schema);
     }
 
     public function getAllItems(){
@@ -21,36 +20,33 @@ class Cart {
         $this->cartOfItems = array();
     }
 
-    public function addItem($albumTitle) {
+    public function getAnItem($albumTitle) {
 
-        if ($this->login->connect_error) {
-            die("Connect Error: " . $this->login->connect_error);
+        foreach($this->cartOfItems as $item) {
+
+            if($item->getTitle() == $albumTitle) {
+                return $item;
+            }
         }
 
-        $baseQuery =
-            "select al.album_price, al.album_title, ar.artist_name
-             from album al, artist ar
-             where al.artist_id = ar.artist_id
-             and al.album_title = '%s'; ";
+        return null;
+    }
 
-        $baseQuery = sprintf($baseQuery, $albumTitle);
+    public function addItem($albumToAdd) {
 
-        $results = $this->login->query($baseQuery);
+        $result = $this->dbGetAlbum($albumToAdd);
 
-        $album = $results->fetch_assoc();
+        $newAlbum = @new Album($result['album_title'], $result['album_price'], $result['artist_name']);
 
-        $inAlbum = @new Album($album['album_title'], $album['album_price'], $album['artist_name']);
+        array_push($this->cartOfItems, $newAlbum);
 
-        array_push($this->cartOfItems, $inAlbum);
+        $this->totalCart += $result['album_price'];
+
     }
 
     public function getTotal() {
-
-        $this->totalCart = 0;
-
-        foreach ($this->cartOfItems as $value) {
-             $this->totalCart += $value->getPrice();
-
+        if($this->totalCart <= 0) {
+            return '0.00';
         }
 
         $formattedCart = number_format((float)($this->totalCart) / 100, 2, '.', '');
@@ -59,22 +55,62 @@ class Cart {
 
     public function removeItem($lookingForTitle) {
 
-        $newArray = array();
+        $copyCart = array();
+
+        $this->totalCart = 0;
 
         foreach ($this->cartOfItems as $value) {
 
             $listAlbumTitle = $value->getTitle();
 
             if (strcmp($listAlbumTitle, $lookingForTitle) == 0) {
+                // album skipped from being put on the new list
                 continue;
             }
 
-            array_push($newArray, $value);
+            $this->totalCart += $value->getPrice();
 
+            array_push($copyCart, $value);
         }
 
-        $this->cartOfItems = $newArray;
+        $this->cartOfItems = $copyCart;
+    }
 
+    public function repopulateCart($copyCartSession) {
+        foreach($copyCartSession as $item) {
+            $this->addItem($item);
+        }
+    }
+
+    private function dbGetAlbum($album) {
+
+        $this->login->connect(HOST, USER, PASSWORD, DATABASE);
+
+        if($this->login->connect_error) {
+            die("Connect Error: " . $this->login->connect_error);
+        }
+
+        $baseQuery = "select al.album_title, al.album_price, ar.artist_name
+                      from album al, artist ar
+                      where al.artist_id = ar.artist_id
+                      and al.album_title = ? LIMIT 1";
+
+        $query = $this->login->prepare($baseQuery);
+
+        if(!$query) {
+            $message = 'Invalid query: ' . $query->errno . "<br />";
+            $message .= 'Whole query: ' . $baseQuery;
+            die($message);
+        }
+
+        $query->bind_param('s', $album);
+        $query->execute();
+        $query->bind_result($album_title, $album_price, $artist_name);
+        $query->fetch();
+
+        return array('album_title' => $album_title, 'album_price' => $album_price, 'artist_name' => $artist_name);
+
+        $this->login->close();
     }
 }
 

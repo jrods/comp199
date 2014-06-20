@@ -1,44 +1,78 @@
 <html>
+<head>
+
+    <link href="css/cart-style.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript" src="js/cartController.js"></script>
+</head>
 <body>
 <div id="cartInfo" class="cart whiteText">
-    <div id="info" class="info">
-        <?php
-        @session_start();
+    <?php
+    session_start();
 
-        include("scripts/php/htmlGenerator.php");
+    include('scripts/php/htmlGenerator.php');
+    include('scripts/php/shoppingCart.php');
 
-        if (empty($_SESSION['allAlbums'])) {
-            $_SESSION['allAlbums'] = array();
-            $_SESSION['cart'] = 0;
-        }
+    include_once('scripts/php/psl-config.php');
 
-        $total = number_format((float)($_SESSION['cart']), 2, '.', '');
-        echo divIdClass("cartTotal", "cartTotal", sprintf("<h3>Total: $%s</h3>", $total));
+    if (empty($_SESSION['allAlbums'])) {
+        $_SESSION['allAlbums'] = array();
+        $_SESSION['cart'] = 0;
+    }
 
-        echo divIdClass("item", "itemTitle", "<h3>Items</h3>");
+    $userCart = new Cart(HOST, USER, PASSWORD, DATABASE);
 
-        if(count($_SESSION['allAlbums']) == 1) {
-            echo "<div id=\"album\"><h4>Album:</h4></div>";
+    $userCart->repopulateCart($_SESSION['allAlbums']);
 
-        } elseif (count($_SESSION['allAlbums']) > 1) {
-            echo "<div id=\"album\"><h4>Albums:</h4></div>";
-        }
+    $total = $userCart->getTotal();
 
-        echo "<form id='form1' action='removeFromCart.php' method='post'>";
+    $itemTotal = divIdClass("cartTotal", "cartTotal", sprintf('<h3>Total: <span class="slightlyGreen">$%s</span></h3>', $total));
 
-        for ($i = 0; $i < count($_SESSION['allAlbums']); $i++) {
-            $newAlbum = $_SESSION['allAlbums'][$i];
-            echo "<span>$newAlbum</span>";
-            echo "<a href='javascript:;' onclick='parentNode.submit();' class=\"remove slightlyRed\">Remove</a><br>";
-            echo sprintf("<input type='hidden' name='test3' value='%s' />", $newAlbum);
-        }
+    if (count($_SESSION['allAlbums']) == 1) {
+        echo $itemTotal;
+        echo divIdClass("item", "itemTitle", "<h3>Item</h3>");
 
-        echo "</form>";
-        echo "<form id=\"form2\" action='myCart.php'><input id='checkout' class='button whiteText' type='submit' value='Checkout'></form>";
+    } elseif (count($_SESSION['allAlbums']) > 1) {
+        echo $itemTotal;
+        $count = sizeof($_SESSION['allAlbums']);
+        echo divIdClass("item", "itemTitle", "<h3>Items: $count</h3>");
 
-        ?>
-    </div>
+    } else {
+        echo '<div id="album"><h4>Your cart is empty, buy some stuff you fu</h4></div>';
+        die;
+    }
+
+    $allCartItems = '';
+
+    $row = divIdClass('%s', 'column %s', '<span>%s</span>');
+
+    $titleRow = sprintf($row, 'artistColumn','title', 'Artist')
+        . sprintf($row, 'albumColumn', 'title', 'Album')
+        . sprintf($row, 'priceColumn', 'title', 'Price')
+        . sprintf($row, 'removeColumn', 'title', '');
+
+    $allCartItems .= $titleRow;
+
+    foreach ($userCart->getAllItems() as $album) {
+        $formattedPrice = number_format((float)($album->getPrice()) / 100, 2, '.', '');
+
+        $removeLink = '<button onclick="removeItem(this)" value="%s" class="remove slightlyRed">Remove</button>';
+        $removeLink = sprintf($removeLink, $album->getTitle());
+
+        $allCartItems .= sprintf($row, 'artistColumn', 'item', $album->getArtist())
+            . sprintf($row, 'albumColumn', 'item', $album->getTitle())
+            . sprintf($row, 'priceColumn', 'item slightlyGreen', '$'.$formattedPrice)
+            . sprintf($row, 'removeColumn', 'item', $removeLink);
+    }
+
+    echo sprintf('<div id="albumItems" class="">%s</div>', $allCartItems);
+
+    //echo '<form id="formCheckout" action="myCart.php"><input id="checkout" class="button" type="submit" value="Checkout"></form>';
+    echo '<div id="formCheckout">';
+    echo '<button id="checkout" onclick="checkout(this)" class="button">Checkout</button>';
+    echo '<button id="clearCart" onclick="clearTheCart(this)" class="remove slightlyRed">Clear Cart</button>';
+    echo '</div>';
+    ?>
 </div>
-
 </body>
 </html>

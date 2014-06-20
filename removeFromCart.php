@@ -1,40 +1,44 @@
 <?php
-@session_start();
+session_start();
+
 include('scripts/php/shoppingCart.php');
+include_once('scripts/php/psl-config.php');
 
-$server = 'localhost';
-$username = 'c199grp07';
-$password = 'c199grp07';
-$schema = 'c199grp07';
-
-$testCart = $_SESSION['testCart'];
-
-if (!is_object($testCart)) {
-    $testCart = $_SESSION['testCart'] = new Cart($server, $username, $password, $schema);
+if (!isset($_SESSION['allAlbums'])) {
+    die('something is very wrong, trying to remove an album from an empty session array');
 }
 
-$currentAlbum = $_POST['test3'];
-
-if (!in_array($currentAlbum, $_SESSION['allAlbums'])) {
-    echo $currentAlbum . " not in cart";
-    die;
+if(isset($_POST['name'])) {
+    $albumToRemove = $_POST['name'];
 }
 
-$key = array_search($currentAlbum, $_SESSION['allAlbums']);
-unset($_SESSION['allAlbums'][$key]);
-
-$_SESSION['allAlbums'] = array_values($_SESSION['allAlbums']);
-$testCart->addItem($currentAlbum);
-
-$_SESSION['cart'] -= $testCart->getTotal();
-
-$total = number_format((float)($_SESSION['cart']), 2, '.', '');
-
-$_SESSION['change'] = 1;
-
-if ($total < 0) {
-    $total = 0;
-    $_SESSION['cart'] = 0;
+if(isset($_POST['removeAll'])) {
+   $_SESSION['allAlbums'] = array();
 }
 
-header('Location: index.php');
+if(! in_array($albumToRemove, $_SESSION['allAlbums'])) {
+    console.log($albumToRemove . ' no album in cart');
+    return;
+}
+
+$userCart = new Cart(HOST, USER, PASSWORD, DATABASE);
+
+$userCart->repopulateCart($_SESSION['allAlbums']);
+
+if(!isset($_POST['removeAll'])) {
+    $userCart->removeItem($albumToRemove);
+}
+
+$_SESSION['cart'] = $userCart->getTotal();
+
+$_SESSION['allAlbums'] = array();
+
+foreach($userCart->getAllItems() as $album) {
+    $albumTitle = $album->getTitle();
+
+    if($albumTitle == $albumToRemove){
+        continue;
+    }
+
+    array_push($_SESSION['allAlbums'], $albumTitle);
+}

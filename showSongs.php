@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="./includes/index.css" media="screen">
+    <link rel="stylesheet" href="css/index.css" media="screen">
     <link href="css/index-style.css" rel="stylesheet" type="text/css"/>
     <script>var _gaq = [
             ['_setAccount', 'UA-20257902-1'],

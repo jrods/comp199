@@ -191,7 +191,7 @@
                            placeholder="250-999-9999">
                 </span>
             </div>
-
+<!--
             <div class="row">
                 <span class="form_element">
                     <input type="text"
@@ -209,7 +209,7 @@
                            placeholder="Credit card expiry"
                            title="Credit card expiry as MM-YY">
                 </span>
-            </div>
+            </div>-->
 
             <button type="button" style="border: 0; background: transparent" onclick="return formhash(this.form, this.form.firstname,
 														   this.form.lastname,
