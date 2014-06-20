@@ -22,7 +22,7 @@
     include('scripts/php/htmlGenerator.php');
     include('scripts/php/shoppingCart.php');
     include_once('scripts/php/db_connect.php');
-    include_once('script/php/psl-config.php');
+    include_once('scripts/php/psl-config.php');
     include_once('scripts/php/functions.php');
     sec_session_start();
 
