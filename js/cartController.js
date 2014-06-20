@@ -22,15 +22,24 @@ function postPage(address, album) {
         data: {'name': album},
         async: false
     });
+
+    return;
 }
 
-function displayPage(div, address, album) {
+function displayCart() {
+    $('.cartContainer').html(function getCart(){
+        var r = $.ajax({type: 'GET', url: 'viewCart.php', async: false}).responseText;
+        return r;
+    });
+}
+
+function makeMusicPlayer(div, address, album) {
     $(div).html(getPage(address, album));
 }
 
 function cartDisplay(e) {
     if(e.value === 'false') {
-        displayPage('.cartContainer', 'viewCart.php');
+        displayCart();
         e.value = 'true';
     } else {
         function unDisplayCart() {
@@ -81,14 +90,5 @@ function clearTheCart(e) {
 
 $('a#album').click(function (e) {
     var myClass = $(this).attr("class");
-    displayPage('.musicPlayer', 'showSongs.php', myClass);
-});
-
-$('button#addToCart').click(function (e) {
-    var name = $(this).attr("name");
-    var albumName = $('button[name=' + name + ']').val();
-
-    postPage('addToCart.php', albumName);
-    cartObject.value = 'true'
-    displayPage('.cartContainer', 'viewCart.php');
+    makeMusicPlayer('.musicPlayer', 'showSongs.php', myClass);
 });
