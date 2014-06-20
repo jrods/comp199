@@ -171,15 +171,14 @@
             $albumPrice = number_format((float)($row['album_price']) / 100, 2, '.', '');
 
             // Album Object Button
-            $shoppingButton = "<button id=\"addToCart\" type=\"button\" value=\"%s\" class=\"addToCartButton\" name=\"addToCartButton" . $itemCounter . "\">+ $%s</button>";
+            $shoppingButton = '<button id="addToCart" class="addToCartButton" type="button" onclick="addItem(this)" value="%s" >+ $%s</button>';
             $shoppingButton = sprintf($shoppingButton, $row['album_title'], $albumPrice);
 
             // Allows album object to be submitted to sessions
             $newThing[$itemCounter] = "addToCartButton" . $itemCounter;
             $itemCounter++;
 
-            $formBlock = sprintf("<form name=\"input\" method=\"method\">%s</form>", $shoppingButton);
-            $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $formBlock);
+            $shoppingBlock = divIdClass("addToCartSpace", "albumItem", $shoppingButton);
 
             // Where it all comes together
             $albumObject = $albumBlock . $shoppingBlock;

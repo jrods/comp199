@@ -44,6 +44,12 @@ function cartDisplay(e) {
     }
 }
 
+function addItem(e) {
+    postPage('addToCart.php', e.value);
+    cartObject.value = 'false';
+    cartDisplay(cartObject);
+}
+
 function removeItem(e) {
     postPage('removeFromCart.php', e.value);
     cartObject.value = 'false';
