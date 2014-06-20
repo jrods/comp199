@@ -113,6 +113,7 @@
     $song = array();
     $songNumber = 0;
     $albumName = "";
+    $artistName = "";
 
     while ($row = $songResults->fetch_assoc()) {
 
