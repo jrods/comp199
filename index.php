@@ -140,7 +140,7 @@
         $testQuery = $login;
 
         $baseQuery =
-            "select ar.artist_name, al.album_title, al.album_price, al.album_id
+            "select ar.artist_name, al.album_title, al.album_price, al.album_id, al.tags
             from artist ar, album al
             where ar.artist_id = al.artist_id;
             ";
@@ -172,7 +172,7 @@
             $artistNameLink = anchorBlock("/tmp/link", $row['artist_name']);
             $artistName = divIdClass("artistName", "albumText", $artistNameLink);
 
-            $genreLink = anchorBlock("/tmp/link", "genre");
+            $genreLink = anchorBlock("/tmp/link", $row['tags']);
             $genre = divIdClass("genre", "albumText", $genreLink);
 
             $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $genre);

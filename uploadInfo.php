@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['albumPrice'], $_POST['songTitle'], $_POST['songPrice'])) {
+if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['albumPrice'], $_POST['songTitle'], $_POST['songPrice'],$_POST['albumGenre'])) {
 
     // Sanitize and validate the data passed in
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
@@ -9,6 +9,12 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
     $albumPrice = filter_input(INPUT_POST, 'albumPrice', FILTER_SANITIZE_STRING);
     $songTitle = filter_input(INPUT_POST, 'songTitle', FILTER_SANITIZE_STRING);
     $songPrice = filter_input(INPUT_POST, 'albumPrice', FILTER_SANITIZE_STRING);
+    $albumGenre = filter_input(INPUT_POST, 'albumGenre', FILTER_SANITIZE_STRING);
+    
+    if(strpos($songPrice, '.') !== FALSE){
+        str_replace($songPrice, '.', '');
+    }
+
     $rootdir = '';
     $album_id = 0;
     $daterelease = '1000-10-10';
@@ -21,7 +27,7 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
     }
 
     if (empty($error_msg)) {  
-      
+
         if ($stmt = $mysqli->prepare("SELECT artist_id
 				  FROM artist WHERE artist_name = ? LIMIT 1")) {
         $stmt->bind_param('s', $username);  // Bind "$email" to parameter.
@@ -85,8 +91,8 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
                 exit();
         }
     if ($stmt->num_rows == 1) {
-        if ($update_stmt = $mysqli->prepare("UPDATE album SET album_title = ?, album_price = ?, date_of_release = ? WHERE album_id = ? AND artist_id = ?")) {
-            $update_stmt->bind_param('sisii', $albumName, $albumPrice, $daterelease, $album_id, $artist_id);
+        if ($update_stmt = $mysqli->prepare("UPDATE album SET album_title = ?, album_price = ?, date_of_release = ?, tags = ? WHERE album_id = ? AND artist_id = ?")) {
+            $update_stmt->bind_param('sissii', $albumName, $albumPrice, $daterelease, $albumGenre, $album_id, $artist_id);
 
                 // Execute the prepared query.
                 if ($update_stmt->execute() == false) {
@@ -99,8 +105,8 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
             }
         } else {
 
-           if ($insert_stmt = $mysqli->prepare("INSERT INTO album(artist_id, album_title, album_price, date_of_release) VALUES (?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('isis',$artist_id, $albumName, $albumPrice, $daterelease);
+           if ($insert_stmt = $mysqli->prepare("INSERT INTO album(artist_id, album_title, album_price, date_of_release, tags) VALUES (?, ?, ?, ?, ?)")) {
+            $insert_stmt->bind_param('isiss',$artist_id, $albumName, $albumPrice, $daterelease, $albumGenre);
 
                 // Execute the prepared query.
                 if ($insert_stmt->execute() == false) {
