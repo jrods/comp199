@@ -92,6 +92,9 @@
 </header>
 
 <body>
+<?php 
+
+?>
 <div class="contentBody">
         <div id="cart" class="cartContainer"></div>
 
@@ -102,25 +105,9 @@
         } else {
            $logged = 'out';
         }
+         require_once('uploadCover.php');
           ?>
-          
-<form method='post' name='song_form' action='uploadInfo.php'>
-    <input type='hidden' value ="<?php echo $_SESSION['username']; ?>" name='username' id='username'/>
-    <input type='hidden' name='albumName' id='albumName' value ="<?php echo $_POST['albumName']; ?>" />  
-    <input type='hidden' name='genre' id='genre' value ="<?php echo $_POST['genre']; ?>" />
-    <input type='hidden' value ="<?php echo $_POST['fileName']; ?>" name='fileName' id='fileName'/>
-    <div id="albumPrice" class="label">Album Price:</div>
-    <input type='text' name='albumPrice' id='albumPrice'/>
-    <div id="songTitle" class="label">Song Title:</div>
-    <input type='text' name='songTitle' id='songTitle'/>
-    <div id="songPrice" class="label">Song Price:</div>
-    <input type='text' name='songPrice' id='songPrice'/>
 
-    <div id="submitButton"class="button">
-    <input type='submit' value='Submit' class="uploadInfoButton" />
-    </div>
-
-</form>
 
 </div>
 

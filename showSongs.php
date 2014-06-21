@@ -65,8 +65,14 @@
 <body>
 <div class="player">
     <div class="playerArt">
-        <img src="res/image/test.jpg" id="playerArt">
+    <?php
+    if($_GET['name'] == 7){   ?>
+        <img src="http://23.226.228.26/userupload/res/image/<?php echo $_GET['name']; ?>.gif" id="playerArt">
+    <?php } else {
+    ?>
+    <img src="http://23.226.228.26/userupload/res/image/<?php echo $_GET['name']; ?>.jpg" id="playerArt">
     </div>
+    <?php } ?>
     <audio preload></audio>
     <?php
 

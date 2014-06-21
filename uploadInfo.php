@@ -125,8 +125,9 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
             // get variables from result.
             $stmt->bind_result($album_id);
             $stmt->fetch();
+
             } else {
-    
+
                     header('Location: /error.php?err=Registration failure: INSERT1');
                     $stmt->close();
                     exit();
@@ -170,6 +171,7 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
                 exit();
             }
         }
+
 
         $stmt->close();
         header('Location: index.php');

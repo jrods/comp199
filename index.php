@@ -149,11 +149,13 @@
         $itemCounter = 0;
         $newThing[] = "";
 
+
         while ($row = $userResults->fetch_assoc()) {
+            $albumNoSpaces = str_replace(' ', '', $row['album_title']);
             $_SESSION['albumPicked'][$row['album_id']] = $row['album_id'];
             // Album block creation
             $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
-            $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
+            $albumArt = spanBlock("albumArt", imgBlock("art", "http://23.226.228.26/userupload/res/image/" . $row['album_id'] . ".jpg") . $playButton);
             $albumArtButton = albumBlock("album", $row['album_id'], $albumArt . $playButton);
 
             // Album Info and Link Block
