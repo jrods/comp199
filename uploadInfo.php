@@ -8,7 +8,7 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
     $fileName = filter_input(INPUT_POST, 'fileName', FILTER_SANITIZE_STRING);
     $albumPrice = filter_input(INPUT_POST, 'albumPrice', FILTER_SANITIZE_STRING);
     $songTitle = filter_input(INPUT_POST, 'songTitle', FILTER_SANITIZE_STRING);
-    $songPrice = filter_input(INPUT_POST, 'albumPrice', FILTER_SANITIZE_STRING);
+    $songPrice = filter_input(INPUT_POST, 'songPrice', FILTER_SANITIZE_STRING);
     $albumGenre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_STRING);
     
     if(strpos($songPrice, '.') !== FALSE){

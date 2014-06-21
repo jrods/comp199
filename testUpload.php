@@ -73,7 +73,7 @@ echo $result;
             exit();
         }
 //upload to existing album
-            print "Upload To Existing Album
+            print "<br>Upload To Existing Album
             <form enctype=\"multipart/form-data\" "
             . "action=\"http://23.226.228.26/userupload/uploader.php\" method=\"post\" >\n";
 
@@ -100,23 +100,23 @@ echo $result;
         print '</select>';
         ?>
         <input type="hidden" name="genre" value="<?php echo $genre; ?>">
+        <input type="hidden" name="origURL" value ="<?php echo $_SERVER['PHP_SELF']; ?>">
         File name:<input type="file" name="file">
         </p>
         <p>
         <input type="submit" name="Submit" value="Submit">
         </p>
-        
+
         <?php
-        print "</form>";
+        print "</form>Upload To New Album";
 
         }
 }
-//upload to new album
-        print "<form enctype=\"multipart/form-data\" "
-        . "action=\"http://23.226.228.26/userupload/uploader.php\" method=\"post\" >\n";
-        print '<p>  
+//upload to new album       
+        print "<form enctype=\"multipart/form-data\" action=\"http://23.226.228.26/userupload/uploader.php\" method=\"post\" >\n";
+        print '<p>
         <br>
-        Upload To New Album
+
         <br>
         Album Name: <input type="text" name="albumName">
         <br>
@@ -126,7 +126,7 @@ echo $result;
         </p>
         <p>
         <input type="submit" name="Submit" value="Submit">
-        </p>';
+        </p>';      
         print "</form>";
 
     } else {
