@@ -50,25 +50,9 @@ values (
 	'artistName/albumName',
 	'maybe run really really fast');
 
-## album_id 4
-insert into `c199grp07` . `album` (
-	`artist_id`,
-	`album_title`, `album_price`,
-	`tags`, `date_of_release`,
-	`dir_location`,
-	`description`)
-values (
-	'2',
-	'no wind', '500',
-	'', '2014-04-10',
-	'artistName/albumName',
-	'maybe run faster this time');
-
-###
-
 # hot shame artist_id 3
 
-## album_id 5
+## album_id 4
 insert into `c199grp07` . `album` (
        	`artist_id`,
 	`album_title`, `album_price`,
@@ -86,7 +70,7 @@ values (
 
 # navel policy artist_id 4
 
-## album_id 6
+## album_id 5
 insert into `c199grp07` . `album` (
        	`artist_id`,
 	`album_title`, `album_price`,
@@ -104,7 +88,7 @@ values (
 
 #   artist_id 5
 
-## album_id 7
+## album_id 6
 #insert into `c199grp07` . `album` (
 #       	`artist_id`,
 #	`album_title`, `album_price`,
