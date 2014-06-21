@@ -35,7 +35,7 @@ $search_string = $tutorial_db->real_escape_string($search_string);
 // Check Length More Than One Character
 if (strlen($search_string) >= 1 && $search_string !== ' ') {
     // Build Query
-    $query = 'SELECT al.album_title, ar.artist_name, al.album_price FROM album al, artist ar WHERE al.album_title
+    $query = 'SELECT al.album_title, ar.artist_name, al.album_price, al.album_id, al.tags FROM album al, artist ar WHERE al.album_title
         LIKE "%' . $search_string . '%" AND ar.artist_id = al.artist_id OR
         ar.artist_name LIKE "%' . $search_string . '%" AND ar.artist_id = al.artist_id';
     //$query = 'SELECT album_title FROM album';
@@ -55,7 +55,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 
             // Album block creation
             $playButton = spanBlock("playButton", imgBlock("playButton", "res/image/play.png"));
-            $albumArt = spanBlock("albumArt", imgBlock("art", "res/image/test.jpg") . $playButton);
+            $albumArt = spanBlock("albumArt", imgBlock("art", "http://23.226.228.26/userupload/res/image/" . $result['album_id'] . ".jpg") . $playButton);
             $albumArtButton = albumBlock("album", $albumid, $albumArt . $playButton);
 
             // Album Info and Link Block
@@ -65,7 +65,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
             $artistNameLink = anchorBlock("/tmp/link", $result['artist_name']);
             $artistName = divIdClass("artistName", "albumText", $artistNameLink);
 
-            $genreLink = anchorBlock("/tmp/link", "genre");
+            $genreLink = anchorBlock("/tmp/link", $result['tags']);
             $genre = divIdClass("genre", "albumText", $genreLink);
 
             $albumBlock = divId("albumObject", $albumArtButton . $albumTitle . $artistName . $genre);
