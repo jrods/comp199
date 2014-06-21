@@ -91,8 +91,8 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
                 exit();
         }
     if ($stmt->num_rows == 1) {
-        if ($update_stmt = $mysqli->prepare("UPDATE album SET album_title = ?, album_price = ?, date_of_release = ?, tags = ? WHERE album_id = ? AND artist_id = ?")) {
-            $update_stmt->bind_param('sissii', $albumName, $albumPrice, $daterelease, $albumGenre, $album_id, $artist_id);
+        if ($update_stmt = $mysqli->prepare("UPDATE album SET album_title = ?, album_price = ?, date_of_release = ? WHERE album_id = ? AND artist_id = ?")) {
+            $update_stmt->bind_param('sisii', $albumName, $albumPrice, $daterelease, $album_id, $artist_id);
 
                 // Execute the prepared query.
                 if ($update_stmt->execute() == false) {
@@ -157,7 +157,7 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
             // get variables from result.
             $stmt->bind_result($album_id);
             $stmt->fetch();
-        echo $songNumber . $songNumber . $album_id . $songTitle . $fileName . $songPrice;
+        //echo $songNumber . $songNumber . $album_id . $songTitle . $fileName . $songPrice;
         }
         // Insert the new song into the database
         if ($insert_stmt = $mysqli->prepare("INSERT INTO song (song_number, album_id, song_title, file_name, song_price) VALUES (?, ?, ?, ?, ?)")) {
