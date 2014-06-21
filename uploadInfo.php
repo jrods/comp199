@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['albumPrice'], $_POST['songTitle'], $_POST['songPrice'],$_POST['albumGenre'])) {
+if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['albumPrice'], $_POST['songTitle'], $_POST['songPrice'],$_POST['genre'])) {
 
     // Sanitize and validate the data passed in
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
@@ -9,7 +9,7 @@ if (isset($_POST['username'], $_POST['albumName'], $_POST['fileName'], $_POST['a
     $albumPrice = filter_input(INPUT_POST, 'albumPrice', FILTER_SANITIZE_STRING);
     $songTitle = filter_input(INPUT_POST, 'songTitle', FILTER_SANITIZE_STRING);
     $songPrice = filter_input(INPUT_POST, 'albumPrice', FILTER_SANITIZE_STRING);
-    $albumGenre = filter_input(INPUT_POST, 'albumGenre', FILTER_SANITIZE_STRING);
+    $albumGenre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_STRING);
     
     if(strpos($songPrice, '.') !== FALSE){
         str_replace($songPrice, '.', '');
