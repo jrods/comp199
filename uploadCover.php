@@ -57,8 +57,12 @@ $albumID = -1;
             <input type="text" name="songTitle" id="songTitle"/>
             <div id="songPrice" class="label">Song Price:</div>
             <input type="text" name="songPrice" id="songPrice"/>
-            <br>
-            File name:<input type="file" name="file">
+            <br>';
+            if($_SESSION['hasAlbums'] == false){
+            ?>File name:<input type="file" name="file">
+            <?php
+            }
+            print'
             <br>
             <input type="submit" name="Submit" value="Submit">
         </p>';
