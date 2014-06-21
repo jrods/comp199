@@ -29,6 +29,10 @@
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
     }
+    
+
+    $_SESSION['hasAlbums'] = null;
+
     ?>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

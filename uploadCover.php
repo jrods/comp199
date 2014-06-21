@@ -15,6 +15,8 @@ echo $result;
 $albumID = -1;
 }
 
+if($_SESSION['hasAlbums'] != null){
+
   $mysqli = @new mysqli('localhost', 'c199grp07', 'c199grp07', 'c199grp07');
           if ($mysqli->connect_error) {
              $error_msg = '<p class="error">Database error</p>';
@@ -67,5 +69,7 @@ $albumID = -1;
             <input type="submit" name="Submit" value="Submit">
         </p>';
         print "</form>";
-        
+} else {
+    echo "You are not authorized to view this page.";
+}
 ?>
