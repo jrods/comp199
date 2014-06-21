@@ -16,7 +16,6 @@
     <link href="css/buttons.css" rel="stylesheet" type="text/css"/>
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" href="css/index.css" media="screen">
 
     <?php
     include('scripts/php/htmlGenerator.php');
@@ -91,11 +90,11 @@
                             echo '<a class="logout" id="whiteText" href="scripts/php/logout.php">&nbsp;Logout</a>';
                             echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s <a href=\"uploadSongs.php\" class=\"whiteText showLine\" style=\"margin-left:10px;\">Upload</a></div>", $_SESSION['username']);
                         } else {
-                            printf('<a class="register" id="whiteText" href="#">Register</a>
+                            printf('<a class="register" id="whiteText" href="#">or Register</a>
                                     <form action="scripts/php/process_login.php" method="post" name="login_form">
-                                    <input class="textBox" type="text" id="username" name="username" placeholder="username"/>
-                                    <input class="textBox" type="password" id="password" name="password" placeholder="password"/>
                                     <input type="button" value="Login" id="whiteText" class="loginButton" onclick="formhash(this.form, this.form.password);" />
+                                    <input class="textBox" type="password" id="password" name="password" placeholder="password"/>
+                                    <input class="textBox" type="text" id="username" name="username" placeholder="username"/>
                                     </form>');
                         }
                         ?>
@@ -204,7 +203,7 @@
     </div>
 
 
-    <div class="rightSidebar fixed">
+    <div class="rightSidebar">
         <aside class="musicPlayer">
 
             <div class="playerContainer">
@@ -289,7 +288,7 @@
     });
 </script>
 
-<script type="text/javascript" src="js/cartController.js"></script>
+<script type="text/javascript" src="js/indexController.js"></script>
 <script type="text/javascript" src="js/imagesloaded.pkg.min.js"></script>
 
 </body>

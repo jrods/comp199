@@ -1,17 +1,7 @@
 <html>
 <head>
-    <link rel="stylesheet" href="css/index.css" media="screen">
-    <link href="css/index-style.css" rel="stylesheet" type="text/css"/>
-    <script>var _gaq = [
-            ['_setAccount', 'UA-20257902-1'],
-            ['_trackPageview']
-        ];
-        (function (d, t) {
-            var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-            g.async = 1;
-            g.src = '//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g, s)
-        }(document, 'script'))</script>
+    <link rel="stylesheet" href="css/music-player.css" media="screen">
+
     <script src="./audiojs/audio.min.js"></script>
 
     <script>
@@ -37,10 +27,15 @@
             // Load in a track on click
             $('ol li').click(function (e) {
                 e.preventDefault();
-                //"<?php $_SESSION['songPlaying'] = 0; ?>";
+
                 $(this).addClass('playing').siblings().removeClass('playing');
                 audio.load($('a', this).attr('data-src'));
                 audio.play();
+
+                var nowPlaying = document.getElementById('nowPlaying');
+                $(nowPlaying).html('<span style="font-size:16px;float:left;margin-top:5px;margin-right:4px;" class="spacing">Now Playing:</span> ' +
+                    '<h3>' + this.firstChild.innerHTML + '</h3>')
+
             });
             // Keyboard shortcuts
             $(document).keydown(function (e) {
@@ -65,14 +60,17 @@
 <body>
 <div class="player">
     <div class="playerArt">
-    <?php
-    if($_GET['name'] == 7){   ?>
+        <?php
+        if ($_GET['name'] == 7){
+        ?>
         <img src="http://23.226.228.26/userupload/res/image/<?php echo $_GET['name']; ?>.gif" id="playerArt">
-    <?php } else {
-    ?>
-    <img src="http://23.226.228.26/userupload/res/image/<?php echo $_GET['name']; ?>.jpg" id="playerArt">
+        <?php
+        } else {
+        ?>
+        <img src="http://23.226.228.26/userupload/res/image/<?php echo $_GET['name']; ?>.jpg" id="playerArt">
     </div>
     <?php } ?>
+
     <audio preload></audio>
     <?php
 
@@ -80,61 +78,88 @@
     include('scripts/php/shoppingCart.php');
     include_once 'scripts/php/db_connect.php';
     include_once 'scripts/php/functions.php';
-    sec_session_start();
-    $server = 'localhost';
-    $username = 'c199grp07';
-    $password = 'c199grp07';
-    $schema = 'c199grp07';
+    session_start();
 
-    $login = @new mysqli($server, $username, $password, $schema);
-
-    if ($login->connect_error) {
-        die("Connect Error: " . $login->connect_error);
+    if(!isset($_GET['name'])) {
+        echo 'Problem, name wasn\'t posted';
+        die;
     }
 
-    $testSongQuery = $login;
-    $thing = $_GET['name'];
-    //$_SESSION['albumPicked'][$row['album_id']];
-   
-    $baseSongQuery =
-        "select ar.artist_name, so.song_title, so.song_price, so.file_name, al.album_id, al.album_title
-        from song so, album al, artist ar
-        where al.album_id = '".$thing."'
-        and ar.artist_id = al.artist_id
-        and so.album_id = al.album_id;
-        ";
+    $db = new mysqli(HOST, USER, PASSWORD, DATABASE);
 
-    $userSongQuery = sprintf($baseSongQuery);
-    $songResults = $testSongQuery->query($userSongQuery);
+    if($db->connect_error) {
+        die("Connect Error: " . $db->connect_error);
+    }
 
-    if (!$songResults) {
-        $message = 'Invalid query: ' . $testSongQuery->errno . "<br />";
-        $message .= 'Whole query: ' . $userSongQuery;
+    $albumId = $_GET['name'];
+
+    $artistAlbumQuery = sprintf(
+        'select al.album_title, al.album_price, ar.artist_name, al.description, al.tags
+         from artist as ar
+           inner join album as al
+             on ar.artist_id = al.artist_id
+           where al.album_id = %s LIMIT 1', $albumId);
+
+    $query = $db->query($artistAlbumQuery);
+
+    if(!$query) {
+        $message = 'Invalid query: ' . $db->errno . "<br />";
+        $message .= 'Whole query: ' . $artistAlbumQuery;
         die($message);
     }
 
-    echo "<div>Song List:</div>";
-
-    echo "<ol>";
-    $song = array();
-    $songNumber = 0;
-    $albumName = "";
-    $artistName = "";
-
-    while ($row = $songResults->fetch_assoc()) {
-
-        $artistName = $row['artist_name'];
-        $albumName = $row['album_title'];
-        $albumNameFile = str_replace(' ', '', $albumName);
-        $song[$songNumber] = $row['song_title'];
-        $songFile = $row['file_name'];
-        echo "<li><a href='#' data-src='http://23.226.228.26/userupload/$albumNameFile/$songFile'>$song[$songNumber]</a></ul>";
+    if($row = $query->fetch_assoc()) {
+        $album = new Album($row['album_title'], $row['album_price'], $row['artist_name']);
+        $album->setDescription($row['description']);
+        $album->setGenre($row['tags']);
     }
 
-    echo "</ol>";
+    $songQuery = sprintf(
+        'select so.song_title, so.song_number, so.file_name
+         from song as so
+           inner join album as al
+             on al.album_id = so.album_id
+         where al.album_id = %s
+           order by so.song_number asc', $albumId);
 
-    echo sprintf("<div>Album: %s</div><div>Artist: %s</div>", $albumName, $artistName);
+    $query = $db->query($songQuery);
 
+    if(!$query) {
+        $message = 'Invalid query: ' . $db->errno . "<br />";
+        $message .= 'Whole query: ' . $songQuery;
+        die($message);
+    }
+
+    while($row = $query->fetch_assoc()) {
+        $album->addSong(new Song($row['song_title'], $row['song_number'], $row['file_name']));
+    }
+
+    echo '<div id="albumInfo">';
+    echo '<div id="nowPlaying" style="display:inline-block;"></div>';
+    echo sprintf('<div id="album"><h3 class="spacing"><a class="showLine" href="gonna be javascript call eventually">%s<a></a></h3></div>', $album->getTitle());
+    echo sprintf('<div id="artist"><span>by </span><h4><a class="showLine" href="gonna be javascript call eventually">%s</a></h4></div>', $album->getArtist());
+
+    echo '<div id="songList"><span class="spacing">Song List:</span>';
+    $orderList = '<ol class="spacing">%s</ol>';
+    $listItem = '<li>%s</li>';
+    $allItems = '';
+
+    foreach($album->getSongList() as $song) {
+        $albumNameFile = str_replace(' ', '', $album->getTitle());
+        $link = sprintf('<a id="song" class="showLine" href="#" data-src="http://23.226.228.26/userupload/%s/%s">%s</a>', $albumNameFile, $song->getFileName(), ucwords($song->getTitle()));
+        $allItems .= sprintf($listItem, $link);
+    }
+
+    echo sprintf($orderList, $allItems);
+    echo '</div>';
+
+    $genre = sprintf('<span style="font-size:13px;color:#444;margin-left: 10px;" class="spacing">Genre: <a class="showLine" href="gonna be javascript eventually">%s</a></span>', $album->getGenre());
+    echo divId('genrePlayer', $genre);
+    echo divIdClass('', 'info', 'Info:');
+    echo divId('description', $album->getDescription());
+    echo divId('releaseDate', $album->getDateOfRelease());
+
+    echo '</div>';
     ?>
 
 </div>

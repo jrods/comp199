@@ -3,7 +3,7 @@
 
     <link href="css/cart-style.css" rel="stylesheet" type="text/css"/>
 
-    <script type="text/javascript" src="js/cartController.js"></script>
+    <script type="text/javascript" src="js/indexController.js"></script>
 </head>
 <body>
 <div id="cartInfo" class="cart whiteText">

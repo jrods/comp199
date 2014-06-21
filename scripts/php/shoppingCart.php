@@ -39,9 +39,7 @@ class Cart {
         $newAlbum = @new Album($result['album_title'], $result['album_price'], $result['artist_name']);
 
         array_push($this->cartOfItems, $newAlbum);
-
         $this->totalCart += $result['album_price'];
-
     }
 
     public function getTotal() {
@@ -56,7 +54,6 @@ class Cart {
     public function removeItem($lookingForTitle) {
 
         $copyCart = array();
-
         $this->totalCart = 0;
 
         foreach ($this->cartOfItems as $value) {
@@ -69,7 +66,6 @@ class Cart {
             }
 
             $this->totalCart += $value->getPrice();
-
             array_push($copyCart, $value);
         }
 
@@ -108,9 +104,9 @@ class Cart {
         $query->bind_result($album_title, $album_price, $artist_name);
         $query->fetch();
 
-        return array('album_title' => $album_title, 'album_price' => $album_price, 'artist_name' => $artist_name);
-
         $this->login->close();
+
+        return array('album_title' => $album_title, 'album_price' => $album_price, 'artist_name' => $artist_name);
     }
 }
 
@@ -118,11 +114,25 @@ class Album {
     private $albumTitle;
     private $artistName;
     private $albumPrice;
+    private $description;
+    private $genre;
+    private $dirLocation;
+    private $dateOfRelease;
+    private $songList;
 
     function __construct($inTitle, $inPrice, $inArtist) {
         $this->albumTitle = $inTitle;
         $this->albumPrice = $inPrice;
         $this->artistName = $inArtist;
+        $this->songList = array();
+    }
+
+    function addSong($inSong) {
+        array_push($this->songList, $inSong);
+    }
+
+    function getSongList() {
+        return $this->songList;
     }
 
     public function getTitle() {
@@ -136,4 +146,61 @@ class Album {
     public function getArtist() {
         return $this->artistName;
     }
+
+    public function setDescription($text) {
+        $this->description = $text;
+    }
+
+    public function getDescription() {
+        return $this->description;
+    }
+
+    public function getDateOfRelease() {
+        return $this->dateOfRelease;
+    }
+
+    public function setDateOfRelease($dateOfRelease) {
+        $this->dateOfRelease = $dateOfRelease;
+    }
+
+    public function getDirLocation() {
+        return $this->dirLocation;
+    }
+
+    public function setDirLocation($dirLocation) {
+        $this->dirLocation = $dirLocation;
+    }
+
+    public function getGenre() {
+        return $this->genre;
+    }
+
+    public function setGenre($genre) {
+        $this->genre = $genre;
+    }
+}
+
+class Song {
+    private $title;
+    private $number;
+    private $fileName;
+
+    function __construct($inTitle, $inNumber, $inFileName) {
+        $this->title = $inTitle;
+        $this->number = $inNumber;
+        $this->fileName = $inFileName;
+    }
+
+    public function getNumber() {
+        return $this->number;
+    }
+
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function getFileName() {
+        return $this->fileName;
+    }
+
 }

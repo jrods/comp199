@@ -26,10 +26,9 @@ function songBlock($link, $content) {
     return sprintf($results, $link, $content);
 }
 
-function albumBlock($id, $class, $content) {
-
-    $results = '<a href="#Album" id="%s" class="%s">%s</a>';
-    return sprintf($results, $id, $class, $content);
+function albumBlock($id, $value, $content) {
+    $results = '<a id="%s" href="javascript:;" onclick="playAlbum(%s)">%s</a>';
+    return sprintf($results, $id, $value, $content);
 }
 
 function listItem($content) {

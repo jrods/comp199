@@ -100,7 +100,6 @@ li#navContent div.searchBlock div#searchButton {
     top: 0px;
     right: 0px;
     height: 100%;
-
 }
 
 li#navContent div.cartBlock {
@@ -122,15 +121,17 @@ li#navContent div.loginBlock {
 div.loginBlock form {
     float: right;
     display: inline-block;
-    width: 325px;
-    margin-top: 13px;
+    width: 305px;
+    margin-top: 12.5px;
+    margin-right: 2px;
 }
 
 div.loginBlock form input {
-    float: left;
+    float: right;
 }
 
 div.loginBlock form .textBox {
+    width: 105px;
     margin-top: 3px;
     margin-right: 5px;
 }
@@ -173,90 +174,9 @@ body {
     padding-top: 50px;
 }
 
-.cartContainer {
-    position: fixed;
-    margin: 0 auto !important;
-    width: 788px;
-    z-index: 2;
-}
-
-.cart {
-    margin: 0 1px 1px;
-    border: 1px solid rgba( 0, 0, 0, 0);
-    background: rgba(22,22,22, 0.85);
-}
-
-.cart .info {
-    margin: 16px;
-}
-
-.cart .info div {
-    width: 100%;
-}
-
 div#album h4 {
     margin-left: 15px;
     margin-bottom: 5px;
-}
-
-.cart .info #form1 {
-    display: inline-block;
-}
-
-.cart .info #form2 {
-    width: 100%;
-}
-
-.cart .info form span {
-    float: left;
-    margin-left: 30px;
-}
-
-.cart .info form a {
-    float: right;
-}
-
-.cart .info form .button {
-    font-size: 14px;
-    color: #ffffff;
-    padding: 3px 11px;
-    margin-top: 20px;
-    background: -moz-linear-gradient(
-            top,
-            #0cf52f 0%,
-            #147d18);
-    background: -webkit-gradient(
-            linear, left top, left bottom,
-            from(#0cf52f),
-            to(#147d18));
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    border: 0px;
-    -moz-box-shadow:
-    0px 1px 1px rgba(000,000,000,0),
-    inset 0px 0px 10px rgba(57,92,24,0);
-    -webkit-box-shadow:
-    0px 1px 1px rgba(000,000,000,0),
-    inset 0px 0px 10px rgba(57,92,24,0);
-    box-shadow:
-    0px 1px 1px rgba(000,000,000,0),
-    inset 0px 0px 10px rgba(57,92,24,0);
-    text-shadow:
-    1px 1px 5px rgba(0,0,0,1);
-}
-
-.cart .info form .button:hover {
-    background: -moz-linear-gradient(
-            top,
-            #0cf52f 0%,
-            #149a19);
-    background: -webkit-gradient(
-            linear, left top, left bottom,
-            from(#0cf52f),
-            to(#149a19));
-    text-shadow:
-    0px -1px 8px rgba(255,255,255,1);
 }
 
 #searchGallery {
@@ -271,22 +191,25 @@ div#album h4 {
     position: absolute;
     right: 5px;
     width: 280px;
+    height: 600px;
 	margin-top: 25px;
+    background: #efefef;
+    box-shadow: inset 0 0 25px rgba(50,50,50, 0.2);
 }
 
 .musicPlayer {
-    position: fixed;
+    height: 400px;
 }
 
 .playerArt {
-    width: 275px;
-    height: 275px;
+    width: 278px;
+    height: 278px;
     border: 1px solid rgba(204, 204, 204, 1.0);
 }
 
 img#playerArt {
-    width: 275px;
-    height: 275px;
+    width: 278px;
+    height: 278px;
 }
 
 .user {

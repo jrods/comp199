@@ -88,7 +88,6 @@ function clearTheCart(e) {
     cartDisplay(cartObject);
 }
 
-$('a#album').click(function (e) {
-    var myClass = $(this).attr("class");
-    makeMusicPlayer('.musicPlayer', 'showSongs.php', myClass);
-});
+function playAlbum(albumId) {
+    makeMusicPlayer('.musicPlayer', 'showSongs.php', albumId);
+}

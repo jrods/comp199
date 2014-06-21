@@ -6,10 +6,81 @@
     src: local('☺'), url('BPreplay-webfont.woff') format('woff'), url('BPreplay-webfont.ttf') format('truetype'), url('BPreplay-webfont.svg#webfontgzJ8Cr4g') format('svg');
 }
 
-.audiojs {
-    top: 277px;
-    width: 277px;
+#albumInfo {
+    display: inline-block;
+    font-size: 14px;
+}
 
+#albumInfo div {
+    float: left;
+}
+
+ol li a {
+    margin: 0 0 0 4px;
+}
+
+#nowPlaying h3 {
+    float: left;
+    margin: 5px 0 0 6px;
+}
+
+#albumInfo div .spacing {
+    margin: 4px 12px;
+}
+
+#albumInfo #album {
+    width: 100%;
+}
+
+#albumInfo #artist {
+    display: inline-block;
+}
+
+#albumInfo #artist * {
+    float: left;
+}
+
+#albumInfo #artist span {
+    margin-left: 20px;
+    margin-right: 4px;
+}
+
+#albumInfo #artist h4 {
+    margin-left: 0;
+}
+
+#albumInfo #songList {
+    width: 100%;
+    margin: 0;
+    padding-top: 5px;
+}
+
+#albumInfo div#genrePlayer {
+    margin-top: 6px;
+}
+
+#albumInfo #description, #albumInfo #releaseDate {
+    width: 260px;
+    padding: 2px 10px;
+}
+
+#albumInfo .info {
+    width: 260px;
+    padding: 8px 10px 2px;
+}
+
+#songList ol {
+    padding-left: 36px;
+}
+
+#songList ol li {
+    width: 100%;
+}
+
+.audiojs {
+    top: 270px;
+    width: 278px;
+    margin-left: 1px;
 }
 
 .audiojs .scrubber {

@@ -21,7 +21,7 @@
     <link href="css/buttons.css" rel="stylesheet" type="text/css"/>
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" href="css/index.css" media="screen">
+    <link rel="stylesheet" href="css/music-player.css" media="screen">
     
 
 
@@ -187,7 +187,7 @@
     });
 </script>
 
-<script type="text/javascript" src="js/cartController.js"></script>
+<script type="text/javascript" src="js/indexController.js"></script>
 <script type="text/javascript" src="js/imagesloaded.pkg.min.js"></script>
 
 </body>
