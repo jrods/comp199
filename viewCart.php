@@ -38,7 +38,7 @@
         echo divIdClass("item", "itemTitle", "<h3>Items: $count</h3>");
 
     } else {
-        echo '<div id="album"><h4>Your cart is empty, buy some stuff you fu</h4></div>';
+        echo '<div id="album"><h4>Your cart is empty</h4></div>';
         die;
     }
 
