@@ -38,9 +38,14 @@ function makeMusicPlayer(div, address, album) {
 }
 
 function cartDisplay(e) {
+    var gallery = document.getElementById('gallery')
+
     if(e.value === 'false') {
         displayCart();
         e.value = 'true';
+        gallery.style.paddingTop = "225px";
+
+
     } else {
         function unDisplayCart() {
             var cart = document.getElementById('cart');
@@ -48,6 +53,7 @@ function cartDisplay(e) {
             cart.removeChild(innerCart);
         }
 
+        gallery.style.paddingTop = "0";
         unDisplayCart();
         e.value = 'false';
     }

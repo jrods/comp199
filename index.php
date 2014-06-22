@@ -293,6 +293,12 @@
 
 </body>
 
+<script>
+    $(document).ready( function(e) {
+        document.getElementById('gallery').style.height = window.innerHeight + 'px';
+    });
+</script>
+
 <footer class="footer fixed bar">
     <div>
         <span id="whiteText">Copyright &copy; 2014</span><br/>

@@ -64,7 +64,7 @@ a.remove:hover {
 .cartContainer {
     position: fixed;
     margin: 0 auto !important;
-    width: 788px;
+    width: 810px;
     z-index: 2;
 }
 
