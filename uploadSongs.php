@@ -10,7 +10,7 @@
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
 
     <style>
-  form { display: block; margin: 20px auto; background: #eee; border-radius: 10px; padding: 15px }
+  form { display: block; margin: 20px auto; background: #fff; border-radius: 10px; padding: 15px }
 
  </style> 
 
