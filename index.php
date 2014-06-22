@@ -28,9 +28,6 @@
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = 0;
     }
-    
-
-    $_SESSION['hasAlbums'] = null;
 
     ?>
 

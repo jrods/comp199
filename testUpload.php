@@ -6,7 +6,6 @@ set_time_limit(0);
 $url = 'http://23.226.228.26/userupload/uploader.php'; // change to your form action url.
 $field_name1 = 'file'; // please edit it according to your form file field name.
 $field_name2 = 'newAlbum';
-$_SESSION['hasAlbums'] = false;
 //$field_name2 = 'newAlbum';
 if (isset($_FILES['file']))
 {
@@ -48,7 +47,7 @@ echo $result;
         }
 
             if ($stmt->num_rows != 0) {
-            $_SESSION['hasAlbums'] = true;
+
             if ($stmt = $mysqli->prepare("SELECT album_title
                               FROM album WHERE artist_id = " . $artist_id)) {
             $stmt->execute();    // Execute the prepared query.
@@ -82,7 +81,6 @@ echo $result;
             while($stmt->fetch()){
                 echo '<option value ="'. $column['album_title'] .'">' . $column['album_title'] . '</option>';
             }
-           
            if ($stmt = $mysqli->prepare("SELECT tags
                               FROM album WHERE artist_id = " . $artist_id)) {
             $stmt->execute();    // Execute the prepared query.
@@ -96,10 +94,11 @@ echo $result;
             header("Location: ../../error.php?err=Database error: cannot prepare statement");
             exit();
         }
-
+        $hasAlbums = true;
         print '</select>';
         ?>
         <input type="hidden" name="genre" value="<?php echo $genre; ?>">
+        <input type="hidden" name="hasAlbums" value="<?php echo $hasAlbums; ?>">
         File name:<input type="file" name="file">
         </p>
         <p>
@@ -114,9 +113,10 @@ echo $result;
 //upload to new album
         print "Upload To New Album<form enctype=\"multipart/form-data\" "
         . "action=\"http://23.226.228.26/userupload/uploader.php\" method=\"post\" >\n";
-        print '<p>  
+        print '<p>
         <br>
 
+        <input type="hidden" name="hasAlbums" value="false">
         <br>
         Album Name: <input type="text" name="albumName">
         <br>

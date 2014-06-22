@@ -15,7 +15,7 @@ echo $result;
 $albumID = -1;
 }
 
-if($_SESSION['hasAlbums'] != null){
+if($_POST['hasAlbums'] != null){
 
   $mysqli = @new mysqli('localhost', 'c199grp07', 'c199grp07', 'c199grp07');
           if ($mysqli->connect_error) {
@@ -43,7 +43,6 @@ if($_SESSION['hasAlbums'] != null){
         }
 
         }
-
         print "<form enctype=\"multipart/form-data\" action=\"http://23.226.228.26/userupload/uploadImage.php\" method=\"post\" >\n";
         print '<p>
         <br>
@@ -53,6 +52,7 @@ if($_SESSION['hasAlbums'] != null){
             <input type="hidden" name="genre" id="genre" value ="'. $_POST['genre'] .'" />
             <input type="hidden" name="albumID" id="albumID" value ="'. $albumID .'" />
             <input type="hidden" value ="'. $_POST['fileName'] .'" name="fileName" id="fileName"/>
+
             <div id="albumPrice" class="label">Album Price:</div>
             <input type="text" name="albumPrice" id="albumPrice"/>
             <div id="songTitle" class="label">Song Title:</div>
@@ -60,12 +60,14 @@ if($_SESSION['hasAlbums'] != null){
             <div id="songPrice" class="label">Song Price:</div>
             <input type="text" name="songPrice" id="songPrice"/>
             <br>';
-            if($_SESSION['hasAlbums'] == false){
-            ?>File name:<input type="file" name="file">
+            if($_POST['hasAlbums'] == 0){
+            ?>
+            File name:<input type="file" name="file">
+            <br>
             <?php
             }
             print'
-            <br>
+
             <input type="submit" name="Submit" value="Submit">
         </p>';
         print "</form>";
