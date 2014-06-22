@@ -38,8 +38,6 @@
     <script src="./audiojs/audio.min.js"></script>
     <script type="text/javascript" src="custom.js"></script>
     
-
-
 </head>
 
 <header class="header fixed bar" role="banner">
