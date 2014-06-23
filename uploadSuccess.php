@@ -93,7 +93,7 @@
 <?php 
 
 ?>
-<div class="contentBody">
+<div id="contentBody">
         <div id="cart" class="cartContainer"></div>
 
         <?php
