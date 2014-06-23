@@ -40,16 +40,18 @@ function makeMusicPlayer(div, address, album) {
 function cartDisplay(e) {
     var gallery = document.getElementById('gallery')
 
+    var test = gallery.stylesheet;
+    console.log(test);
+
     if(e.value === 'false') {
         displayCart();
         e.value = 'true';
-        gallery.style.paddingTop = "225px";
-
+        gallery.style.cssText = 'padding-top: ' + document.getElementById('cart').clientHeight + 'px;';
 
     } else {
         function unDisplayCart() {
             var cart = document.getElementById('cart');
-            var innerCart = document.getElementById('cartInfo')
+            var innerCart = document.getElementById('cartInfo');
             cart.removeChild(innerCart);
         }
 
@@ -75,7 +77,12 @@ function checkout(e) {
     cartObject.value = 'true';
     cartDisplay(cartObject);
 
-    getPage('myCart.php');
+    var gallery = document.getElementById('galleryWrapper');
+    gallery.removeChild(document.getElementById('galleryContent'));
+
+    gallery.style.cssText = "width: 1110px;height:" + window.innerHeight + 'px;margin-top:0;';
+
+    $(gallery).html(getPage('myCart.php'));
 
 }
 

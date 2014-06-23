@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Tune Source</title>
-    <meta charset="utf-8"/>
-    <link href="css/index-style.css" rel="stylesheet" type="text/css"/>
-
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/imagesloaded.pkg.min.js"></script>
@@ -42,14 +38,19 @@
         }
 
         .billingContainer form {
-            padding-top: 75px;
             height: 400px;
-
         }
 
-        fieldset {
+        fieldset#checkout {
             display: inline-block;
-            width: 1110px;
+            width: 1100px;
+            padding: 0;
+            margin: 10px;
+            border: none;
+        }
+
+        fieldset#billInfo {
+            width: 375px;
         }
 
         fieldset input {
@@ -87,47 +88,19 @@
     </style>
 
 </head>
-<header class="header fixed bar" role="banner">
-    <nav>
-        <ul class="bar" id="list">
-            <li id="navContent">
-                <div class="item">
-                    <div class="logoBlock"><span class="temp"><a id="whiteText" href="index.php">Tune Source</a></span>
-                    </div>
-                </div>
-
-                <!--<div class="item" style="float:right;">
-                    <div class="loginBlock">
-                        <?php
-/*
-                        if (login_check($mysqli) == true) {
-                            echo "<a id=\"whiteText\" class=\"user logout\">Logout</a>";
-                            echo sprintf("<div id=\"whiteText\" class=\"user username\">Hello %s</div>", $_SESSION['username']);
-                        } else {
-                            printf('<a class="register" id="whiteText" href="#">Register</a>
-                                    <form action="scripts/php/process_login.php" method="post" name="login_form">
-                                    <input class="textBox" type="text" id="username" name="username" placeholder="username"/>
-                                    <input class="textBox" type="password" id="password" name="password" placeholder="password"/>
-                                    <input type="button" value="Login" id="whiteText" class="loginButton" onclick="formhash(this.form, this.form.password);" />
-                                    </form>');
-                        }
-                        */?>
-                    </div>
-                </div>-->
-            </li>
-        </ul>
-    </nav>
-</header>
-
 <body>
 <div class="billingContainer">
     <form action="makePayment.php" method="post">
-        <fieldset>
-            <legend>checkout</legend>
+        <fieldset id="checkout">
+            <legend>Checkout</legend>
+
             <div id="cart" class="displayCart">
 
             </div>
-            <div class="row">
+
+            <fieldset id="billInfo">
+                <legend>Billing Information</legend>
+                <div class="row">
                 <span class="form_element">
 
                     <input type="text"
@@ -135,54 +108,54 @@
                            required id="firstname"
                            placeholder="Your First Name">
                 </span>
-            </div>
+                </div>
 
-            <div class="row">
+                <div class="row">
                 <span class="form_element">
                     <input type="text"
                            name="lastname"
                            required id="lastname"
                            placeholder="Your Last Name">
                 </span>
-            </div>
+                </div>
 
-            <div class="row">
+                <div class="row">
                 <span class="form_element">
                     <input type="text"
                            name="Country"
                            required id="Country"
                            placeholder="Enter Your Country">
                 </span>
-            </div>
+                </div>
 
-            <div class="row">
+                <div class="row">
                 <span class="form_element">
                     <input type="text"
                            name="Province"
                            required id="province"
                            placeholder="Province Or State">
                 </span>
-            </div>
+                </div>
 
-            <div class="row">
+                <div class="row">
                 <span class="form_element">
                     <input type="text"
                            name="Address"
                            required id="Address"
                            placeholder="Enter Your Address">
                 </span>
-            </div>
+                </div>
 
-            <div class="row">
+                <div class="row">
                 <span class="form_element">
                     <input type="text"
                            name="postal"
                            required id="postal"
                            placeholder="Postal Code Or Zip">
                 </span>
-            </div>
+                </div>
 
-            <div class="row">
+                <div class="row">
                 <span class="form_element">
                     <input title="Expected format as 250-999-9999"
                            type="tel"
@@ -190,28 +163,28 @@
                            required id="phone"
                            placeholder="250-999-9999">
                 </span>
-            </div>
-<!--
-            <div class="row">
-                <span class="form_element">
-                    <input type="text"
-                           name="credit"
-                           required id="credit"
-                           placeholder="Credit Card number">
-                </span>
-            </div>
+                </div>
+                <!--
+                            <div class="row">
+                                <span class="form_element">
+                                    <input type="text"
+                                           name="credit"
+                                           required id="credit"
+                                           placeholder="Credit Card number">
+                                </span>
+                            </div>
 
-            <div class="row">
-                <span class="form_element">
-                    <input type="text"
-                           name="expiry"
-                           required id="expiry"
-                           placeholder="Credit card expiry"
-                           title="Credit card expiry as MM-YY">
-                </span>
-            </div>-->
+                            <div class="row">
+                                <span class="form_element">
+                                    <input type="text"
+                                           name="expiry"
+                                           required id="expiry"
+                                           placeholder="Credit card expiry"
+                                           title="Credit card expiry as MM-YY">
+                                </span>
+                            </div>-->
 
-            <button type="button" style="border: 0; background: transparent" onclick="return formhash(this.form, this.form.firstname,
+                <button type="button" style="border: 0; background: transparent" onclick="return formhash(this.form, this.form.firstname,
 														   this.form.lastname,
 														   this.form.Country,
 														   this.form.Province,
@@ -219,13 +192,15 @@
 														   this.form.postal,
 														   this.form.phone,
 														   this.form.credit,
-														   this.form.expiry);" ></button>
+														   this.form.expiry);"></button>
 
-        <input type="hidden" name="total" value="<?php echo number_format((float)($_SESSION['cart']), 2, '.', ''); ?>">
-        <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" src="" align="left"
-               style="margin-right:7px;" name="submit" id="paypal" alt="PayPal - The safer, easier way to pay online!">
-        </input>
-
+                <input type="hidden" name="total"
+                       value="<?php echo number_format((float)($_SESSION['cart']), 2, '.', ''); ?>">
+                <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" src="" align="left"
+                       style="margin-right:7px;" name="submit" id="paypal"
+                       alt="PayPal - The safer, easier way to pay online!">
+                </input>
+            </fieldset>
         <script>
             function getPage(address) {
                 var r = $.ajax({
@@ -244,10 +219,6 @@
             $(document).ready(function (e) {
                 displayPage('.displayCart', 'viewCart.php');
 
-                var parent = this.getElementById('info');
-                var removeCheckout = this.getElementById('form2');
-
-                parent.removeChild(removeCheckout);
             });
 
         </script>
