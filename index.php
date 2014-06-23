@@ -92,8 +92,8 @@
                             printf('<a class="register" id="whiteText" href="#">or Register</a>
                                     <form action="scripts/php/process_login.php" method="post" name="login_form">
                                     <input type="button" value="Login" id="whiteText" class="loginButton" onclick="formhash(this.form, this.form.password);" />
-                                    <input class="textBox" type="password" id="password" name="password" placeholder="password"/>
-                                    <input class="textBox" type="text" id="username" name="username" placeholder="username"/>
+                                    <input class="textBox" type="password" id="password" name="password" placeholder="password" tabindex="2" />
+                                    <input class="textBox" type="text" id="username" name="username" placeholder="username" tabindex="1" />
                                     </form>');
                         }
                         ?>
