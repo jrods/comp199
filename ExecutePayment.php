@@ -75,7 +75,7 @@ foreach($_SESSION['allAlbums'] as $album){
 </div>
 </body>
 <!-- Load jQuery, SimpleModal and Basic JS files -->
-<script type='text/javascript' src='js/jquery.js'></script>
+<script type='text/javascript' src='js/jquery-2.1.1.min.js'></script>
 <script type='text/javascript' src='js/basic.js'></script>
 
 <script>

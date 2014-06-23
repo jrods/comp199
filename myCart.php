@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/imagesloaded.pkg.min.js"></script>
 
     <script>
@@ -12,7 +12,7 @@
                 alert("Not all fields have been filled");
                 return false;
             }
-            form.submit()
+            form.submit();
             return true;
         }
     </script>
@@ -50,34 +50,36 @@
         }
 
         fieldset#billInfo {
+            float: left;
             width: 375px;
+            margin-top: 10px;
         }
 
         fieldset input {
             font-size: 16px;
             width: 250px;
-            margin: 4px 4px 10px 50px;
+            margin: 7px 0;
         }
 
         legend {
             font-size: 24px;
-            margin-left: 20px;
+            margin: 0 20px 10px;
         }
 
         div.row {
-            width: 400px;
-            margin-left: 50px;
+            width: 300px;
+            margin-left: 25px;
         }
 
         div#info span {
             margin-left: 50px;
         }
 
-        #cart {
-            float: right;
-            width: 600px;
-            margin-top: 4px;
-            margin-right: 50px;
+        #finalCart {
+            float: left;
+            width: 650px;
+            margin-top: 30px;
+            margin-left: 30px;
         }
 
         #paypal {
@@ -87,16 +89,28 @@
 
     </style>
 
+    <script>
+        $(document).ready( function (e) {
+            $.ajax({
+                type: 'GET',
+                url: 'viewCart.php',
+                async: true,
+                cache: false,
+                success: function(response) {
+                    $('#finalCart').html(response);
+                }
+            }).done(function() {
+                $('div#formCheckout').remove();
+            })
+        });
+    </script>
+
 </head>
 <body>
 <div class="billingContainer">
     <form action="makePayment.php" method="post">
         <fieldset id="checkout">
-            <legend>Checkout</legend>
-
-            <div id="cart" class="displayCart">
-
-            </div>
+            <legend><h3>Checkout</h3></legend>
 
             <fieldset id="billInfo">
                 <legend>Billing Information</legend>
@@ -201,37 +215,11 @@
                        alt="PayPal - The safer, easier way to pay online!">
                 </input>
             </fieldset>
-        <script>
-            function getPage(address) {
-                var r = $.ajax({
-                    type: 'GET',
-                    url: address,
-                    async: false
-                }).responseText;
+            <div id="finalCart">
 
-                return r;
-            }
-
-            function displayPage(div, address) {
-                $(div).html(getPage(address));
-            }
-
-            $(document).ready(function (e) {
-                displayPage('.displayCart', 'viewCart.php');
-
-            });
-
-        </script>
-
+            </div>
         </fieldset>
     </form>
 </div>
 </body>
-
-<footer class="footer fixed bar">
-    <div>
-        <span id="whiteText">Copyright &copy; 2014</span><br/>
-        <span id="whiteText">Authors: Sam Beveridge, Calvin Lam, Jared Smith</span>
-    </div>
-</footer>
 </html>

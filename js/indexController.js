@@ -2,7 +2,8 @@
  * Created by jaredsmith on 2014-06-19.
  */
 
-var cartObject = document.getElementById('removeItem');
+var cartObject = document.getElementById('cartButton');
+var gallery = document.getElementById('gallery');
 
 function getPage(address, album) {
     var r = $.ajax({
@@ -27,10 +28,25 @@ function postPage(address, album) {
 }
 
 function displayCart() {
-    $('.cartContainer').html(function getCart(){
-        var r = $.ajax({type: 'GET', url: 'viewCart.php', async: false}).responseText;
-        return r;
-    });
+
+    $.ajax({
+        type: 'GET',
+        url: 'viewCart.php',
+        async: true,
+        cache: false,
+        success: function(response) {
+            $('#cart').html(response).slideDown({ duration: 700, easing: 'linear'});
+        }
+    }).done( function() {
+        $(document).ready(function(e) {
+            $('#gallery').css('height', window.innerHeight);
+
+            var padding = document.getElementById('cartInfo').scrollHeight;
+
+            gallery.style.cssText = 'height:' + window.innerHeight +
+                'px;padding-top: ' + padding + 'px;transition:padding 0.5s linear;';
+        });
+    });;
 }
 
 function makeMusicPlayer(div, address, album) {
@@ -38,26 +54,19 @@ function makeMusicPlayer(div, address, album) {
 }
 
 function cartDisplay(e) {
-    var gallery = document.getElementById('gallery')
-
-    var test = gallery.stylesheet;
-    console.log(test);
 
     if(e.value === 'false') {
         displayCart();
         e.value = 'true';
-        gallery.style.cssText = 'padding-top: ' + document.getElementById('cart').clientHeight + 'px;';
 
     } else {
-        function unDisplayCart() {
-            var cart = document.getElementById('cart');
-            var innerCart = document.getElementById('cartInfo');
-            cart.removeChild(innerCart);
-        }
-
         gallery.style.paddingTop = "0";
-        unDisplayCart();
         e.value = 'false';
+        $('#cart').slideUp({ duration: 500, easing: 'linear'},
+            function() {
+                $('#cartInfo').remove();
+            }
+        );
     }
 }
 
@@ -76,27 +85,25 @@ function removeItem(e) {
 function checkout(e) {
     cartObject.value = 'true';
     cartDisplay(cartObject);
+    $('.rightSidebar').hide();
 
     var gallery = document.getElementById('galleryWrapper');
     gallery.removeChild(document.getElementById('galleryContent'));
 
-    gallery.style.cssText = "width: 1110px;height:" + window.innerHeight + 'px;margin-top:0;';
+    gallery.style.cssText = "width: 1110px;height:" + window.innerHeight + 'px;margin-top:0;transition:width 0.5s linear;';
 
     $(gallery).html(getPage('myCart.php'));
 
 }
 
 function clearTheCart(e) {
-    function clearIt() {
-        $.ajax({
-            type: 'POST',
-            url: 'removeFromCart.php',
-            data: {'removeAll': 'removeAll'},
-            async: false
-        })
-    }
 
-    clearIt();
+    $.ajax({
+        type: 'POST',
+        url: 'removeFromCart.php',
+        data: {'removeAll': 'removeAll'}
+    });
+
     cartObject.value = 'false';
     cartDisplay(cartObject);
 }

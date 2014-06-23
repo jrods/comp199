@@ -17,6 +17,8 @@
     <link href="css/galleryGenerator.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/>
 
+    <script type='text/javascript' src='js/jquery-2.1.1.min.js'></script>
+
     <?php
     include('scripts/php/htmlGenerator.php');
     include('scripts/php/shoppingCart.php');
@@ -76,7 +78,7 @@
                 </div>
 
                 <div class="item">
-                    <div class="cartBlock"><button value="false" onclick="cartDisplay(this)" id="removeItem" class="cartBox loginButton whiteText" style="font-size: 18px;">Cart</button></div>
+                    <div class="cartBlock"><button value="false" onclick="cartDisplay(this)" id="cartButton" class="cartBox loginButton whiteText" style="font-size: 18px;">Cart</button></div>
                 </div>
 
                 <div class="item">
@@ -103,7 +105,7 @@
 </header>
 
 <body>
-<div class="contentBody">
+<div id="contentBody">
 
     <div id="cart" class="cartContainer"></div>
 
@@ -212,7 +214,7 @@
 </div>
 
 <!-- Load jQuery, SimpleModal and Basic JS files -->
-<script type='text/javascript' src='js/jquery.js'></script>
+
 <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 <script type='text/javascript' src='js/basic.js'></script>
 <script type="text/javascript" src="custom.js"></script>

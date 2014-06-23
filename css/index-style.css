@@ -171,11 +171,15 @@ body {
     padding: 0px;
 }
 
-.contentBody {
+#contentBody {
     position: relative;
     width: 1110px;
     margin: 0 auto !important;
     padding-top: 50px;
+}
+
+#cart {
+    display: none;
 }
 
 div#album h4 {

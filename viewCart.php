@@ -3,10 +3,24 @@
 
     <link href="css/cart-style.css" rel="stylesheet" type="text/css"/>
 
-    <script type="text/javascript" src="js/indexController.js"></script>
+    <script type='text/javascript' src='js/jquery-2.1.1.min.js'></script>
+    <script>
+/*
+        var test =
+
+        $(document).ready(function(e) {
+            test = document.getElementById('cartInfo');
+            return test.scrollHeight;
+        });
+
+        console.log(test);*/
+
+        //var test = document.getElementById('cartInfo').scrollHeight;
+    </script>
 </head>
 <body>
 <div id="cartInfo" class="cart whiteText">
+
     <?php
     session_start();
 
@@ -73,6 +87,7 @@
     echo '<button id="clearCart" onclick="clearTheCart(this)" class="remove slightlyRed">Clear Cart</button>';
     echo '</div>';
     ?>
+
 </div>
 </body>
 </html>
