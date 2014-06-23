@@ -16,6 +16,16 @@ use PayPal\Api\Transaction;
 use PayPal\Rest\ApiContext;
 @session_start();
 
+include_once('scripts/php/shoppingCart.php');
+include_once('scripts/php/psl-config.php');
+$finalCart = new Cart(HOST, USER, PASSWORD, DATABASE);
+
+$finalCart->repopulateCart($_SESSION['allAlbums']);
+
+$finalPrice = $finalCart->getTotal();
+
+
+
 // ### Payer
 // A resource representing a Payer that funds a payment
 // Use the List of `FundingInstrument` and the Payment Method
@@ -27,7 +37,7 @@ $payer->setPayment_method("paypal");
 // Let's you specify a payment amount.
 $amount = new Amount();
 $amount->setCurrency("CAD");
-$amount->setTotal($_POST['total']);
+$amount->setTotal($finalPrice);
 
 // ### Transaction
 // A transaction defines the contract of a
@@ -36,7 +46,7 @@ $amount->setTotal($_POST['total']);
 // a `Payee` and `Amount` types
 $transaction = new Transaction();
 $transaction->setAmount($amount);
-$transaction->setDescription("Total charged: $".$_POST['total']);
+$transaction->setDescription("Total charged: $".$finalPrice);
 
 // ### Redirect urls
 // Set the urls that the buyer must be redirected to after 

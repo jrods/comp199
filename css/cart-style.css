@@ -55,7 +55,6 @@ button.remove {
 
 #cartInfo {
     padding: 25px;
-    transition: height 0.5s linear;
 }
 
 a.remove:hover {

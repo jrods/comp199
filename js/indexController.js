@@ -28,14 +28,13 @@ function postPage(address, album) {
 }
 
 function displayCart() {
-
     $.ajax({
         type: 'GET',
         url: 'viewCart.php',
         async: true,
         cache: false,
         success: function(response) {
-            $('#cart').html(response).slideDown({ duration: 700, easing: 'linear'});
+            $('#cart').html(response).slideDown({ duration: 650, easing: 'linear'});
         }
     }).done( function() {
         $(document).ready(function(e) {
@@ -62,7 +61,7 @@ function cartDisplay(e) {
     } else {
         gallery.style.paddingTop = "0";
         e.value = 'false';
-        $('#cart').slideUp({ duration: 500, easing: 'linear'},
+        $('#cart').slideUp({ duration: 450, easing: 'linear'},
             function() {
                 $('#cartInfo').remove();
             }

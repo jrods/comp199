@@ -77,9 +77,9 @@
 
         #finalCart {
             float: left;
-            width: 650px;
+            width: 677px;
             margin-top: 30px;
-            margin-left: 30px;
+            margin-left: 8px;
         }
 
         #paypal {
